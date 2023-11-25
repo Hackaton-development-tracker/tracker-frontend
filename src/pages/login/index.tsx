@@ -29,7 +29,6 @@ import {
   LoginInput,
   isValidEmail,
 } from '../../components/formelements';
-import { getShopApi } from '../../services/redux/slices/shop/shop';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -80,7 +79,6 @@ const LoginPage = () => {
         setPassword('');
         const access = localStorage.getItem('accessToken') ?? '';
         dispatch(getProfileUser({ access }));
-        dispatch(getShopApi({ token: access }));
         navigate(ROUTE_HOME);
       } else {
         // Если вход не успешный, устанавливаем состояние ошибки
