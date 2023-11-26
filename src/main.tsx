@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
-import './static/scss/index.scss';
+import './index.scss';
 import { Layout } from './pages/layout/layout';
 import { Provider } from 'react-redux';
 import { RootState, store } from './services/redux/store';
@@ -48,13 +48,13 @@ const App = () => {
 
   if (isLoading) {
     return (
-      <section className={isLoggedIn ? 'page' : 'auth'}>
+      <section className={isLoggedIn ? 'page' : 'auth-page'}>
         <Loader />
       </section>
     );
   }
   return (
-    <section className={isLoggedIn ? 'page' : 'auth'}>
+    <section className={isLoggedIn ? 'page' : 'auth-page'}>
       <Routes>
         <Route
           path={ROUTE_HOME}
