@@ -1,39 +1,19 @@
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import { Box, Button, FormHelperText, Paper } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
+import { Box, Button, Container, FormHelperText, Paper } from '@mui/material';
 
-export const LoginButton = styled(Button)({
-  boxShadow: 'none',
-  textTransform: 'none',
-  fontSize: 16,
-  padding: '6px 12px',
-  border: '1px solid',
-  borderRadius: '40px',
-  lineHeight: '34px',
-  backgroundColor: '#003C96',
-  borderColor: '#003C96',
-  fontFamily: ['Futura PT'].join(','),
-  '&:hover': {
-    backgroundColor: '#0048B5',
-    borderColor: '#0048B5',
-    boxShadow: 'none',
-  },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#0062cc',
-    borderColor: '#005cbf',
-  },
-  '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-  },
+export const FormContainer = styled(Container)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: 0,
 });
 
 export const SuccessLabel = styled(FormHelperText)({
   fontSize: 18,
   lineHeight: '18px',
   padding: '0 6px',
-  fontFamily: ['Futura PT'].join(','),
+  fontFamily: ['YS Display'].join(','),
   color: 'green',
   textAlign: 'center',
 });
@@ -42,43 +22,60 @@ export const ErrorLabel = styled(FormHelperText)({
   fontSize: 18,
   lineHeight: '18px',
   padding: '0 6px',
-  fontFamily: ['Futura PT'].join(','),
+  fontFamily: ['YS Display'].join(','),
   color: 'red',
   textAlign: 'center',
 });
 
-export const InputLoginLabel = styled(InputLabel)({
-  fontSize: 18,
-  lineHeight: '18px',
-  padding: '0 6px',
-  fontFamily: ['Futura PT'].join(','),
-});
-
 export const LoginInput = styled(InputBase)(({ theme }) => ({
-  'label + &': {
-    marginTop: theme.spacing(2.5),
-  },
   '& .MuiInputBase-input': {
-    borderRadius: 24,
-    position: 'relative',
+    fontFamily: ['YS Text Regular'],
+    borderRadius: 4,
     backgroundColor: '#FFF',
     border: '1px solid',
-    borderColor: '#858585',
-    fontSize: 16,
+    borderColor: 'rgba(0, 0, 0, 0.23)',
+    fontSize: 15,
+    maxHeight: '56px',
     width: '100%',
-    padding: '10px 12px',
+    padding: '18.5px 12px',
     transition: theme.transitions.create([
       'border-color',
       'background-color',
       'box-shadow',
     ]),
-    fontFamily: ['Futura PT'].join(','),
     '&:focus': {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
+      borderColor: '#1D6BF3',
+      borderWidth: '2px',
+    },
+    '&::placeholder': {
+      letterSpacing: '0.0002em',
     },
   },
 }));
+
+export const LoginButton = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: '16px',
+  lineHeight: '20px',
+  padding: 0,
+  minHeight: '50px',
+  borderRadius: '4px',
+  backgroundColor: '#5A9BFF',
+  fontFamily: ['YS Text Medium'],
+  letterSpacing: '0.002em',
+  '&:hover': {
+    backgroundColor: '#1D6BF3',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#0062cc',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+  },
+});
 
 export const LogOutButton = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
@@ -94,7 +91,7 @@ export const LogOutButton = styled(InputBase)(({ theme }) => ({
       'background-color',
       'box-shadow',
     ]),
-    fontFamily: ['Futura PT'].join(','),
+    fontFamily: ['YS Display'].join(','),
     '&:focus': {},
   },
 }));
