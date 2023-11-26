@@ -225,7 +225,7 @@ const RegisterPage = () => {
           </Snackbar>
         </form>
       </div>
-      <p className={styles['auth-text']}>
+      <p className="auth-text">
         {ACCOUNT_EXIST}
         <Link className={styles.link} to="/login">
           {ENTER}

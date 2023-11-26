@@ -144,7 +144,7 @@ const LoginPage = () => {
           </LoginButton>
         </form>
       </div>
-      <p className={styles['auth-text']}>
+      <p className="auth-text">
         {NO_ACCOUNT}
         <Link className={styles.link} to={ROUTE_REGISTER}>
           {REGISTRATION}
