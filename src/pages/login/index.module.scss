@@ -1,5 +1,24 @@
+@import '../../static/scss/vars.scss';
+
+.auth {
+  opacity: 1;
+  height: 100vh;
+  display: grid;
+  padding: 32px 40px 32px 40px;
+  place-items: center;
+  background-size: cover;
+  background-image: url(../../static/assets/images/image.svg);
+  background-repeat: no-repeat;
+}
+
+.auth-text {
+  color: $color-black-300;
+  margin-top: 20px;
+  margin-bottom: 120px;
+}
+
 .link {
-  color: #003c96;
+  color: #fff;
   text-decoration: none;
   &:active {
     text-decoration: underline;

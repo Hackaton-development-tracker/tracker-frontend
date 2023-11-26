@@ -1,7 +1,6 @@
 import React, { SetStateAction, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
-
 import { Box, FormHelperText } from '@mui/material';
 // import Header from '../../components/header/header';
 import FormControl from '@mui/material/FormControl';
@@ -9,13 +8,11 @@ import FormControl from '@mui/material/FormControl';
 import {
   ENTER,
   ENTER_TO_SYSTEM,
-  PASSWORD,
   ROUTE_HOME,
   ROUTE_REGISTER,
-  ROUTE_TECH_SUPPORT,
-  TECH_SUPPORT,
+  REGISTRATION,
+  NO_ACCOUNT,
   TITLE,
-  TO_REGISTRATION,
 } from '../../utils/constants';
 import {
   getProfileUser,
@@ -23,8 +20,8 @@ import {
 } from '../../services/redux/slices/auth/auth';
 import { useAppDispatch } from '../../services/typeHooks';
 import {
+  FormContainer,
   ErrorLabel,
-  InputLoginLabel,
   LoginButton,
   LoginInput,
   isValidEmail,
@@ -89,80 +86,71 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="layout white">
-      {/* <Header /> */}
-      <h3 className="title">{TITLE}</h3>
+    <FormContainer>
       <div className="loginForm">
-        <div className="loginFormInner">
-          <form onSubmit={login} data-testid="loginForm">
-            <h4>{ENTER_TO_SYSTEM}</h4>
-            <Box sx={{ height: 18, mb: 2 }}>
-              {error3 && <ErrorLabel>{error3}</ErrorLabel>}
-            </Box>
-            <FormControl
+        <form onSubmit={login} data-testid="loginForm">
+          <h4>{TITLE}</h4>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              mb: 2,
+            }}
+          >
+            {!error3 && <h3>{ENTER_TO_SYSTEM}</h3>}
+            {error3 && <ErrorLabel>{error3}</ErrorLabel>}
+          </Box>
+          <FormControl
+            fullWidth
+            error={!!error}
+            variant="standard"
+            sx={{ mb: 2 }}
+          >
+            <LoginInput
               fullWidth
-              error={!!error}
-              variant="standard"
-              sx={{ mb: 2 }}
-            >
-              <InputLoginLabel shrink htmlFor="email">
-                Email
-              </InputLoginLabel>
-              <LoginInput
-                fullWidth
-                placeholder="Введите email"
-                autoFocus
-                id="email"
-                value={emailС}
-                name="email"
-                onChange={handleEmailChange}
-              />
-              {error && <FormHelperText id="email">{error}</FormHelperText>}
-            </FormControl>
-            <FormControl
+              placeholder="Почта"
+              autoFocus
+              id="email"
+              value={emailС}
+              name="email"
+              onChange={handleEmailChange}
+            />
+            {error && <FormHelperText id="email">{error}</FormHelperText>}
+          </FormControl>
+          <FormControl
+            fullWidth
+            variant="standard"
+            error={!!error2}
+            sx={{ mb: 3 }}
+          >
+            <LoginInput
               fullWidth
-              variant="standard"
-              error={!!error2}
-              sx={{ mb: 3 }}
-            >
-              <InputLoginLabel shrink htmlFor="password">
-                {PASSWORD}
-              </InputLoginLabel>
-              <LoginInput
-                fullWidth
-                placeholder="Минимум 8 символов"
-                type="password"
-                id="password"
-                name="password"
-                value={passwordС}
-                onChange={handlePasswordChange}
-              />
-              {error2 && (
-                <FormHelperText id="password">{error2}</FormHelperText>
-              )}
-            </FormControl>
-            <LoginButton
-              fullWidth
-              type="submit"
-              variant="contained"
-              sx={{ mb: 2 }}
-            >
-              {ENTER}
-            </LoginButton>
-            <p className="text-center">
-              <Link className={styles.link} to={ROUTE_REGISTER}>
-                {TO_REGISTRATION}
-              </Link>
-            </p>
-            <p className="text-center">
-              <Link className={styles.link} to={ROUTE_TECH_SUPPORT}>
-                {TECH_SUPPORT}
-              </Link>
-            </p>
-          </form>
-        </div>
+              placeholder="Пароль"
+              type="password"
+              id="password"
+              name="password"
+              value={passwordС}
+              onChange={handlePasswordChange}
+            />
+            {error2 && <FormHelperText id="password">{error2}</FormHelperText>}
+          </FormControl>
+          <LoginButton
+            fullWidth
+            type="submit"
+            variant="contained"
+            sx={{ mb: 2 }}
+          >
+            {ENTER}
+          </LoginButton>
+        </form>
       </div>
-    </div>
+      <p className={styles['auth-text']}>
+        {NO_ACCOUNT}
+        <Link className={styles.link} to={ROUTE_REGISTER}>
+          {REGISTRATION}
+        </Link>
+      </p>
+    </FormContainer>
   );
 };
 

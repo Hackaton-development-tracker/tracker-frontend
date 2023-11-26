@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // import Header from '../../components/header/header';
 import {
   ErrorLabel,
-  InputLoginLabel,
+  FormContainer,
   LoginButton,
   LoginInput,
   SuccessLabel,
@@ -17,16 +17,16 @@ import {
 } from '../../components/formelements';
 import {
   ENTER,
-  PASSWORD,
   REGISTRATION,
   REPEAT_PASSWORD,
   ROUTE_LOGIN,
-  TECH_SUPPORT,
+  ACCOUNT_EXIST,
   TITLE,
 } from '../../utils/constants';
 import { Snackbar } from '@mui/material';
 import { registerUser } from '../../services/redux/slices/auth/auth';
 import { useAppDispatch } from '../../services/typeHooks';
+import styles from '../login/index.module.scss';
 
 const RegisterPage = () => {
   const dispatch = useAppDispatch();
@@ -134,142 +134,104 @@ const RegisterPage = () => {
   }, []);
 
   return (
-    <div className="layout white">
-      {/* <Header /> */}
-      <h3 className="title">{TITLE}</h3>
+    <FormContainer className="auth-layout">
       <div className="loginForm">
-        <div className="loginFormInner">
-          <form
-            onSubmit={register}
-            data-testid="registerForm"
-            autoComplete="off"
+        <form onSubmit={register} data-testid="registerForm" autoComplete="off">
+          <h4>{TITLE}</h4>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+            {lsuccess && <SuccessLabel>{lsuccess}</SuccessLabel>}
+            {!error4 && <h3>{REGISTRATION}</h3>}
+            {error4 && <ErrorLabel>{error4}</ErrorLabel>}
+          </Box>
+          <FormControl
+            fullWidth
+            error={!!error}
+            variant="standard"
+            sx={{ mb: 2 }}
           >
-            <h4>{REGISTRATION}</h4>
-            <Box sx={{ height: 18, mb: 2 }}>
-              {lsuccess && <SuccessLabel>{lsuccess}</SuccessLabel>}
-              {error4 && <ErrorLabel>{error4}</ErrorLabel>}
-            </Box>
-            <FormControl
+            <LoginInput
               fullWidth
-              error={!!error}
-              variant="standard"
-              sx={{ mb: 2 }}
-            >
-              <InputLoginLabel shrink htmlFor="email">
-                Email
-              </InputLoginLabel>
-              <LoginInput
-                fullWidth
-                placeholder=""
-                autoFocus
-                autoComplete="Введите email"
-                value={emailС}
-                id="email"
-                name="email"
-                inputProps={{ autoComplete: 'off' }}
-                onChange={handleEmailChange}
-              />
-              {error && <FormHelperText id="email">{error}</FormHelperText>}
-            </FormControl>
-            <FormControl
+              placeholder="Почта как на платформе Практикума"
+              autoFocus
+              autoComplete="Почта как на платформе Практикума"
+              value={emailС}
+              id="email"
+              name="email"
+              inputProps={{ autoComplete: 'off' }}
+              onChange={handleEmailChange}
+            />
+            {error && <FormHelperText id="email">{error}</FormHelperText>}
+          </FormControl>
+          <FormControl
+            fullWidth
+            variant="standard"
+            error={!!error2}
+            sx={{ mb: 3 }}
+          >
+            <LoginInput
               fullWidth
-              variant="standard"
-              error={!!error2}
-              sx={{ mb: 3 }}
-            >
-              <InputLoginLabel shrink htmlFor="password">
-                {PASSWORD}
-              </InputLoginLabel>
-              <LoginInput
-                fullWidth
-                placeholder="Минимум 8 символов"
-                type="password"
-                autoComplete="off"
-                id="password"
-                name="password"
-                value={passwordС}
-                inputProps={{ autoComplete: 'off' }}
-                onChange={handlePasswordChange}
-              />
-              {error2 && (
-                <FormHelperText id="password">{error2}</FormHelperText>
-              )}
-            </FormControl>
-            <FormControl
+              placeholder="Придумай пароль"
+              type="password"
+              autoComplete="off"
+              id="password"
+              name="password"
+              value={passwordС}
+              inputProps={{ autoComplete: 'off' }}
+              onChange={handlePasswordChange}
+            />
+            {error2 && <FormHelperText id="password">{error2}</FormHelperText>}
+          </FormControl>
+          <FormControl
+            fullWidth
+            variant="standard"
+            error={!!error3}
+            sx={{ mb: 4 }}
+          >
+            <LoginInput
               fullWidth
-              variant="standard"
-              error={!!error3}
-              sx={{ mb: 4 }}
-            >
-              <InputLoginLabel shrink htmlFor="password">
-                {REPEAT_PASSWORD}
-              </InputLoginLabel>
-              <LoginInput
-                fullWidth
-                placeholder={REPEAT_PASSWORD}
-                type="password"
-                autoComplete="off"
-                id="passwordConfirm"
-                name="passwordConfirm"
-                value={passwordConfirmС}
-                inputProps={{ autoComplete: 'off' }}
-                onChange={handlePasswordConfirmChange}
-              />
-              {error3 && (
-                <FormHelperText id="password">{error3}</FormHelperText>
-              )}
-            </FormControl>
-            {/* <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox required />}
-                    {...register('terms')}
-                    label={
-                      <Typography color={errors.terms ? 'error' : 'inherit'}>
-                        Принять Условия использования
-                      </Typography>
-                    }
-                  />
-                  <FormHelperText error={!!errors.terms}>
-                    {errors.terms ? errors.terms.message : ''}
-                  </FormHelperText>
-                </FormGroup> */}
-            <LoginButton
-              fullWidth
-              type="submit"
-              variant="contained"
-              sx={{ mb: 2 }}
-            >
-              {REGISTRATION}
-            </LoginButton>
-            <p className="text-center">
-              <Link className="link" to="/login">
-                {ENTER}
-              </Link>
-            </p>
-            <p className="text-center">
-              <Link className="link" to="/404">
-                {TECH_SUPPORT}
-              </Link>
-            </p>
-            <Snackbar
-              open={open}
-              autoHideDuration={5000}
-              onClose={handleSnackbarClose}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            >
-              <SnackbarContent
-                style={{
-                  backgroundColor: '#00BE64',
-                }}
-                message={
-                  <span id="client-snackbar">{`Регистрация прошла успешно. Вы будете перенаправлены на страницу авторизации через ${secondsRemaining} сек.`}</span>
-                }
-              />
-            </Snackbar>
-          </form>
-        </div>
+              placeholder={REPEAT_PASSWORD}
+              type="password"
+              autoComplete="off"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              value={passwordConfirmС}
+              inputProps={{ autoComplete: 'off' }}
+              onChange={handlePasswordConfirmChange}
+            />
+            {error3 && <FormHelperText id="password">{error3}</FormHelperText>}
+          </FormControl>
+          <LoginButton
+            fullWidth
+            type="submit"
+            variant="contained"
+            sx={{ mb: 2 }}
+          >
+            {REGISTRATION}
+          </LoginButton>
+          <Snackbar
+            open={open}
+            autoHideDuration={5000}
+            onClose={handleSnackbarClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          >
+            <SnackbarContent
+              style={{
+                backgroundColor: '#00BE64',
+              }}
+              message={
+                <span id="client-snackbar">{`Регистрация прошла успешно. Вы будете перенаправлены на страницу авторизации через ${secondsRemaining} сек.`}</span>
+              }
+            />
+          </Snackbar>
+        </form>
       </div>
-    </div>
+      <p className={styles['auth-text']}>
+        {ACCOUNT_EXIST}
+        <Link className={styles.link} to="/login">
+          {ENTER}
+        </Link>
+      </p>
+    </FormContainer>
   );
 };
 
