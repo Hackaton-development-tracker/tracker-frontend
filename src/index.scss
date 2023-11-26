@@ -1,73 +1,53 @@
-@import url('https://fonts.cdnfonts.com/css/futura-pt');
+@import url('./static/fonts/fonts.scss');
+@import './static/scss/vars.scss';
 
 body {
-  font-family: 'Futura PT';
+  font-family: 'YS Display Regular', Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
-  height: 100vh;
-  background-color: #f0f0f0;
 }
 
 .page {
   opacity: 1;
 }
 
-.mb-16 {
-  margin-bottom: 16px;
-}
-
-.mb-40 {
-  margin-bottom: 40px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.title {
-  color: #2c2a29;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 48px;
-  text-align: center;
-  margin: 80px 0 72px 0;
+.auth-page {
+  opacity: 1;
+  height: 100vh;
+  display: grid;
+  padding: 32px 40px 32px 40px;
+  place-items: center;
+  background-size: cover;
+  background-image: url(./static/assets/images/image.svg);
+  background-repeat: no-repeat;
 }
 
 .loginForm {
-  max-width: 458px;
-  margin: 0 auto;
   width: 100%;
-  padding: 0;
-  align-items: center;
-  margin-top: 76px;
-  border: 1px solid #cdcdcd;
+  padding: 32px 40px 32px 40px;
+  max-width: 386px;
+  background: #fff;
   border-radius: 12px;
-}
-
-.loginFormInner {
-  padding: 40px 40px 20px 40px;
+  box-sizing: border-box;
 
   h4 {
-    color: #2c2a29;
+    font-family: 'YS Display Medium';
     font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%;
-    margin: 0 0 12px 0;
+    font-weight: bold;
+    line-height: 32px;
     text-align: center;
+    margin: 0 0 24px;
   }
-  .title {
-    color: #2c2a29;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 18px;
-    margin: 0 0 4px 0;
-    text-align: left;
-  }
-}
 
-.forecast {
-  // background: url('./assets/icon/graph_empty.svg') no-repeat center center;
+  h3 {
+    font-family: 'YS Text Regular';
+    color: $color-black-500;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    margin: 0;
+  }
 }
