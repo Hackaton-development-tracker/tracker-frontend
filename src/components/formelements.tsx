@@ -30,10 +30,10 @@ export const ErrorLabel = styled(FormHelperText)({
 
 export const ErrorMessage = styled(FormHelperText)({
   fontSize: '11px',
-  lineHeight: '12px',
   fontFamily: 'YS Text Regular',
   color: '#ff0200',
   letterSpacing: '0.002em',
+  lineHeight: '1.66'
 })
 
 export const LoginInput = styled(InputBase)(({ theme, error }) => ({
@@ -55,6 +55,7 @@ export const LoginInput = styled(InputBase)(({ theme, error }) => ({
     '&:focus': {
       borderColor: error ? '#ff0200' : '#1D6BF3',
       borderWidth: '2px',
+      padding: '18px 11px',
     },
   },
 }));
