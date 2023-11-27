@@ -7,11 +7,11 @@ import {
   Controller,
 } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import styles from './index.module.scss';
 import { Box } from '@mui/material';
 // import Header from '../../components/header/header';
 import FormControl from '@mui/material/FormControl';
+import { loginSchema } from '../../utils/validationSchema';
 
 import {
   ENTER,
@@ -45,17 +45,6 @@ const LoginPage = () => {
     password: string;
   }
 
-  const schema = yup.object().shape({
-    email: yup
-      .string()
-      .required('Введите адрес электронной почты')
-      .matches(
-        /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/,
-        'Введите адрес почты вида Ivan@mail.ru',
-      ),
-    password: yup.string().required('Введите пароль'),
-  });
-
   const {
     control,
     register,
@@ -63,7 +52,7 @@ const LoginPage = () => {
     setValue,
     formState: { errors },
   } = useForm<LoginFormInputs>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(loginSchema),
     mode: 'onChange',
   });
 
