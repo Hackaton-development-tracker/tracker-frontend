@@ -25,6 +25,7 @@ export const ErrorLabel = styled(FormHelperText)({
   fontFamily: 'YS Text Regular',
   color: '#ff0200',
   letterSpacing: '0.002em',
+  textAlign: 'center',
 });
 
 export const ErrorMessage = styled(FormHelperText)({

@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  useForm,
-  SubmitHandler,
-  FieldValues,
-  Controller,
-} from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './index.module.scss';
 import { Box } from '@mui/material';
@@ -62,23 +57,23 @@ const LoginPage = () => {
 
   // Form submission handler
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-      const email = data.email as string;
-      const password = data.password as string;
+    const email = data.email as string;
+    const password = data.password as string;
 
-      // Вызываем loginUser action с данными из формы
-      dispatch(loginUser({ email, password })).then((resultAction) => {
-        if (loginUser.fulfilled.match(resultAction)) {
-          // После успешного входа, пользователь будет перенаправлен на главную страницу
-          const access = localStorage.getItem('accessToken') ?? '';
-          dispatch(getProfileUser({ access }));
-          navigate(ROUTE_HOME);
-        } else {
-          // Если вход не успешный, устанавливаем состояние ошибки
-          setError(
-            'Не удается войти. Пожалуйста, проверь правильность написания логина и пароля',
-          );
-        }
-      });
+    // Вызываем loginUser action с данными из формы
+    dispatch(loginUser({ email, password })).then((resultAction) => {
+      if (loginUser.fulfilled.match(resultAction)) {
+        // После успешного входа, пользователь будет перенаправлен на главную страницу
+        const access = localStorage.getItem('accessToken') ?? '';
+        dispatch(getProfileUser({ access }));
+        navigate(ROUTE_HOME);
+      } else {
+        // Если вход не успешный, устанавливаем состояние ошибки
+        setError(
+          'Не удается войти. Пожалуйста, проверь правильность написания логина и пароля',
+        );
+      }
+    });
   };
 
   return (
@@ -102,9 +97,10 @@ const LoginPage = () => {
             <Controller
               control={control}
               name="email"
-              render={({ field }: { field: FieldValues }) => (
+              render={(props) => (
                 <LoginInput
-                  {...field}
+                  type="email"
+                  {...props.field}
                   fullWidth
                   placeholder="Почта"
                   autoFocus
@@ -112,7 +108,7 @@ const LoginPage = () => {
                   {...register('email')}
                   onChange={(e) => {
                     setValue('email', e.target.value);
-                    field.onChange(e);
+                    props.field.onChange(e);
                   }}
                   error={getInputError('email')}
                 />
@@ -120,9 +116,7 @@ const LoginPage = () => {
             />
             <div className="auth-error">
               {errors.email && (
-                <ErrorMessage id="email">
-                  {errors.email?.message}
-                </ErrorMessage>
+                <ErrorMessage id="email">{errors.email?.message}</ErrorMessage>
               )}
             </div>
           </FormControl>
@@ -135,9 +129,9 @@ const LoginPage = () => {
             <Controller
               control={control}
               name="password"
-              render={({ field }: { field: FieldValues }) => (
+              render={(props) => (
                 <LoginInput
-                  {...field}
+                  {...props.field}
                   fullWidth
                   placeholder="Пароль"
                   type="password"
@@ -145,7 +139,7 @@ const LoginPage = () => {
                   {...register('password')}
                   onChange={(e) => {
                     setValue('password', e.target.value);
-                    field.onChange(e);
+                    props.field.onChange(e);
                   }}
                   error={getInputError('password')}
                 />
