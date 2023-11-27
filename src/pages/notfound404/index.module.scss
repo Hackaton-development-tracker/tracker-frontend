@@ -1,51 +1,47 @@
 .main {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: calc(100vh - 90px);
+  align-items: center;
+  height: 100vh;
 }
 
-.blockund {
+.content {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
+  padding: 120px 144px;
+  max-width: 1280px;
+  min-width: 992px;
+}
+
+.textBlock {
+  display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 286px;
+    gap: 48px;
 }
 
 .title {
-  margin-top: 280px;
-  margin-bottom: 60px;
+  margin: 0px;
+  letter-spacing: 0px;
+  font-weight: 500;
+  font-size: 128px;
+  line-height: 130px;
+  color: #1d6bf3;
 }
 
 .text {
-  color: #2c2a29;
-  text-align: center;
   font-family: Futura PT;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 450;
-  line-height: 48px;
-  margin: 32px 0 88px 0;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
 }
 
-.link {
-  color: #003c96;
-  font-family: Futura PT;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-  cursor: pointer;
-  display: flex;
-  width: 256px;
-  height: 46px;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-  border-radius: 40px;
-  border: 1px solid #003c96;
-  text-decoration: none;
-
-  :hover {
-    color: #8585ad;
-  }
+.img {
+  width: 486px;
+  height: 539px;
 }

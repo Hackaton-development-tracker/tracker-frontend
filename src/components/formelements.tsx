@@ -6,28 +6,26 @@ import InputLabel from '@mui/material/InputLabel';
 export const LoginButton = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',
-  fontSize: 16,
-  padding: '6px 12px',
-  border: '1px solid',
-  borderRadius: '40px',
-  lineHeight: '34px',
-  backgroundColor: '#003C96',
-  borderColor: '#003C96',
-  fontFamily: ['Futura PT'].join(','),
+  fontSize: '16px',
+  lineHeight: '20px',
+  padding: '15px 24px',
+  borderRadius: '4px',
+  backgroundColor: '#5A9BFF',
+  fontFamily: ['YS Text Medium'],
+  letterSpacing: '0.002em',
   '&:hover': {
-    backgroundColor: '#0048B5',
-    borderColor: '#0048B5',
+    backgroundColor: '#1D6BF3',
     boxShadow: 'none',
   },
   '&:active': {
     boxShadow: 'none',
     backgroundColor: '#0062cc',
-    borderColor: '#005cbf',
   },
   '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+    boxShadow: 'none',
   },
 });
+
 
 export const SuccessLabel = styled(FormHelperText)({
   fontSize: 18,

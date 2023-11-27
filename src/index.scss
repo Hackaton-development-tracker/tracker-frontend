@@ -5,11 +5,21 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color: #f0f0f0;
 }
 
 .page {
   opacity: 1;
+}
+
+.auth-page {
+  opacity: 1;
+  height: 100vh;
+  display: grid;
+  padding: 32px 40px 32px 40px;
+  place-items: center;
+  background-size: cover;
+  background-image: url(./static/assets/images/image.svg);
+  background-repeat: no-repeat;
 }
 
 .mb-16 {
