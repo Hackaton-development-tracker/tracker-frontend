@@ -33,6 +33,8 @@ import {
 const LoginPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [emailС, setEmail] = useState('');
+  const [passwordС, setPassword] = useState('');
   const [error, setError] = useState('');
 
   interface LoginFormInputs {
@@ -42,12 +44,11 @@ const LoginPage = () => {
 
   const {
     control,
-    register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm<LoginFormInputs>({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver<LoginFormInputs>(loginSchema),
     mode: 'onChange',
   });
 
@@ -97,6 +98,7 @@ const LoginPage = () => {
             <Controller
               control={control}
               name="email"
+              defaultValue={emailС}
               render={(props) => (
                 <LoginInput
                   type="email"
@@ -105,9 +107,9 @@ const LoginPage = () => {
                   placeholder="Почта"
                   autoFocus
                   id="email"
-                  {...register('email')}
                   onChange={(e) => {
                     setValue('email', e.target.value);
+                    setEmail(e.target.value);
                     props.field.onChange(e);
                   }}
                   error={getInputError('email')}
@@ -129,6 +131,7 @@ const LoginPage = () => {
             <Controller
               control={control}
               name="password"
+              defaultValue={passwordС}
               render={(props) => (
                 <LoginInput
                   {...props.field}
@@ -136,9 +139,9 @@ const LoginPage = () => {
                   placeholder="Пароль"
                   type="password"
                   id="password"
-                  {...register('password')}
                   onChange={(e) => {
                     setValue('password', e.target.value);
+                    setPassword(e.target.value);
                     props.field.onChange(e);
                   }}
                   error={getInputError('password')}

@@ -1,14 +1,16 @@
 import {
   Box,
   FormControl,
-  FormHelperText,
   SnackbarContent,
 } from '@mui/material';
-import { SetStateAction, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 // import Header from '../../components/header/header';
 import {
   ErrorLabel,
+  ErrorMessage,
   FormContainer,
   LoginButton,
   LoginInput,
@@ -26,6 +28,7 @@ import { Snackbar } from '@mui/material';
 import { registerUser } from '../../services/redux/slices/auth/auth';
 import { useAppDispatch } from '../../services/typeHooks';
 import styles from '../login/index.module.scss';
+import { registerSchema } from '../../utils/validationSchema';
 
 const RegisterPage = () => {
   const dispatch = useAppDispatch();
@@ -39,50 +42,46 @@ const RegisterPage = () => {
   const [passwordConfirmС, setPasswordConfirm] = useState('');
 
   const [error, setError] = useState('');
-  const [error2, setError2] = useState('');
-  const [error3, setError3] = useState('');
-  const [error4, setError4] = useState('');
   const [lsuccess, setSuccess] = useState('');
+
+  interface LoginFormInputs {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+  }
+
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<LoginFormInputs>({
+    resolver: yupResolver(registerSchema),
+    mode: 'onChange',
+  });
+
+  const getInputError = (fieldName: string) => {
+    return errors.hasOwnProperty(fieldName);
+  };
 
   const handleSnackbarClose = () => {
     setOpen(false);
     navigate(ROUTE_LOGIN);
   };
 
-  const handleEmailChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setPassword(e.target.value);
-  };
-
-  const handlePasswordConfirmChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setPasswordConfirm(e.target.value);
-  };
-  const register = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    const passwordconf = formData.get('passwordConfirm') as string;
+  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+    const email = data.email as string;
+    const password = data.password as string;
+    const passwordConfirm = data.passwordConfirm as string;
 
     setError('');
-    setError2('');
-    setError3('');
-    setError4('');
     setSuccess('');
 
-    if (password !== passwordconf) {
-      setError3('Пароли должны совпадать');
+    if (password !== passwordConfirm) {
+      setError('Пароли должны совпадать');
       return;
     }
+
     dispatch(registerUser({ email, password })).then((resultAction) => {
       if (registerUser.fulfilled.match(resultAction)) {
         // setSuccess('Регистрация прошла успешно');
@@ -102,7 +101,7 @@ const RegisterPage = () => {
           handleSnackbarClose();
         }, 5000);
       } else {
-        setError4('Ошибка регистрации');
+        setError('Ошибка регистрации');
         return;
       }
     });
@@ -124,69 +123,113 @@ const RegisterPage = () => {
   return (
     <FormContainer className="auth-layout">
       <div className="loginForm">
-        <form onSubmit={register} data-testid="registerForm" autoComplete="off">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          data-testid="registerForm"
+          autoComplete="off"
+        >
           <h4>{TITLE}</h4>
           <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
             {lsuccess && <SuccessLabel>{lsuccess}</SuccessLabel>}
-            {!error4 && <h3>{REGISTRATION}</h3>}
-            {error4 && <ErrorLabel>{error4}</ErrorLabel>}
+            {!error && <h3>{REGISTRATION}</h3>}
+            {error && <ErrorLabel>{error}</ErrorLabel>}
           </Box>
-          <FormControl
-            fullWidth
-            error={!!error}
-            variant="standard"
-            sx={{ mb: 2 }}
-          >
-            <LoginInput
-              fullWidth
-              placeholder="Почта как на платформе Практикума"
-              autoFocus
-              autoComplete="Почта как на платформе Практикума"
-              value={emailС}
-              id="email"
+          <FormControl fullWidth error={!!errors.email} variant="standard">
+            <Controller
+              control={control}
               name="email"
-              inputProps={{ autoComplete: 'off' }}
-              onChange={handleEmailChange}
+              defaultValue={emailС}
+              render={(props) => (
+                <LoginInput
+                  type="email"
+                  {...props.field}
+                  fullWidth
+                  placeholder="Почта как на платформе Практикума"
+                  autoFocus
+                  id="email"
+                  inputProps={{ autoComplete: 'off' }}
+                  onChange={(e) => {
+                    setValue('email', e.target.value);
+                    setEmail(e.target.value);
+                    props.field.onChange(e);
+                  }}
+                  error={getInputError('email')}
+                />
+              )}
             />
-            {error && <FormHelperText id="email">{error}</FormHelperText>}
+            <div className="auth-error">
+              {errors.email && (
+                <ErrorMessage id="email">{errors.email?.message}</ErrorMessage>
+              )}
+            </div>
           </FormControl>
-          <FormControl
-            fullWidth
-            variant="standard"
-            error={!!error2}
-            sx={{ mb: 3 }}
-          >
-            <LoginInput
-              fullWidth
-              placeholder="Придумай пароль"
-              type="password"
-              autoComplete="off"
-              id="password"
+          <FormControl fullWidth variant="standard" error={!!error}>
+            <Controller
+              control={control}
               name="password"
-              value={passwordС}
-              inputProps={{ autoComplete: 'off' }}
-              onChange={handlePasswordChange}
+              defaultValue={passwordС}
+              render={(props) => (
+                <LoginInput
+                  {...props.field}
+                  fullWidth
+                  placeholder="Придумай пароль"
+                  type="password"
+                  autoComplete="off"
+                  id="password"
+                  name="password"
+                  inputProps={{ autoComplete: 'off' }}
+                  onChange={(e) => {
+                    setValue('password', e.target.value);
+                    setPassword(e.target.value);
+                    props.field.onChange(e);
+                  }}
+                  error={getInputError('password')}
+                />
+              )}
             />
-            {error2 && <FormHelperText id="password">{error2}</FormHelperText>}
+            <div className="auth-error">
+              {errors.password && (
+                <ErrorMessage id="password">
+                  {errors.password?.message}
+                </ErrorMessage>
+              )}
+            </div>
           </FormControl>
           <FormControl
             fullWidth
+            error={!!errors.passwordConfirm}
             variant="standard"
-            error={!!error3}
-            sx={{ mb: 4 }}
           >
-            <LoginInput
-              fullWidth
-              placeholder={REPEAT_PASSWORD}
-              type="password"
-              autoComplete="off"
-              id="passwordConfirm"
+            <Controller
+              control={control}
               name="passwordConfirm"
-              value={passwordConfirmС}
-              inputProps={{ autoComplete: 'off' }}
-              onChange={handlePasswordConfirmChange}
+              defaultValue={passwordConfirmС}
+              render={(props) => (
+                <LoginInput
+                  {...props.field}
+                  fullWidth
+                  placeholder={REPEAT_PASSWORD}
+                  type="password"
+                  autoComplete="off"
+                  id="passwordConfirm"
+                  name="passwordConfirm"
+                  inputProps={{ autoComplete: 'off' }}
+                  onChange={(e) => {
+                    setValue('passwordConfirm', e.target.value);
+                    setPassword(e.target.value);
+                    props.field.onChange(e);
+                  }}
+                  error={getInputError('passwordConfirm')}
+                />
+              )}
             />
-            {error3 && <FormHelperText id="password">{error3}</FormHelperText>}
+            <div className="auth-error">
+              {errors.passwordConfirm && (
+                <ErrorMessage id="password">
+                  {errors.passwordConfirm?.message}
+                </ErrorMessage>
+              )}
+            </div>
           </FormControl>
           <LoginButton
             fullWidth
