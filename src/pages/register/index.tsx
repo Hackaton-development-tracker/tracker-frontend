@@ -13,7 +13,6 @@ import {
   LoginButton,
   LoginInput,
   SuccessLabel,
-  isValidEmail,
 } from '../../components/formelements';
 import {
   ENTER,
@@ -79,17 +78,6 @@ const RegisterPage = () => {
     setError3('');
     setError4('');
     setSuccess('');
-    // Проверяем валидность email и пароля
-    if (!isValidEmail(email)) {
-      if (email == '') setError('Введите email');
-      else setError('Неправильный формат email');
-      return;
-    }
-
-    if (password.length < 8) {
-      setError2('Пароль должен содержать минимум 8 символов');
-      return;
-    }
 
     if (password !== passwordconf) {
       setError3('Пароли должны совпадать');

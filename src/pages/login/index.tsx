@@ -1,7 +1,15 @@
-import React, { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import {
+  useForm,
+  SubmitHandler,
+  FieldValues,
+  Controller,
+} from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import styles from './index.module.scss';
-import { Box, FormHelperText } from '@mui/material';
+import { Box } from '@mui/material';
 // import Header from '../../components/header/header';
 import FormControl from '@mui/material/FormControl';
 
@@ -22,73 +30,72 @@ import { useAppDispatch } from '../../services/typeHooks';
 import {
   FormContainer,
   ErrorLabel,
+  ErrorMessage,
   LoginButton,
   LoginInput,
-  isValidEmail,
 } from '../../components/formelements';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
-  const [emailС, setEmail] = useState('');
-  const [passwordС, setPassword] = useState('');
   const navigate = useNavigate();
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
 
-  const handleEmailChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setEmail(e.target.value);
+  interface LoginFormInputs {
+    email: string;
+    password: string;
+  }
+
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .required('Введите адрес электронной почты')
+      .matches(
+        /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/,
+        'Введите адрес почты вида Ivan@mail.ru',
+      ),
+    password: yup.string().required('Введите пароль'),
+  });
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<LoginFormInputs>({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+  });
+
+  const getInputError = (fieldName: string) => {
+    return errors.hasOwnProperty(fieldName);
   };
 
-  const handlePasswordChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setPassword(e.target.value);
-  };
-  const login = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    // Сбрасываем ошибку перед отправкой запроса
-    setEmailError('');
-    setPasswordError('');
+  // Form submission handler
+  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+      const email = data.email as string;
+      const password = data.password as string;
 
-    // Проверяем валидность email и пароля
-    if (!isValidEmail(email)) {
-      if (email == '') setEmailError('Введите email');
-      else setEmailError('Неправильный формат email');
-      return;
-    }
-
-    if (password.length < 8) {
-      setPasswordError('Пароль должен содержать минимум 8 символов');
-      return;
-    }
-
-    // Вызываем loginUser action с данными из формы
-    dispatch(loginUser({ email, password })).then((resultAction) => {
-      if (loginUser.fulfilled.match(resultAction)) {
-        // После успешного входа, пользователь будет перенаправлен на главную страницу
-        setEmail('');
-        setPassword('');
-        const access = localStorage.getItem('accessToken') ?? '';
-        dispatch(getProfileUser({ access }));
-        navigate(ROUTE_HOME);
-      } else {
-        // Если вход не успешный, устанавливаем состояние ошибки
-        setPassword('');
-        setError('Не удается войти. Пожалуйста, проверь правильность написания логина и пароля');
-      }
-    });
+      // Вызываем loginUser action с данными из формы
+      dispatch(loginUser({ email, password })).then((resultAction) => {
+        if (loginUser.fulfilled.match(resultAction)) {
+          // После успешного входа, пользователь будет перенаправлен на главную страницу
+          const access = localStorage.getItem('accessToken') ?? '';
+          dispatch(getProfileUser({ access }));
+          navigate(ROUTE_HOME);
+        } else {
+          // Если вход не успешный, устанавливаем состояние ошибки
+          setError(
+            'Не удается войти. Пожалуйста, проверь правильность написания логина и пароля',
+          );
+        }
+      });
   };
 
   return (
     <FormContainer>
       <div className="loginForm">
-        <form onSubmit={login} data-testid="loginForm">
+        <form onSubmit={handleSubmit(onSubmit)} data-testid="loginForm">
           <h4>{TITLE}</h4>
           <Box
             sx={{
@@ -102,40 +109,66 @@ const LoginPage = () => {
             {!error && <h3>{ENTER_TO_SYSTEM}</h3>}
             {error && <ErrorLabel>{error}</ErrorLabel>}
           </Box>
-          <FormControl
-            fullWidth
-            error={!!emailError}
-            variant="standard"
-          >
-            <LoginInput
-              fullWidth
-              placeholder="Почта"
-              autoFocus
-              id="email"
-              value={emailС}
+          <FormControl fullWidth error={!!errors.email} variant="standard">
+            <Controller
+              control={control}
               name="email"
-              onChange={handleEmailChange}
+              render={({ field }: { field: FieldValues }) => (
+                <LoginInput
+                  {...field}
+                  fullWidth
+                  placeholder="Почта"
+                  autoFocus
+                  id="email"
+                  {...register('email')}
+                  onChange={(e) => {
+                    setValue('email', e.target.value);
+                    field.onChange(e);
+                  }}
+                  error={getInputError('email')}
+                />
+              )}
             />
-            <p>
-            {emailError && <FormHelperText id="email">{emailError}</FormHelperText>}
-            </p>
+            <div className="auth-error">
+              {errors.email && (
+                <ErrorMessage id="email">
+                  {errors.email?.message}
+                </ErrorMessage>
+              )}
+            </div>
           </FormControl>
           <FormControl
             fullWidth
             variant="standard"
-            error={!!passwordError}
+            error={!!errors.password}
             sx={{ mb: 3 }}
           >
-            <LoginInput
-              fullWidth
-              placeholder="Пароль"
-              type="password"
-              id="password"
+            <Controller
+              control={control}
               name="password"
-              value={passwordС}
-              onChange={handlePasswordChange}
+              render={({ field }: { field: FieldValues }) => (
+                <LoginInput
+                  {...field}
+                  fullWidth
+                  placeholder="Пароль"
+                  type="password"
+                  id="password"
+                  {...register('password')}
+                  onChange={(e) => {
+                    setValue('password', e.target.value);
+                    field.onChange(e);
+                  }}
+                  error={getInputError('password')}
+                />
+              )}
             />
-            {passwordError && <FormHelperText id="password">{passwordError}</FormHelperText>}
+            <div className="auth-error">
+              {errors.password && (
+                <ErrorMessage id="password">
+                  {errors.password?.message}
+                </ErrorMessage>
+              )}
+            </div>
           </FormControl>
           <LoginButton
             fullWidth
