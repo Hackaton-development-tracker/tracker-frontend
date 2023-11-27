@@ -13,17 +13,18 @@ export const SuccessLabel = styled(FormHelperText)({
   fontSize: 18,
   lineHeight: '18px',
   padding: '0 6px',
-  fontFamily: ['YS Display'].join(','),
+  fontFamily: ['YS Text Regular'].join(','),
   color: 'green',
   textAlign: 'center',
 });
 
 export const ErrorLabel = styled(FormHelperText)({
-  fontSize: 18,
-  lineHeight: '18px',
+  fontSize: '15px',
+  lineHeight: '20px',
   padding: '0 6px',
-  fontFamily: ['YS Display'].join(','),
-  color: 'red',
+  fontFamily: 'YS Text Regular',
+  letterSpacing: '0.0002em',
+  color: '#ff0200',
   textAlign: 'center',
 });
 
@@ -37,7 +38,7 @@ export const LoginInput = styled(InputBase)(({ theme }) => ({
     fontSize: 15,
     maxHeight: '56px',
     width: '100%',
-    padding: '18.5px 12px',
+    padding: '18px 14px',
     transition: theme.transitions.create([
       'border-color',
       'background-color',
@@ -46,9 +47,6 @@ export const LoginInput = styled(InputBase)(({ theme }) => ({
     '&:focus': {
       borderColor: '#1D6BF3',
       borderWidth: '2px',
-    },
-    '&::placeholder': {
-      letterSpacing: '0.0002em',
     },
   },
 }));
@@ -84,7 +82,6 @@ export const LogOutButton = styled(InputBase)(({ theme }) => ({
     backgroundColor: '#FFF',
     border: '1px solid',
     borderColor: '#858585',
-    fontSize: 16,
     padding: '10px 12px',
     transition: theme.transitions.create([
       'border-color',

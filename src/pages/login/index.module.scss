@@ -1,9 +1,9 @@
 @import '../../static/scss/vars.scss';
 
 .link {
-  color: #fff;
+  color: $color-white;
   text-decoration: none;
-  
+
   &:focus-visible {
     outline: none;
   }

@@ -32,9 +32,9 @@ const LoginPage = () => {
   const [emailС, setEmail] = useState('');
   const [passwordС, setPassword] = useState('');
   const navigate = useNavigate();
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
-  const [error2, setError2] = useState('');
-  const [error3, setError3] = useState('');
 
   const handleEmailChange = (e: {
     target: { value: SetStateAction<string> };
@@ -53,18 +53,18 @@ const LoginPage = () => {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     // Сбрасываем ошибку перед отправкой запроса
-    setError('');
-    setError2('');
+    setEmailError('');
+    setPasswordError('');
 
     // Проверяем валидность email и пароля
     if (!isValidEmail(email)) {
-      if (email == '') setError('Введите email');
-      else setError('Неправильный формат email');
+      if (email == '') setEmailError('Введите email');
+      else setEmailError('Неправильный формат email');
       return;
     }
 
     if (password.length < 8) {
-      setError2('Пароль должен содержать минимум 8 символов');
+      setPasswordError('Пароль должен содержать минимум 8 символов');
       return;
     }
 
@@ -80,7 +80,7 @@ const LoginPage = () => {
       } else {
         // Если вход не успешный, устанавливаем состояние ошибки
         setPassword('');
-        setError3('Неверный email или пароль. Пожалуйста, попробуйте снова.');
+        setError('Не удается войти. Пожалуйста, проверь правильность написания логина и пароля');
       }
     });
   };
@@ -92,19 +92,20 @@ const LoginPage = () => {
           <h4>{TITLE}</h4>
           <Box
             sx={{
+              gap: '4px',
               display: 'flex',
-              justifyContent: 'center',
-              mb: 2,
+              alignItems: 'center',
+              marginBottom: '24px',
+              flexDirection: 'column',
             }}
           >
-            {!error3 && <h3>{ENTER_TO_SYSTEM}</h3>}
-            {error3 && <ErrorLabel>{error3}</ErrorLabel>}
+            {!error && <h3>{ENTER_TO_SYSTEM}</h3>}
+            {error && <ErrorLabel>{error}</ErrorLabel>}
           </Box>
           <FormControl
             fullWidth
-            error={!!error}
+            error={!!emailError}
             variant="standard"
-            sx={{ mb: 2 }}
           >
             <LoginInput
               fullWidth
@@ -115,12 +116,14 @@ const LoginPage = () => {
               name="email"
               onChange={handleEmailChange}
             />
-            {error && <FormHelperText id="email">{error}</FormHelperText>}
+            <p>
+            {emailError && <FormHelperText id="email">{emailError}</FormHelperText>}
+            </p>
           </FormControl>
           <FormControl
             fullWidth
             variant="standard"
-            error={!!error2}
+            error={!!passwordError}
             sx={{ mb: 3 }}
           >
             <LoginInput
@@ -132,7 +135,7 @@ const LoginPage = () => {
               value={passwordС}
               onChange={handlePasswordChange}
             />
-            {error2 && <FormHelperText id="password">{error2}</FormHelperText>}
+            {passwordError && <FormHelperText id="password">{passwordError}</FormHelperText>}
           </FormControl>
           <LoginButton
             fullWidth
