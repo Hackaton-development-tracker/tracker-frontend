@@ -18,15 +18,24 @@
 
 .textBlock {
   display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    width: 286px;
-    gap: 48px;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 286px;
+  gap: 48px;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 12px;
 }
 
 .title {
   margin: 0px;
+  font-family: 'YS Text Medium';
   letter-spacing: 0px;
   font-weight: 500;
   font-size: 128px;
@@ -35,10 +44,11 @@
 }
 
 .text {
-  font-family: Futura PT;
+  font-family: 'YS Text Medium';
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
+  margin: 0;
 }
 
 .img {

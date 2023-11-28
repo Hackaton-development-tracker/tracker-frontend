@@ -15,13 +15,13 @@ function NotFound404() {
               <p className={`${styles.text}`}>{NOT_FOUND}</p>
             </div>
             <Link
-              to={'https://career.praktikum-services.ru/'}
+              to={'/'}
               className={styles.link}
             >
               <LoginButton
                 type="button"
                 variant="contained"
-                sx={{ mb: 2, minWidth: 285, maxHeight: 40 }}
+                sx={{  minWidth: 285, maxHeight: 40, borderRadius: '6px', fontSize: '14px' }}
               >
                 {COME_BACK}
               </LoginButton>
