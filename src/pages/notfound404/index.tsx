@@ -14,14 +14,16 @@ function NotFound404() {
               <h1 className={styles.title}>404</h1>
               <p className={`${styles.text}`}>{NOT_FOUND}</p>
             </div>
-            <Link
-              to={'/'}
-              className={styles.link}
-            >
+            <Link to={'/'} className={styles.link}>
               <LoginButton
                 type="button"
                 variant="contained"
-                sx={{  minWidth: 285, maxHeight: 40, borderRadius: '6px', fontSize: '14px' }}
+                sx={{
+                  minWidth: 285,
+                  maxHeight: 40,
+                  borderRadius: '6px',
+                  fontSize: '14px',
+                }}
               >
                 {COME_BACK}
               </LoginButton>
