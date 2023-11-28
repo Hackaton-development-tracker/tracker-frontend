@@ -54,47 +54,58 @@ const App = () => {
     );
   }
   return (
-    <section className={isLoggedIn ? 'page' : 'auth-page'}>
-      <Routes>
-        <Route
-          path={ROUTE_HOME}
-          element={
-            <RequireAuth
-              onlyAuth={true}
-              isLoggedIn={isLoggedIn}
-              isLoading={isLoading}
-            >
+    <Routes>
+      <Route
+        path={ROUTE_HOME}
+        element={
+          <RequireAuth
+            onlyAuth={true}
+            isLoggedIn={isLoggedIn}
+            isLoading={isLoading}
+          >
+            <section className="page">
               <Layout />
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
-          path={ROUTE_LOGIN}
-          element={
-            <RequireAuth
-              onlyAuth={false}
-              isLoggedIn={isLoggedIn}
-              isLoading={isLoading}
-            >
+            </section>
+          </RequireAuth>
+        }
+      ></Route>
+      <Route
+        path={ROUTE_LOGIN}
+        element={
+          <RequireAuth
+            onlyAuth={false}
+            isLoggedIn={isLoggedIn}
+            isLoading={isLoading}
+          >
+            <section className="auth-page">
               <LoginPage />
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
-          path={ROUTE_REGISTER}
-          element={
-            <RequireAuth
-              onlyAuth={false}
-              isLoggedIn={isLoggedIn}
-              isLoading={isLoading}
-            >
+            </section>
+          </RequireAuth>
+        }
+      ></Route>
+      <Route
+        path={ROUTE_REGISTER}
+        element={
+          <RequireAuth
+            onlyAuth={false}
+            isLoggedIn={isLoggedIn}
+            isLoading={isLoading}
+          >
+            <section className="auth-page">
               <RegisterPage />
-            </RequireAuth>
-          }
-        ></Route>
-        <Route path="*" element={<NotFound404 />}></Route>
-      </Routes>
-    </section>
+            </section>
+          </RequireAuth>
+        }
+      ></Route>
+      <Route
+        path="*"
+        element={
+          <section className="page">
+            <NotFound404 />
+          </section>
+        }
+      ></Route>
+    </Routes>
   );
 };
 

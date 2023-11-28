@@ -15,8 +15,8 @@ export const NO_ACCOUNT = 'Новый пользователь? ';
 export const ACCOUNT_EXIST = 'Уже есть аккаунт? ';
 export const ENTER = 'Войти';
 export const EXIT = 'Выход';
-export const COME_BACK = 'Вернуться назад';
-export const NOT_FOUND = 'такой страницы нет...';
+export const COME_BACK = 'Вернуться на главную';
+export const NOT_FOUND = 'Страница не найдена';
 
 export const ROUTE_HOME = '/';
 export const ROUTE_LOGIN = '/login';
