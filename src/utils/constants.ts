@@ -15,7 +15,6 @@ export const NO_ACCOUNT = 'Новый пользователь? ';
 export const ACCOUNT_EXIST = 'Уже есть аккаунт? ';
 export const ENTER = 'Войти';
 export const EXIT = 'Выход';
-export const TECH_SUPPORT = 'Техническая поддержка';
 export const COME_BACK = 'Вернуться на главную';
 export const NOT_FOUND = 'Страница не найдена';
 
