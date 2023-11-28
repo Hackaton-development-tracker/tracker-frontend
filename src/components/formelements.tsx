@@ -1,84 +1,87 @@
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import { Box, Button, FormHelperText, Paper } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
+import { Box, Button, Container, FormHelperText, Paper } from '@mui/material';
 
-export const LoginButton = styled(Button)({
-  boxShadow: 'none',
-  textTransform: 'none',
-  fontSize: 16,
-  padding: '6px 12px',
-  border: '1px solid',
-  borderRadius: '40px',
-  lineHeight: '34px',
-  backgroundColor: '#003C96',
-  borderColor: '#003C96',
-  fontFamily: ['Futura PT'].join(','),
-  '&:hover': {
-    backgroundColor: '#0048B5',
-    borderColor: '#0048B5',
-    boxShadow: 'none',
-  },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#0062cc',
-    borderColor: '#005cbf',
-  },
-  '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-  },
+export const FormContainer = styled(Container)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: 0,
 });
 
 export const SuccessLabel = styled(FormHelperText)({
   fontSize: 18,
   lineHeight: '18px',
   padding: '0 6px',
-  fontFamily: ['Futura PT'].join(','),
+  fontFamily: ['YS Text Regular'].join(','),
   color: 'green',
   textAlign: 'center',
 });
 
 export const ErrorLabel = styled(FormHelperText)({
-  fontSize: 18,
-  lineHeight: '18px',
+  fontSize: '14px',
+  lineHeight: '20px',
   padding: '0 6px',
-  fontFamily: ['Futura PT'].join(','),
-  color: 'red',
+  fontFamily: 'YS Text Regular',
+  color: '#ff0200',
+  letterSpacing: '0.002em',
   textAlign: 'center',
 });
 
-export const InputLoginLabel = styled(InputLabel)({
-  fontSize: 18,
-  lineHeight: '18px',
-  padding: '0 6px',
-  fontFamily: ['Futura PT'].join(','),
-});
+export const ErrorMessage = styled(FormHelperText)({
+  fontSize: '11px',
+  fontFamily: 'YS Text Regular',
+  color: '#ff0200',
+  letterSpacing: '0.002em',
+  lineHeight: '1.66'
+})
 
-export const LoginInput = styled(InputBase)(({ theme }) => ({
-  'label + &': {
-    marginTop: theme.spacing(2.5),
-  },
+export const LoginInput = styled(InputBase)(({ theme, error }) => ({
   '& .MuiInputBase-input': {
-    borderRadius: 24,
-    position: 'relative',
+    fontFamily: ['YS Text Regular'],
+    borderRadius: 4,
     backgroundColor: '#FFF',
     border: '1px solid',
-    borderColor: '#858585',
-    fontSize: 16,
+    borderColor: error ? '#ff0200' : 'rgba(0, 0, 0, 0.23)',
+    fontSize: 15,
+    minHeight: '56px',
     width: '100%',
-    padding: '10px 12px',
+    padding: '18px 12px',
+    boxSizing: 'border-box',
     transition: theme.transitions.create([
-      'border-color',
       'background-color',
       'box-shadow',
     ]),
-    fontFamily: ['Futura PT'].join(','),
     '&:focus': {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
+      borderColor: error ? '#ff0200' : '#1D6BF3',
+      borderWidth: '2px',
+      padding: '18px 11px',
     },
   },
 }));
+
+export const LoginButton = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: '16px',
+  lineHeight: '20px',
+  padding: '15px 24px',
+  borderRadius: '4px',
+  backgroundColor: '#5A9BFF',
+  fontFamily: ['YS Text Medium'],
+  letterSpacing: '0.002em',
+  '&:hover': {
+    backgroundColor: '#1D6BF3',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#0062cc',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+  },
+});
 
 export const LogOutButton = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
@@ -87,23 +90,16 @@ export const LogOutButton = styled(InputBase)(({ theme }) => ({
     backgroundColor: '#FFF',
     border: '1px solid',
     borderColor: '#858585',
-    fontSize: 16,
     padding: '10px 12px',
     transition: theme.transitions.create([
       'border-color',
       'background-color',
       'box-shadow',
     ]),
-    fontFamily: ['Futura PT'].join(','),
+    fontFamily: ['YS Display'].join(','),
     '&:focus': {},
   },
 }));
-
-// Функция для проверки валидности email
-export const isValidEmail = (email: string) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
 
 export const CustomPaper = styled(Paper)({
   padding: '16px 16px 24px 16px',

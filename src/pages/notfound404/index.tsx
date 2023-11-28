@@ -1,8 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 // import Header from '../../components/header/header';
 import { LoginButton } from '../../components/formelements';
-import { COME_BACK, NOT_FOUND, TECH_SUPPORT } from '../../utils/constants';
+import { COME_BACK, NOT_FOUND } from '../../utils/constants';
 
 function NotFound404() {
   const navigate = useNavigate();
@@ -24,11 +24,6 @@ function NotFound404() {
           >
             {COME_BACK}
           </LoginButton>
-          <p className="text-center">
-            <Link className={styles.link} to="/404">
-              {TECH_SUPPORT}
-            </Link>
-          </p>
         </div>
       </main>
     </div>

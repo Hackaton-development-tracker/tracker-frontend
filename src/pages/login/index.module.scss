@@ -1,11 +1,10 @@
+@import '../../static/scss/vars.scss';
+
 .link {
-  color: #003c96;
+  color: $color-white;
   text-decoration: none;
-  &:active {
-    text-decoration: underline;
-  }
+
   &:focus-visible {
     outline: none;
-    text-decoration: underline;
   }
 }

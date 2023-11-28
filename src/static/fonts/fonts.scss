@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'YS Display Regular';
+  src: local('YS Display Regular'), local('YSDisplay-Regular'),
+      url('YS-Display-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'YS Display Medium';
+  src: local('YS Display Medium'), local('YSDisplay-Medium'),
+      url('YS-Display-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'YS Text Regular';
+  src: local('YS Text Regular'), local('YSText-Regular'),
+      url('YS-Text-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'YS Text Medium';
+  src: local('YS Text Medium'), local('YSText-Medium'),
+      url('YS-Text-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}

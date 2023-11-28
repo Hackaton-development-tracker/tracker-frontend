@@ -48,13 +48,13 @@ const App = () => {
 
   if (isLoading) {
     return (
-      <section className="page">
+      <section className={isLoggedIn ? 'page' : 'auth-page'}>
         <Loader />
       </section>
     );
   }
   return (
-    <section className="page">
+    <section className={isLoggedIn ? 'page' : 'auth-page'}>
       <Routes>
         <Route
           path={ROUTE_HOME}
@@ -67,8 +67,7 @@ const App = () => {
               <Layout />
             </RequireAuth>
           }
-        >
-        </Route>
+        ></Route>
         <Route
           path={ROUTE_LOGIN}
           element={
