@@ -8,10 +8,11 @@ import { RootState, store } from './services/redux/store';
 import { useAppDispatch, useAppSelector } from './services/typeHooks';
 import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER } from './utils/constants';
 import LoginPage from './pages/login';
-import NotFound404 from './pages/notfound404';
+import NotFound404 from './pages/notfound404/notfound404';
 import RegisterPage from './pages/register';
 import Loader from './components/loader';
 import { logoutUser } from './services/redux/slices/auth/auth';
+import SkillsProfile from './pages/skillsProfile/skillsProfile';
 
 const RequireAuth = ({
   children: children,
@@ -68,7 +69,9 @@ const App = () => {
             </section>
           </RequireAuth>
         }
-      ></Route>
+      >
+        <Route path="/development-tracker" element={<SkillsProfile />} />
+      </Route>
       <Route
         path={ROUTE_LOGIN}
         element={
