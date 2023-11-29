@@ -24,7 +24,7 @@ export const ErrorLabel = styled(FormHelperText)({
   padding: '0 6px',
   fontFamily: 'YS Text Regular',
   color: '#ff0200',
-  letterSpacing: '0.002em',
+  letterSpacing: 0,
   textAlign: 'center',
 });
 
@@ -32,7 +32,7 @@ export const ErrorMessage = styled(FormHelperText)({
   fontSize: '11px',
   fontFamily: 'YS Text Regular',
   color: '#ff0200',
-  letterSpacing: '0.002em',
+  letterSpacing: 0,
   lineHeight: '1.66'
 })
 
@@ -69,7 +69,7 @@ export const LoginButton = styled(Button)({
   borderRadius: '4px',
   backgroundColor: '#5A9BFF',
   fontFamily: ['YS Text Medium'],
-  letterSpacing: '0.002em',
+  letterSpacing: 0,
   '&:hover': {
     backgroundColor: '#1D6BF3',
     boxShadow: 'none',
