@@ -70,7 +70,7 @@ const App = () => {
           </RequireAuth>
         }
       >
-        <Route path="/development-tracker" element={<SkillsProfile />} />
+        <Route path="/" element={<SkillsProfile />} />
       </Route>
       <Route
         path={ROUTE_LOGIN}
