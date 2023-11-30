@@ -12,12 +12,13 @@ function SkillsProfile() {
           padding: '55px 48px',
           justifyContent: 'center',
           width: '100%',
+          maxWidth: '1200px',
           gap: '48px',
         }}
       >
         <LevelCards />
+
         <Box>
-          Рекомендуем улучшить
           <Paper
             elevation={0}
             sx={{
@@ -26,7 +27,7 @@ function SkillsProfile() {
               backgroundColor: '#F9FAFB',
             }}
           >
-            {/* Content goes here */}
+            Рекомендуем улучшить
           </Paper>
         </Box>
         <Box>Рекомендуемые мини курсы</Box>

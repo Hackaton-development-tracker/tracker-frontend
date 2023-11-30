@@ -1,5 +1,6 @@
-import { Toolbar, Box, Link, Typography } from '@mui/material';
+import { Toolbar, Box, Typography } from '@mui/material';
 import { SKILLS_PROFILE, MAP } from '../../utils/constants';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -26,11 +27,7 @@ const Header = () => {
             gap: '8px',
           }}
         >
-          <Link
-            onClick={(event) => {
-              event.preventDefault();
-            }}
-          >
+          <NavLink to="/">
             <Typography
               sx={{
                 fontFamily: 'YS Text Regular',
@@ -40,12 +37,8 @@ const Header = () => {
             >
               {SKILLS_PROFILE}
             </Typography>
-          </Link>
-          <Link
-            onClick={(event) => {
-              event.preventDefault();
-            }}
-          >
+          </NavLink>
+          <NavLink to="/map">
             <Typography
               sx={{
                 fontFamily: 'YS Text Regular',
@@ -55,7 +48,7 @@ const Header = () => {
             >
               {MAP}
             </Typography>
-          </Link>
+          </NavLink>
         </Box>
       </Box>
     </Toolbar>
