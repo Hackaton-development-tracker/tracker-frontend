@@ -26,7 +26,7 @@ export const AchievedLinearProgress = styled(LinearProgress)({
   height: '12px',
   borderRadius: '12px',
   '& .MuiLinearProgress-bar': {
-    backgroundColor: '#87CC9E', // Set your custom progress color here
+    backgroundColor: '#87CC9E', 
   },
 });
 
@@ -36,6 +36,6 @@ export const RemainingLinearProgress = styled(LinearProgress)({
   height: '12px',
   borderRadius: '12px',
   '& .MuiLinearProgress-bar': {
-    backgroundColor: '#1d6bf3', // Set your custom progress color here
+    backgroundColor: '#1d6bf3',
   },
 });

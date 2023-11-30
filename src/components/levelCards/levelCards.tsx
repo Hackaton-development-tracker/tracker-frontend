@@ -19,13 +19,12 @@ import {
 } from './levelCardsElements';
 import { CustomButton, MainButton, ActionButton } from '../buttons';
 
-function UserLevelCards() {
+function LevelCards() {
   // TODO: backend - get data
   const USER_TITLE_MOCK = 'Продакт-менеджер';
   const USER_CURRENT_LEVEL_MOCK = 'Джуниор+';
   const TEST_DATE_MOCK = '25 октября 2023';
   const USER_NEXT_LEVEL_MOCK = 'Мидл';
-  const USER_NEXT_LEVEL_ACHIEVED_MOCK = '70';
   const TEST_RETAKE_DAYS_MOCK = '14 дней';
 
   // TODO: backend - get number of achieved and remaining skills
@@ -149,7 +148,7 @@ function UserLevelCards() {
                 color: '#1D6BF3',
               }}
             >
-              {USER_NEXT_LEVEL_ACHIEVED_MOCK}&#37;
+              {progressValue}&#37;
             </CardTypography>
           </Box>
         </Box>
@@ -222,4 +221,4 @@ function UserLevelCards() {
   );
 }
 
-export default UserLevelCards;
+export default LevelCards;

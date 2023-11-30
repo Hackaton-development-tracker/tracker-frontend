@@ -1,6 +1,6 @@
 import { Box, Paper } from '@mui/material';
 
-import UserLevelCards from '../../components/levelCards/levelCards';
+import LevelCards from '../../components/levelCards/levelCards';
 
 function SkillsProfile() {
   return (
@@ -15,7 +15,7 @@ function SkillsProfile() {
           gap: '48px',
         }}
       >
-        <UserLevelCards />
+        <LevelCards />
         <Box>
           Рекомендуем улучшить
           <Paper
