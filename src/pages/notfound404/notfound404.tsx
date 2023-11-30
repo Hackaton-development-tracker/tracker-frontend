@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import { LoginButton } from '../../components/formelements';
+import { LoginButton } from '../../components/buttons';
 import { COME_BACK, NOT_FOUND } from '../../utils/constants';
 import serverError404 from '../../static/assets/images/serverError404.png';
 
