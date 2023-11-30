@@ -5,7 +5,7 @@ import { TEST_RETAKE_DAYS } from '../../utils/constants';
 import { formatTime } from '../../utils/formatTime';
 
 interface CountdownTimerProps {
-  nextTestDate: Date;
+  nextTestDate: string;
   timeRemaining: number | null;
   setTimeRemaining: React.Dispatch<React.SetStateAction<number | null>>;
 }

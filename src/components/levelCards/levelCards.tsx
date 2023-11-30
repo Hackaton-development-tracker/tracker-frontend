@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { addDays, format, parseISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 import { Box, Link } from '@mui/material';
 
@@ -26,12 +26,12 @@ function LevelCards() {
   const USER_TITLE_MOCK = 'Продакт-менеджер';
   const USER_CURRENT_LEVEL_MOCK = 'Джуниор+';
   const testDate = '2023-11-30T15:00:00.000Z';
+  const nextTestDate = '2023-12-14T15:00:00.000Z';
   const USER_NEXT_LEVEL_MOCK = 'Мидл';
 
   const formattedTestDate = format(parseISO(testDate), 'dd MMMM yyyy', {
     locale: ruLocale,
   });
-  const nextTestDate = addDays(parseISO(testDate), 14);
 
   // TODO: backend - get number of achieved and remaining skills
   const numberOfAchievedSkills = 7;
