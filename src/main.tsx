@@ -10,6 +10,7 @@ import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER } from './utils/constants';
 import LoginPage from './pages/login/login';
 import NotFound404 from './pages/notfound404/notfound404';
 import RegisterPage from './pages/register/register';
+import DevelopmentMap from './pages/developmentMap/developmentMap';
 import Loader from './components/loader';
 import { logoutUser } from './services/redux/slices/auth/auth';
 import SkillsProfile from './pages/skillsProfile/skillsProfile';
@@ -71,6 +72,7 @@ const App = () => {
         }
       >
         <Route path="/" element={<SkillsProfile />} />
+        <Route path="/map" element={<DevelopmentMap />} />
       </Route>
       <Route
         path={ROUTE_LOGIN}
