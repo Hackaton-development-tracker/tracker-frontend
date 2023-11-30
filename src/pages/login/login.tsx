@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import styles from './index.module.scss';
+import styles from './login.module.scss';
 import { Box } from '@mui/material';
-// import Header from '../../components/header/header';
 import FormControl from '@mui/material/FormControl';
 import { loginSchema } from '../../utils/validationSchema';
 
@@ -26,9 +25,9 @@ import {
   FormContainer,
   ErrorLabel,
   ErrorMessage,
-  LoginButton,
   LoginInput,
 } from '../../components/formelements';
+import { LoginButton } from '../../components/buttons';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
