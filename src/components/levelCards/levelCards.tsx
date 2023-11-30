@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Box } from '@mui/material';
+import { addDays, format, parseISO } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
+import { Box, Link } from '@mui/material';
 
 import {
   USER_TITLE,
   USER_CURRENT_LEVEL,
   USER_NEXT_LEVEL,
   USER_NEXT_LEVEL_ACHIEVED,
-  TEST_RETAKE_DAYS,
   RETAKE_TEST,
   CHANGE,
   OPEN_MAP,
@@ -18,14 +19,19 @@ import {
   RemainingLinearProgress,
 } from './levelCardsElements';
 import { CustomButton, MainButton, ActionButton } from '../buttons';
+import CountdownTimer from './countdownTimer';
 
 function LevelCards() {
   // TODO: backend - get data
   const USER_TITLE_MOCK = 'Продакт-менеджер';
   const USER_CURRENT_LEVEL_MOCK = 'Джуниор+';
-  const TEST_DATE_MOCK = '25 октября 2023';
+  const testDate = '2023-11-30T15:00:00.000Z';
   const USER_NEXT_LEVEL_MOCK = 'Мидл';
-  const TEST_RETAKE_DAYS_MOCK = '14 дней';
+
+  const formattedTestDate = format(parseISO(testDate), 'dd MMMM yyyy', {
+    locale: ruLocale,
+  });
+  const nextTestDate = addDays(parseISO(testDate), 14);
 
   // TODO: backend - get number of achieved and remaining skills
   const numberOfAchievedSkills = 7;
@@ -34,6 +40,7 @@ function LevelCards() {
 
   const [progressValue, setProgressValue] = useState(0);
   const [remainingValue, setRemainingValue] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
   const updateProgress = () => {
     setProgressValue((numberOfAchievedSkills / totalSkillsNumber) * 100);
@@ -93,7 +100,7 @@ function LevelCards() {
         >
           <div>
             <CardTypography>
-              {USER_CURRENT_LEVEL} на {TEST_DATE_MOCK}
+              {USER_CURRENT_LEVEL} на {formattedTestDate}
             </CardTypography>
             <CardTypography
               sx={{
@@ -104,7 +111,14 @@ function LevelCards() {
               {USER_CURRENT_LEVEL_MOCK}
             </CardTypography>
           </div>
-          <MainButton>{OPEN_MAP}</MainButton>
+          <Link
+            href="/map"
+            sx={{
+              textDecoration: 'none',
+            }}
+          >
+            <MainButton>{OPEN_MAP}</MainButton>
+          </Link>
         </Box>
       </CardPaper>
       <CardPaper elevation={0}>
@@ -193,22 +207,13 @@ function LevelCards() {
             alignItems: 'center',
           }}
         >
-          <CardTypography
-            sx={{
-              paddingRight: '4px',
-            }}
-          >
-            {TEST_RETAKE_DAYS}
-          </CardTypography>
-          <CardTypography
-            sx={{
-              fontFamily: 'YS Text Medium',
-            }}
-          >
-            {TEST_RETAKE_DAYS_MOCK}
-          </CardTypography>
+          <CountdownTimer
+            nextTestDate={nextTestDate}
+            timeRemaining={timeRemaining}
+            setTimeRemaining={setTimeRemaining}
+          />
           <ActionButton
-            disabled
+            disabled={(timeRemaining as number) > 0}
             sx={{
               marginLeft: '16px',
             }}
