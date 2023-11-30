@@ -27,3 +27,15 @@ export const ROUTE_TECH_SUPPORT = '/404';
 
 export const ACCESS_TOKEN = 'accessToken';
 export const REFRESH_TOKEN = 'refreshToken';
+
+export const SKILLS_PROFILE = 'Профиль навыков';
+export const MAP = 'Карта развития';
+
+export const USER_TITLE = 'Специальность';
+export const CHANGE = 'Изменить';
+export const USER_CURRENT_LEVEL = 'Текущий грейд';
+export const OPEN_MAP = 'Открыть карту развития';
+export const USER_NEXT_LEVEL = 'Следующий грейд';
+export const USER_NEXT_LEVEL_ACHIEVED = 'достигнут на';
+export const TEST_RETAKE_DAYS = 'Тест станет доступен через: ';
+export const RETAKE_TEST = 'Пройти тест';

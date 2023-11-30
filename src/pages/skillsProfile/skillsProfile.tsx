@@ -1,5 +1,7 @@
 import { Box, Paper } from '@mui/material';
 
+import UserLevelCards from '../../components/levelCards/levelCards';
+
 function SkillsProfile() {
   return (
     <div className="layout">
@@ -13,38 +15,15 @@ function SkillsProfile() {
           gap: '48px',
         }}
       >
-        <Box
-          sx={{
-            display: 'flex',
-            gap: '16px',
-          }}
-        >
-          <Paper elevation={0}
-            sx={{
-              padding: '20px',
-              borderRadius: '8px',
-              border: '1px solid #DDE0E4',
-            }}
-          >
-            {/* Content goes here */}
-          </Paper>
-          <Paper elevation={0}
-            sx={{
-              padding: '20px',
-              borderRadius: '8px',
-              border: '1px solid #DDE0E4',
-            }}
-          >
-            {/* Content goes here */}
-          </Paper>
-        </Box>
+        <UserLevelCards />
         <Box>
           Рекомендуем улучшить
-          <Paper elevation={0}
+          <Paper
+            elevation={0}
             sx={{
               padding: '20px',
               borderRadius: '8px',
-              backgroundColor: '#DDE0E4',
+              backgroundColor: '#F9FAFB',
             }}
           >
             {/* Content goes here */}
