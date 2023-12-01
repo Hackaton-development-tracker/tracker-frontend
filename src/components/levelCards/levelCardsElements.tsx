@@ -8,8 +8,9 @@ export const CardPaper = styled(Paper)({
   padding: '16px',
   borderRadius: '8px',
   border: '1px solid #DDE0E4',
-  minWidth: '560px',
+  minWidth: '296px',
   maxWidth: '592px',
+  width: '100%',
   minHeight: '166px',
 });
 

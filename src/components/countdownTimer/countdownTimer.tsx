@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
-import { CardTypography } from './levelCardsElements';
+import { CardTypography } from '../levelCards/levelCardsElements';
 import { TEST_RETAKE_DAYS } from '../../utils/constants';
 import { formatTime } from '../../utils/formatTime';
 

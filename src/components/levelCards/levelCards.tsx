@@ -19,7 +19,7 @@ import {
   RemainingLinearProgress,
 } from './levelCardsElements';
 import { CustomButton, MainButton, ActionButton } from '../buttons';
-import CountdownTimer from './countdownTimer';
+import CountdownTimer from '../countdownTimer/countdownTimer';
 
 function LevelCards() {
   // TODO: backend - get data
@@ -172,14 +172,14 @@ function LevelCards() {
             width: '100%',
             alignItems: 'center',
             gap: '16px',
-            maxWidth: '560px',
           }}
         >
           <Box
             sx={{
               display: 'flex',
               gap: '2px',
-              minWidth: '510px',
+              minWidth: '100px',
+              width: '100%',
             }}
           >
             <AchievedLinearProgress
