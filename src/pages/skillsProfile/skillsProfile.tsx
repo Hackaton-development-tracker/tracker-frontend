@@ -4,16 +4,15 @@ import LevelCards from '../../components/levelCards/levelCards';
 
 function SkillsProfile() {
   return (
-    <div className="layout">
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          padding: '55px 48px',
+          padding: '48px',
           justifyContent: 'center',
           width: '100%',
           maxWidth: '1200px',
-          gap: '48px',
+          gap: '80px',
         }}
       >
         <LevelCards />
@@ -32,7 +31,6 @@ function SkillsProfile() {
         </Box>
         <Box>Рекомендуемые мини курсы</Box>
       </Box>
-    </div>
   );
 }
 

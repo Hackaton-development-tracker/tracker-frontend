@@ -8,7 +8,7 @@ export const Layout: FC = () => {
   return (
     <div className="layout">
       <Header />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start'}}>
         <Navigation />
         <Outlet />
       </div>
