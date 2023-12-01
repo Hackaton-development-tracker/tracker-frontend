@@ -25,9 +25,9 @@ import {
   FormContainer,
   ErrorLabel,
   ErrorMessage,
-  LoginButton,
   LoginInput,
 } from '../../components/formelements';
+import { LoginButton } from '../../components/buttons';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();

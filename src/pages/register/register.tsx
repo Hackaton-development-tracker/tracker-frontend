@@ -11,10 +11,10 @@ import {
   ErrorLabel,
   ErrorMessage,
   FormContainer,
-  LoginButton,
   LoginInput,
   SuccessLabel,
 } from '../../components/formelements';
+import { LoginButton } from '../../components/buttons';
 import {
   ENTER,
   REGISTRATION,
