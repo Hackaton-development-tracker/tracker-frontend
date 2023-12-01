@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import Header from '../../components/header/header';
 import {
   ErrorLabel,
   ErrorMessage,
@@ -27,7 +26,7 @@ import {
 import { Snackbar } from '@mui/material';
 import { registerUser } from '../../services/redux/slices/auth/auth';
 import { useAppDispatch } from '../../services/typeHooks';
-import styles from '../login/index.module.scss';
+import styles from '../login/login.module.scss';
 import { registerSchema } from '../../utils/validationSchema';
 
 const RegisterPage = () => {
