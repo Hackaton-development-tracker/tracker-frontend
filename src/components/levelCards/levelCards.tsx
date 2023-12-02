@@ -8,6 +8,7 @@ import {
   USER_CURRENT_LEVEL,
   USER_NEXT_LEVEL,
   USER_NEXT_LEVEL_ACHIEVED,
+  USER_CURRENT_LEVEL_ACHIEVED,
   RETAKE_TEST,
   CHANGE,
   OPEN_MAP,
@@ -20,36 +21,39 @@ import {
 } from './levelCardsElements';
 import { CustomButton, MainButton, ActionButton } from '../buttons';
 import CountdownTimer from '../countdownTimer/countdownTimer';
+import {
+  achievedSkills,
+  skillsToImprove,
+} from '../../utils/backendData/skillsArrayBackend';
+import {
+  userTitle,
+  userCurrentLevel,
+  testDate,
+  nextTestDate,
+  userNextLevel,
+} from '../../utils/backendData/constantsBackend';
 
 function LevelCards() {
-  // TODO: backend - get data
-  const USER_TITLE_MOCK = 'Продакт-менеджер';
-  const USER_CURRENT_LEVEL_MOCK = 'Джуниор+';
-  const testDate = '2023-11-30T15:00:00.000Z';
-  const nextTestDate = '2023-12-14T15:00:00.000Z';
-  const USER_NEXT_LEVEL_MOCK = 'Мидл';
+  const [progressValue, setProgressValue] = useState(0);
+  const [remainingValue, setRemainingValue] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
   const formattedTestDate = format(parseISO(testDate), 'dd MMMM yyyy', {
     locale: ruLocale,
   });
 
-  // TODO: backend - get number of achieved and remaining skills
-  const numberOfAchievedSkills = 7;
-  const numberOfRemainingSkills = 3;
-  const totalSkillsNumber = numberOfAchievedSkills + numberOfRemainingSkills;
+  // calculate total number of skills
+  const totalSkillsNumber = achievedSkills.length + skillsToImprove.length;
 
-  const [progressValue, setProgressValue] = useState(0);
-  const [remainingValue, setRemainingValue] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
-
+  // update progress and remaining values
   const updateProgress = () => {
-    setProgressValue((numberOfAchievedSkills / totalSkillsNumber) * 100);
-    setRemainingValue((numberOfRemainingSkills / totalSkillsNumber) * 100);
+    setProgressValue((achievedSkills.length / totalSkillsNumber) * 100);
+    setRemainingValue((skillsToImprove.length / totalSkillsNumber) * 100);
   };
 
   useEffect(() => {
     updateProgress();
-  }, [numberOfAchievedSkills, numberOfRemainingSkills]);
+  }, [achievedSkills, skillsToImprove]);
 
   return (
     <Box
@@ -80,7 +84,7 @@ function LevelCards() {
                 lineHeight: '24px',
               }}
             >
-              {USER_TITLE_MOCK}
+              {userTitle}
             </CardTypography>
           </Box>
           <CustomButton
@@ -100,7 +104,8 @@ function LevelCards() {
         >
           <div>
             <CardTypography>
-              {USER_CURRENT_LEVEL} на {formattedTestDate}
+              {USER_CURRENT_LEVEL} {USER_CURRENT_LEVEL_ACHIEVED}{' '}
+              {formattedTestDate}
             </CardTypography>
             <CardTypography
               sx={{
@@ -108,7 +113,7 @@ function LevelCards() {
                 lineHeight: '32px',
               }}
             >
-              {USER_CURRENT_LEVEL_MOCK}
+              {userCurrentLevel}
             </CardTypography>
           </div>
           <Link
@@ -143,7 +148,7 @@ function LevelCards() {
                 color: '#1D6BF3',
               }}
             >
-              {USER_NEXT_LEVEL_MOCK}
+              {userNextLevel}
             </CardTypography>
             <CardTypography
               sx={{
@@ -197,7 +202,7 @@ function LevelCards() {
             />
           </Box>
           <Box>
-            {numberOfAchievedSkills}/{totalSkillsNumber}
+            {achievedSkills.length}/{totalSkillsNumber}
           </Box>
         </Box>
         <Box

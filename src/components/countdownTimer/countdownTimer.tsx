@@ -15,6 +15,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   timeRemaining,
   setTimeRemaining,
 }) => {
+  // calculate remaining time to start test in seconds and update timer
   useEffect(() => {
     const calculateTimeRemaining = () => {
       const currentDate = new Date();
