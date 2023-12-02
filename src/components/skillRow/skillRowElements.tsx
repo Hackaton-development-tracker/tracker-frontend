@@ -26,23 +26,8 @@ export const LevelsGridContainer = styled(Grid)({
   gap: '4px',
 });
 
-export const CurrentLevelGrid = styled(Grid)({
-  height: '14px',
-  width: '6px',
-  borderRadius: '6px',
-  backgroundColor: '#87CC9E',
-});
-
-export const NextLevelGrid = styled(Grid)({
-  height: '14px',
-  width: '6px',
-  borderRadius: '6px',
-  backgroundColor: '#1D6BF3',
-});
-
 export const LevelGrid = styled(Grid)({
   height: '14px',
   width: '6px',
   borderRadius: '6px',
-  backgroundColor: '#DDE0E4',
 });
