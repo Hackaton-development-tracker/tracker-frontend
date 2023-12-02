@@ -1,6 +1,7 @@
-import { Box, Paper } from '@mui/material';
+import { Box } from '@mui/material';
 
 import LevelCards from '../../components/levelCards/levelCards';
+import SkillsList from '../../components/skillsList/skillsList';
 
 function SkillsProfile() {
   return (
@@ -16,19 +17,7 @@ function SkillsProfile() {
         }}
       >
         <LevelCards />
-
-        <Box>
-          <Paper
-            elevation={0}
-            sx={{
-              padding: '20px',
-              borderRadius: '8px',
-              backgroundColor: '#F9FAFB',
-            }}
-          >
-            Рекомендуем улучшить
-          </Paper>
-        </Box>
+        <SkillsList />
         <Box>Рекомендуемые мини курсы</Box>
       </Box>
   );
