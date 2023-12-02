@@ -89,3 +89,34 @@ export const ActionButton = styled(Button)({
     color: '#fff',
   },
 })
+
+export const ExpandButton = styled(Button)({
+  maxWidth: '266px',
+  textTransform: 'none',
+  alignSelf: 'center',
+  boxShadow: 'none',
+  fontSize: '13px',
+  lineHeight: '16px',
+  letterSpacing: 0,
+  padding: '10px 20px',
+  borderRadius: '4px',
+  border: '1px solid #1D6BF3',
+  fontFamily: ['YS Text Medium'],
+  '&:hover': {
+    boxShadow: 'none',
+    backgroundColor: '#1D6BF3',
+    color: '#fff',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#1D6BF3',
+    color: '#fff',
+  },
+  '&:focus': {
+    boxShadow: 'none',
+  },
+  '&:disabled': {
+    backgroundColor: '#B5B5B7',
+    color: '#fff',
+  },
+})
