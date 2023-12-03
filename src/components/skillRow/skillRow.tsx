@@ -7,7 +7,6 @@ import {
   LevelGrid,
 } from './skillRowElements';
 import { MORE_INFO, LEVEL } from '../../utils/constants';
-import { projectManagerLevels } from '../../utils/backendData/constantsBackend';
 
 type TSkill = {
   id: number;
@@ -31,27 +30,25 @@ const SkillRow: React.FC<SkillProps> = ({
   counterColor,
 }) => {
   const setColor = (
-    id: number,
+    index: number,
     currentLevel: number,
     targetLevel: number,
     levels: number,
   ) => {
-    if (skillsArray.length > 0) {
-      if (
-        currentLevel < targetLevel &&
-        targetLevel < levels &&
-        id === targetLevel
+    if (
+      currentLevel < targetLevel &&
+      targetLevel < levels &&
+      index === targetLevel 
       ) {
-        return '#1d6bf3';
-      } else if (
-        currentLevel > targetLevel ||
-        id === currentLevel ||
-        currentLevel > id
-      ) {
-        return '#87CC9E';
-      } else {
-        return '#E8E8E8';
-      }
+      return '#1d6bf3';
+    } else if (
+      currentLevel > targetLevel ||
+      index === currentLevel ||
+      currentLevel > index
+    ) {
+      return '#87CC9E';
+    } else {
+      return '#E8E8E8';
     }
   };
 
@@ -91,7 +88,7 @@ const SkillRow: React.FC<SkillProps> = ({
             display: 'flex',
             flexDirection: 'column',
             gap: '8px',
-            paddingBottom: '24px',
+            paddingBottom: '8px',
           }}
         >
           <SkillBox borderColor={borderColor}>
@@ -120,15 +117,15 @@ const SkillRow: React.FC<SkillProps> = ({
                 }}
               >
                 <LevelsGridContainer>
-                  {projectManagerLevels.map((level) => (
+                  {Array.from({ length: skill.levels }).map((_, index) => (
                     <LevelGrid
-                      key={level.id}
+                      key={index}
                       sx={{
                         backgroundColor: setColor(
-                          level.id,
+                          index + 1,
                           skill.currentLevel,
                           skill.targetLevel,
-                          projectManagerLevels.length,
+                          skill.levels,
                         ),
                       }}
                     />

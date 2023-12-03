@@ -7,13 +7,13 @@ import {
   ACHIEVED_SKILLS,
   SKILLS_TO_IMPROVE,
   COLLAPSE,
-} from '../../utils/constants';
-import { ExpandButton } from '../buttons';
-import SkillRow from '../skillRow/skillRow';
+} from '../utils/constants';
+import { ExpandButton } from './buttons';
+import SkillRow from './skillRow/skillRow';
 import {
   skillsToImprove,
   achievedSkills,
-} from '../../utils/backendData/skillsArrayBackend';
+} from '../utils/backendData/skillsArrayBackend';
 
 const SkillsList = () => {
   const [expanded, setExpanded] = useState(false);
