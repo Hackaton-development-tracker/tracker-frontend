@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
-import { CardTypography } from '../levelCards/levelCardsElements';
-import { TEST_RETAKE_DAYS } from '../../utils/constants';
-import { formatTime } from '../../utils/formatTime';
+import { CardTypography } from './levelCard/card';
+import { TEST_RETAKE_DAYS } from '../utils/constants';
+import { formatTime } from '../utils/formatTime';
 
 interface CountdownTimerProps {
   nextTestDate: string;
@@ -15,6 +15,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   timeRemaining,
   setTimeRemaining,
 }) => {
+  
   // calculate remaining time to start test in seconds and update timer
   useEffect(() => {
     const calculateTimeRemaining = () => {
