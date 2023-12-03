@@ -6,7 +6,7 @@ import { Layout } from './pages/layout/layout';
 import { Provider } from 'react-redux';
 import { RootState, store } from './services/redux/store';
 import { useAppDispatch, useAppSelector } from './services/typeHooks';
-import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER } from './utils/constants';
+import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER, DEVELOPMENT_MAP } from './utils/constants';
 import LoginPage from './pages/login/login';
 import NotFound404 from './pages/notfound404/notfound404';
 import RegisterPage from './pages/register/register';
@@ -72,7 +72,7 @@ const App = () => {
         }
       >
         <Route path="/" element={<SkillsProfile />} />
-        <Route path="/map" element={<DevelopmentMap />} />
+        <Route path={DEVELOPMENT_MAP} element={<DevelopmentMap />} />
       </Route>
       <Route
         path={ROUTE_LOGIN}

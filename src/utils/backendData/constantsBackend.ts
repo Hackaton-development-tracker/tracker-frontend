@@ -8,44 +8,44 @@ export const projectManagerLevels = [
   {
     id: 1,
     title: 'Джун',
-    level: 1
+    level: 1,
   },
   {
     id: 2,
     title: 'Мидл',
-    level: 2
+    level: 2,
   },
   {
     id: 3,
     title: 'Синьор',
-    level: 3
+    level: 3,
   },
-]
+];
 
 export const developerLevels = [
   {
     id: 1,
     title: 'Джун',
-    level: 1
+    level: 1,
   },
   {
     id: 2,
     title: 'Джун+',
-    level: 2
+    level: 2,
   },
   {
     id: 3,
     title: 'Мидл',
-    level: 3
+    level: 3,
   },
   {
     id: 4,
     title: 'Мидл+',
-    level: 4
+    level: 4,
   },
   {
     id: 5,
     title: 'Синьор',
-    level: 5
+    level: 5,
   },
-]
+];
