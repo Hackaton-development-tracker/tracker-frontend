@@ -1,0 +1,12 @@
+@import '../../static/scss/vars.scss';
+.mediumContentBlock{
+    padding: 24px;
+    border-radius: $radius-radius-12;
+    border: 1px solid $card-chart-blue-light;
+    margin-bottom: $standart-gap;
+}
+
+.pictureRight2{
+    padding: 0 220px 0 0;
+    background: url('./dist/assets/special2.svg') no-repeat right top;
+}

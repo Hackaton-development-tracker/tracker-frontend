@@ -10,7 +10,6 @@ body {
 
 .page {
   opacity: 1;
-  height: 100vh;
 }
 
 .auth-page {
@@ -61,5 +60,30 @@ body {
     line-height: 20px;
     font-weight: 400;
     margin: 0;
+  }
+}
+
+.mediumContentBlock{
+  padding: 24px;
+  border-radius: $radius-radius-12;
+  border: 1px solid $color-black-100;
+  margin-bottom: $standart-gap;
+  &.long{
+    margin-bottom: $long-gap;
+  }
+}
+
+.link--back{
+  font-family: "YS Text";
+  color: $color-blue-main;
+  display: inline-block;
+  padding: 0 0 0 28px;
+  height: 24px;
+  line-height: 24px !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  background: url('./dist/assets/icon/arrow_left.svg') no-repeat left center;
+  &:hover{
+    text-decoration: underline !important;
   }
 }
