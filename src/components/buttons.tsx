@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Button } from '@mui/material';
+import { Button, InputBase } from '@mui/material';
 
 export const LoginButton = styled(Button)({
   boxShadow: 'none',
@@ -23,6 +23,24 @@ export const LoginButton = styled(Button)({
     boxShadow: 'none',
   },
 });
+
+export const LogOutButton = styled(InputBase)(({ theme }) => ({
+  '& .MuiInputBase-input': {
+    borderRadius: 24,
+    position: 'relative',
+    backgroundColor: '#FFF',
+    border: '1px solid',
+    borderColor: '#858585',
+    padding: '10px 12px',
+    transition: theme.transitions.create([
+      'border-color',
+      'background-color',
+      'box-shadow',
+    ]),
+    fontFamily: ['YS Display'].join(','),
+    '&:focus': {},
+  },
+}));
 
 export const CustomButton = styled(Button)({
   fontSize: '13px',
@@ -91,6 +109,7 @@ export const ActionButton = styled(Button)({
 })
 
 export const ExpandButton = styled(Button)({
+  marginTop: '16px',
   maxWidth: '266px',
   textTransform: 'none',
   alignSelf: 'center',
