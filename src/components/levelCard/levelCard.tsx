@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 import { Box, Link } from '@mui/material';
@@ -13,18 +13,10 @@ import {
   CHANGE,
   OPEN_MAP,
 } from '../../utils/constants';
-import {
-  CardPaper,
-  CardTypography,
-  AchievedLinearProgress,
-  RemainingLinearProgress,
-} from './levelCardsElements';
+import { CardPaper, CardTypography } from './card';
+import ProgressBar from '../progressBar';
 import { CustomButton, MainButton, ActionButton } from '../buttons';
-import CountdownTimer from '../countdownTimer/countdownTimer';
-import {
-  achievedSkills,
-  skillsToImprove,
-} from '../../utils/backendData/skillsArrayBackend';
+import CountdownTimer from '../countdownTimer';
 import {
   userTitle,
   userCurrentLevel,
@@ -35,25 +27,11 @@ import {
 
 function LevelCards() {
   const [progressValue, setProgressValue] = useState(0);
-  const [remainingValue, setRemainingValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
   const formattedTestDate = format(parseISO(testDate), 'dd MMMM yyyy', {
     locale: ruLocale,
   });
-
-  // calculate total number of skills
-  const totalSkillsNumber = achievedSkills.length + skillsToImprove.length;
-
-  // update progress and remaining values
-  const updateProgress = () => {
-    setProgressValue((achievedSkills.length / totalSkillsNumber) * 100);
-    setRemainingValue((skillsToImprove.length / totalSkillsNumber) * 100);
-  };
-
-  useEffect(() => {
-    updateProgress();
-  }, [achievedSkills, skillsToImprove]);
 
   return (
     <Box
@@ -179,31 +157,7 @@ function LevelCards() {
             gap: '16px',
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              gap: '2px',
-              minWidth: '100px',
-              width: '100%',
-            }}
-          >
-            <AchievedLinearProgress
-              variant="determinate"
-              value={100}
-              sx={{
-                width: `${progressValue}%`,
-              }}
-            />
-            <RemainingLinearProgress
-              value={100}
-              sx={{
-                width: `${remainingValue}%`,
-              }}
-            />
-          </Box>
-          <Box>
-            {achievedSkills.length}/{totalSkillsNumber}
-          </Box>
+          <ProgressBar progressValue={progressValue} setProgressValue={setProgressValue}/>
         </Box>
         <Box
           sx={{
