@@ -1,0 +1,34 @@
+.notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.notfound__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 144px;
+  max-width: 1280px;
+  min-width: 992px;
+}
+
+.notfound__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 286px;
+  gap: 48px;
+}
+
+.notfound__title {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 12px;
+}
