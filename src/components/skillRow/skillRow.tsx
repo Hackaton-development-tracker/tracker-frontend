@@ -85,7 +85,6 @@ export const SkillRow: React.FC<SkillProps> = ({
                           index + 1,
                           skill.currentLevel,
                           skill.targetLevel,
-                          skill.levels,
                         ),
                       }}
                     />

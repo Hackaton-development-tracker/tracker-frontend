@@ -17,9 +17,9 @@ export const skillsToImprove = [
   {
     id: 3,
     name: 'Решение проблем',
-    currentLevel: 6,
-    targetLevel: 7,
-    levels: 7,
+    currentLevel: 4,
+    targetLevel: 5,
+    levels: 5,
   },
 ];
 
