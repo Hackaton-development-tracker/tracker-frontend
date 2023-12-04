@@ -5,7 +5,7 @@ import vars from '../static/scss/export.module.scss';
 import {
   achievedSkills,
   skillsToImprove,
-} from '../utils/backendData/skillsArrayBackend';
+} from '../utils/backendData/data';
 
 // progressBar elements
 const ProgressBarContainer = styled(Box)({

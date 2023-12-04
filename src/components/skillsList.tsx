@@ -14,7 +14,7 @@ import { SkillRow } from './skillRow/skillRow';
 import {
   skillsToImprove,
   achievedSkills,
-} from '../utils/backendData/skillsArrayBackend';
+} from '../utils/backendData/data';
 import Counter from './counter';
 
 // skillList elements

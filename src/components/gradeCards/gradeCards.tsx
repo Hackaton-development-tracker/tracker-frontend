@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
@@ -19,13 +20,7 @@ import { CardTypography, Card } from '../card/card';
 import ProgressBar from '../progressBar';
 import { TextButton, SecondaryButton, PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
-import {
-  userTitle,
-  userCurrentLevel,
-  testDate,
-  nextTestDate,
-  userNextLevel,
-} from '../../utils/backendData/constantsBackend';
+import { user } from '../../utils/backendData/constantsBackend';
 
 // grade cards fonts
 const CountdownTypography = styled(Typography)({
@@ -68,7 +63,9 @@ function GradeCards() {
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
-  const formattedTestDate = format(parseISO(testDate), 'dd MMMM yyyy', {
+  const { title, test_date, next_test_date, grade_current, grade_next } = user[0];
+
+  const formattedTestDate = format(parseISO(test_date), 'dd MMMM yyyy', {
     locale: ruLocale,
   });
 
@@ -76,7 +73,7 @@ function GradeCards() {
     <>
       <div className={styles.gradeCards__title}>
         <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
-        <ProfessionTypography>{userTitle}</ProfessionTypography>
+        <ProfessionTypography>{title}</ProfessionTypography>
       </div>
       <TextButton
         sx={{
@@ -94,7 +91,7 @@ function GradeCards() {
         <SmallTextTypography>
           {USER_CURRENT_LEVEL} {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}
         </SmallTextTypography>
-        <GradeTypography>{userCurrentLevel}</GradeTypography>
+        <GradeTypography>{grade_current}</GradeTypography>
       </div>
       <Link
         href="/map"
@@ -116,7 +113,7 @@ function GradeCards() {
             color: vars.colorBlueMain,
           }}
         >
-          {userNextLevel}
+          {grade_next}
         </GradeTypography>
         <CardTypography
           sx={{
@@ -149,7 +146,7 @@ function GradeCards() {
             {TEST_RETAKE_DAYS}
           </CountdownTypography>
           <CountdownTimer
-            nextTestDate={nextTestDate}
+            nextTestDate={next_test_date}
             timeRemaining={timeRemaining}
             setTimeRemaining={setTimeRemaining}
           />
