@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Box } from '@mui/material';
-import { CardTypography } from './levelCard/card';
-import { TEST_RETAKE_DAYS } from '../utils/constants';
-import { formatTime } from '../utils/formatTime';
+import { Typography } from '@mui/material';
+import { formatTime } from '../utils/helpers/formatTime';
 
 interface CountdownTimerProps {
   nextTestDate: string;
@@ -10,14 +8,14 @@ interface CountdownTimerProps {
   setTimeRemaining: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
+// renders a countdown timer
 const CountdownTimer: React.FC<CountdownTimerProps> = ({
   nextTestDate,
   timeRemaining,
   setTimeRemaining,
 }) => {
-  
-  // calculate remaining time to start test in seconds and update timer
   useEffect(() => {
+    // calculates the time remaining between the current date and the next test date
     const calculateTimeRemaining = () => {
       const currentDate = new Date();
       const targetDate = new Date(nextTestDate);
@@ -27,6 +25,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
       setTimeRemaining(secondsRemaining);
     };
 
+    // updates the timer by calculating the remaining time and setting a timeout
     const updateTimer = () => {
       calculateTimeRemaining();
 
@@ -40,29 +39,17 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
   return (
     <>
-      {timeRemaining !== null && timeRemaining > 0 ? (
-        <Box
+      {timeRemaining !== null && timeRemaining > 0 && (
+        <Typography
           sx={{
-            display: 'flex',
+            fontFamily: 'YS Text Medium',
+            fontSize: '13px',
+            lineHeight: '16px',
+            letterSpacing: 0,
           }}
         >
-          <CardTypography
-            sx={{
-              paddingRight: '4px',
-            }}
-          >
-            {TEST_RETAKE_DAYS}
-          </CardTypography>
-          <CardTypography
-            sx={{
-              fontFamily: 'YS Text Medium',
-            }}
-          >
-            {formatTime(timeRemaining)}
-          </CardTypography>
-        </Box>
-      ) : (
-        <></>
+          {formatTime(timeRemaining)}
+        </Typography>
       )}
     </>
   );
