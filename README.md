@@ -12,15 +12,19 @@ Currently, two official plugins are available:
 ## How to use Docker
 
 ### In the terminal navigate to your project directory, then execute
-1. docker build -t [your docker image name] .
-
+```
+docker build -t [your docker image name] .
+```
 To check your Docker Image, execute
-2. docker images
+```
+docker images
+```
 It will show the list of images available on your system
 
 ### Run the Docker Container
-3. docker run -d --rm -p 5173:5173 --name [name of the container] [your docker image name]
-
+```
+docker run -d --rm -p 5173:5173 --name [name of the container] [your docker image name]
+```
 Flag used in the command
 -d - To run the container in the background (Detach Mode )
 --rm - To delete the container, when you stop the container
@@ -28,8 +32,10 @@ Flag used in the command
 5173:5173 - [Port access from Browser]: [Port exposed from the container]
 
 To check whether your docker container is running or not, execute
-4. docker ps
+```
+docker ps
+```
 It will show the list of containers running on your system
 
 ### Open the App in the Browser
-Open the Browser and access http://localhost:[Port you mentioned in the docker run command] as per the configuration we did so far it should be http://localhost:5173
+Open the Browser and access http://localhost:[Port] as per the configuration we did so far it should be http://localhost:5173
