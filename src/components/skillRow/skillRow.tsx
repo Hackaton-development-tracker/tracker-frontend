@@ -1,12 +1,52 @@
-import { Box, Typography, Avatar } from '@mui/material';
+import { Box, Typography, Grid, styled } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import {
-  SkillBox,
-  SkillTypography,
-  LevelsGridContainer,
-  LevelGrid,
-} from './skillRowElements';
+import vars from '../../static/scss/export.module.scss';
+import styles from './skillRow.module.scss';
+import { getColor } from '../../utils/helpers/getColor';
 import { MORE_INFO, LEVEL } from '../../utils/constants';
+import { MoreButton } from '../buttons';
+
+// skillRow elements
+const SkillBox = styled(Box)((props) => ({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  padding: '40px 24px',
+  border: `1px solid ${props.borderColor || '#DDE0E4'}`,
+  borderRadius: '6px',
+  backgroundColor: '#FFF',
+}));
+
+const SkillTypography = styled(Typography)({
+  fontFamily: 'YS Text Medium',
+  fontSize: '16px',
+  lineHeight: '20px',
+  letterSpacing: 0,
+  maxWidth: '552px',
+  width: '100%',
+});
+
+export const LevelsContainer = styled(Grid)({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  padding: 0,
+  gap: '4px',
+});
+
+export const LevelGrid = styled(Grid)({
+  height: '14px',
+  width: '6px',
+  borderRadius: '6px',
+});
+
+export const ArrowForwardIcon = styled(ArrowForwardIosIcon)({
+  color: vars.colorBlueMain,
+  width: '14px',
+  height: '14px',
+  paddingLeft: '8px',
+  paddingRight: '8px',
+});
 
 type TSkill = {
   id: number;
@@ -17,111 +57,31 @@ type TSkill = {
 };
 
 interface SkillProps {
-  skillListHeader: string;
   borderColor?: string;
-  counterColor?: string;
   skillsArray: TSkill[];
 }
 
-const SkillRow: React.FC<SkillProps> = ({
-  skillListHeader,
+// renders a row with skill name, level progress bar, current level and target level
+export const SkillRow: React.FC<SkillProps> = ({
   skillsArray,
   borderColor,
-  counterColor,
 }) => {
-  const setColor = (
-    index: number,
-    currentLevel: number,
-    targetLevel: number,
-    levels: number,
-  ) => {
-    if (
-      currentLevel < targetLevel &&
-      targetLevel < levels &&
-      index === targetLevel 
-      ) {
-      return '#1d6bf3';
-    } else if (
-      currentLevel > targetLevel ||
-      index === currentLevel ||
-      currentLevel > index
-    ) {
-      return '#87CC9E';
-    } else {
-      return '#E8E8E8';
-    }
-  };
+  const shortLevel = LEVEL.toLowerCase().substring(0, 2) + '.';
 
   return (
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          gap: '8px',
-          paddingTop: '24px',
-          paddingBottom: '24px',
-        }}
-      >
-        <Typography
-          sx={{
-            fontFamily: 'YS Display Medium',
-            fontSize: '20px',
-            lineHeight: '24px',
-            letterSpacing: 0,
-          }}
-        >
-          {skillListHeader}
-        </Typography>
-        <Avatar
-          sx={{ width: '24px', height: '24px', backgroundColor: counterColor }}
-        >
-          <SkillTypography sx={{ color: '#fff' }}>
-            {skillsArray.length}
-          </SkillTypography>
-        </Avatar>
-      </Box>
+    <div className={styles.skillRowList}>
       {skillsArray.map((skill) => (
-        <Box
-          key={skill.id}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '8px',
-            paddingBottom: '8px',
-          }}
-        >
+        <div key={skill.id} className={styles.skillRow}>
           <SkillBox borderColor={borderColor}>
-            <SkillTypography
-              sx={{
-                maxWidth: '552px',
-                width: '100%',
-              }}
-            >
-              {skill.name}
-            </SkillTypography>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                width: '100%',
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  gap: '32px',
-                }}
-              >
-                <LevelsGridContainer>
+            <SkillTypography>{skill.name}</SkillTypography>
+            <div className={styles.skillRow__levels}>
+              <div className={styles.levelsContainer}>
+                <LevelsContainer>
                   {Array.from({ length: skill.levels }).map((_, index) => (
                     <LevelGrid
                       key={index}
                       sx={{
-                        backgroundColor: setColor(
+                        backgroundColor: getColor(
                           index + 1,
                           skill.currentLevel,
                           skill.targetLevel,
@@ -130,48 +90,22 @@ const SkillRow: React.FC<SkillProps> = ({
                       }}
                     />
                   ))}
-                </LevelsGridContainer>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  {LEVEL} {skill.currentLevel}
-                  {skill.currentLevel < skill.targetLevel ? (
+                </LevelsContainer>
+                <div className={styles.levelsText}>
+                  {shortLevel} {skill.currentLevel}
+                  {skill.currentLevel < skill.targetLevel && (
                     <>
-                      <ArrowForwardIosIcon
-                        sx={{
-                          color: '#1D6BF3',
-                          width: '14px',
-                          height: '14px',
-                          paddingLeft: '8px',
-                          paddingRight: '8px',
-                        }}
-                      />
-                      {LEVEL} {skill.targetLevel}
+                      <ArrowForwardIcon />
+                      {shortLevel} {skill.targetLevel}
                     </>
-                  ) : (
-                    ''
                   )}
-                </Box>
-              </Box>
-              <Typography
-                sx={{
-                  fontSize: '13px',
-                  lineHeight: '16px',
-                  letterSpacing: 0,
-                }}
-              >
-                {MORE_INFO}
-              </Typography>
-            </Box>
+                </div>
+              </div>
+              <MoreButton>{MORE_INFO}</MoreButton>
+            </div>
           </SkillBox>
-        </Box>
+        </div>
       ))}
-    </>
+    </div>
   );
 };
-
-export default SkillRow;
