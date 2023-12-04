@@ -1,28 +1,37 @@
 import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, LinearProgress } from '@mui/material';
+import vars from '../static/scss/export.module.scss';
 import {
   achievedSkills,
   skillsToImprove,
 } from '../utils/backendData/skillsArrayBackend';
 
+// progressBar elements
+const ProgressBarContainer = styled(Box)({
+  display: 'flex',
+  gap: '2px',
+  minWidth: '100px',
+  width: '100%',
+});
+
 const AchievedProgress = styled(LinearProgress)({
-  backgroundColor: '#87CC9E',
+  backgroundColor: vars.colorGreen,
   width: '100%',
   height: '12px',
   borderRadius: '12px',
   '& .MuiLinearProgress-bar': {
-    backgroundColor: '#87CC9E',
+    backgroundColor: vars.colorGreen,
   },
 });
 
 const RemainingProgress = styled(LinearProgress)({
-  backgroundColor: '#1d6bf3',
+  backgroundColor: vars.colorBlueMain,
   width: '100%',
   height: '12px',
   borderRadius: '12px',
   '& .MuiLinearProgress-bar': {
-    backgroundColor: '#1d6bf3',
+    backgroundColor: vars.colorBlueMain,
   },
 });
 
@@ -31,6 +40,7 @@ type ProgressBarProps = {
   setProgressValue: React.Dispatch<React.SetStateAction<number>>;
 };
 
+// renders a progress bar component
 const ProgressBar: React.FC<ProgressBarProps> = ({
   progressValue,
   setProgressValue,
@@ -41,25 +51,17 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const totalSkillsNumber = achievedSkills.length + skillsToImprove.length;
 
   // update progress and remaining values
-  const updateProgress = () => {
+  useEffect(() => {
     setProgressValue((achievedSkills.length / totalSkillsNumber) * 100);
-    setRemainingValue((skillsToImprove.length / totalSkillsNumber) * 100);
-  };
+  }, [achievedSkills, totalSkillsNumber]);
 
   useEffect(() => {
-    updateProgress();
-  }, [achievedSkills, skillsToImprove]);
+    setRemainingValue((skillsToImprove.length / totalSkillsNumber) * 100);
+  }, [skillsToImprove, totalSkillsNumber]);
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '2px',
-          minWidth: '100px',
-          width: '100%',
-        }}
-      >
+      <ProgressBarContainer>
         <AchievedProgress
           variant="determinate"
           value={100}
@@ -73,7 +75,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
             width: `${remainingValue}%`,
           }}
         />
-      </Box>
+      </ProgressBarContainer>
       <div>
         {achievedSkills.length}/{totalSkillsNumber}
       </div>
