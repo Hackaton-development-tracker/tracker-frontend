@@ -7,16 +7,18 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+
+
 ## How to use Docker
 
-# In the terminal navigate to your project directory, then execute
+### In the terminal navigate to your project directory, then execute
 1. docker build -t [your docker image name] .
 
 To check your Docker Image, execute
 2. docker images
 It will show the list of images available on your system
 
-# Run the Docker Container
+### Run the Docker Container
 3. docker run -d --rm -p 5173:5173 --name [name of the container] [your docker image name]
 
 Flag used in the command
@@ -29,5 +31,5 @@ To check whether your docker container is running or not, execute
 4. docker ps
 It will show the list of containers running on your system
 
-# Open the App in the Browser
+### Open the App in the Browser
 Open the Browser and access http://localhost:[Port you mentioned in the docker run command] as per the configuration we did so far it should be http://localhost:5173
