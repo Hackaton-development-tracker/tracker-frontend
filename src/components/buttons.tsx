@@ -109,7 +109,7 @@ export const ActionButton = styled(Button)({
 })
 
 export const ExpandButton = styled(Button)({
-  marginTop: '16px',
+  marginTop: '24px',
   maxWidth: '266px',
   textTransform: 'none',
   alignSelf: 'center',
@@ -137,5 +137,19 @@ export const ExpandButton = styled(Button)({
   '&:disabled': {
     backgroundColor: '#B5B5B7',
     color: '#fff',
+  },
+})
+
+export const MoreButton = styled(Button) ({
+  textTransform: 'none',
+  color: '#1A1B22',
+  fontSize: '13px',
+  lineHeight: '16px',
+  letterSpacing: 0,
+  '&:hover': {
+    boxShadow: 'none',
+    color: '#1D6BF3',
+    textDecoration: 'underline',
+    backgroundColor: 'transparent',
   },
 })
