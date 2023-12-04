@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# FrontEnd React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -7,21 +7,27 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## How to use Docker
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# In the terminal navigate to your project directory, then execute
+1. docker build -t [your docker image name] .
 
-- Configure the top-level `parserOptions` property like this:
+To check your Docker Image, execute
+2. docker images
+It will show the list of images available on your system
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+# Run the Docker Container
+3. docker run -d --rm -p 5173:5173 --name [name of the container] [your docker image name]
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Flag used in the command
+-d - To run the container in the background (Detach Mode )
+--rm - To delete the container, when you stop the container
+-p - Port Mapping between container and outside world.
+5173:5173 - [Port access from Browser]: [Port exposed from the container]
+
+To check whether your docker container is running or not, execute
+4. docker ps
+It will show the list of containers running on your system
+
+# Open the App in the Browser
+Open the Browser and access http://localhost:[Port you mentioned in the docker run command] as per the configuration we did so far it should be http://localhost:5173
