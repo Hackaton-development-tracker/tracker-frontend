@@ -47,4 +47,4 @@ export const MORE_INFO = 'Подробнее';
 export const SHOW_ACHIEVED_SKILLS = 'Показать достигнутые навыки';
 export const ACHIEVED_SKILLS = 'Достигнутые навыки';
 export const COLLAPSE = 'Свернуть';
-export const LEVEL = 'ур.';
+export const LEVEL = 'Уровень';
