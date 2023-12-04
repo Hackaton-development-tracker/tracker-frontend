@@ -1,11 +1,11 @@
 import styles from './skillsProfile.module.scss';
-import LevelCard from '../../components/levelCard/levelCard';
+import GradeCards from '../../components/gradeCards/gradeCards';
 import SkillsList from '../../components/skillsList';
 
 function SkillsProfile() {
   return (
     <div className={styles.skillsProfile}>
-      <LevelCard />
+      <GradeCards />
       <SkillsList />
       <div>Рекомендуемые мини курсы</div>
     </div>
