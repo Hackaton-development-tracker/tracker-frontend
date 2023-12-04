@@ -28,6 +28,7 @@ interface CardProps {
   content: React.ReactNode;
 }
 
+// renders basic card component witht title and content
 export const Card: React.FC<CardProps> = ({ title, content }) => {
   return (
     <>

@@ -27,6 +27,7 @@ import {
   userNextLevel,
 } from '../../utils/backendData/constantsBackend';
 
+// grade cards fonts
 const CountdownTypography = styled(Typography)({
   fontFamily: 'YS Text Regular',
   fontSize: '13px',
@@ -62,6 +63,7 @@ const PercentTypography = styled(Typography)({
   letterSpacing: 0,
 });
 
+//  renders two cards, first shows information about the user's current level, second shows progress towards the next level
 function GradeCards() {
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
