@@ -17,7 +17,7 @@ import {
 } from '../../utils/constants';
 import { CardTypography, Card } from '../card/card';
 import ProgressBar from '../progressBar';
-import { CustomButton, MainButton, ActionButton } from '../buttons';
+import { TextButton, SecondaryButton, PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
 import {
   userTitle,
@@ -78,13 +78,13 @@ function GradeCards() {
         <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
         <ProfessionTypography>{userTitle}</ProfessionTypography>
       </div>
-      <CustomButton
+      <TextButton
         sx={{
           alignSelf: 'flex-start',
         }}
       >
         {CHANGE}
-      </CustomButton>
+      </TextButton>
     </>
   );
 
@@ -102,7 +102,7 @@ function GradeCards() {
           textDecoration: 'none',
         }}
       >
-        <MainButton>{OPEN_MAP}</MainButton>
+        <SecondaryButton>{OPEN_MAP}</SecondaryButton>
       </Link>
     </>
   );
@@ -154,14 +154,16 @@ function GradeCards() {
             setTimeRemaining={setTimeRemaining}
           />
         </div>
-        <ActionButton
+        <PrimaryButton
           disabled={(timeRemaining as number) > 0}
           sx={{
+            fontSize: '14px',
+            padding: '10px 20px',
             marginLeft: '16px',
           }}
         >
           {RETAKE_TEST}
-        </ActionButton>
+        </PrimaryButton>
       </div>
     </div>
   );

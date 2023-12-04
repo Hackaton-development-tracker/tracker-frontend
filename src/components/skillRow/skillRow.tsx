@@ -4,7 +4,7 @@ import vars from '../../static/scss/export.module.scss';
 import styles from './skillRow.module.scss';
 import { getColor } from '../../utils/helpers/getColor';
 import { MORE_INFO, LEVEL } from '../../utils/constants';
-import { MoreButton } from '../buttons';
+import { TextLinkButton } from '../buttons';
 
 // skillRow elements
 const SkillBox = styled(Box)((props) => ({
@@ -101,7 +101,7 @@ export const SkillRow: React.FC<SkillProps> = ({
                   )}
                 </div>
               </div>
-              <MoreButton>{MORE_INFO}</MoreButton>
+              <TextLinkButton>{MORE_INFO}</TextLinkButton>
             </div>
           </SkillBox>
         </div>

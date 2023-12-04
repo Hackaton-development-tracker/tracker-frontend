@@ -9,8 +9,8 @@ import {
   SKILLS_TO_IMPROVE,
   COLLAPSE,
 } from '../utils/constants';
-import { ExpandButton } from './buttons';
-import {SkillRow} from './skillRow/skillRow';
+import { SecondaryButton } from './buttons';
+import { SkillRow } from './skillRow/skillRow';
 import {
   skillsToImprove,
   achievedSkills,
@@ -72,12 +72,17 @@ const SkillsList = () => {
             borderColor={vars.colorBlack100}
           />
         </Collapse>
-        <ExpandButton
+        <SecondaryButton
+          sx={{
+            maxWidth: '266px',
+            marginTop: '24px',
+            alignSelf: 'center',
+          }}
           onClick={handleExpand}
           startIcon={expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         >
           {`${expanded ? COLLAPSE : SHOW_ACHIEVED_SKILLS}`}
-        </ExpandButton>
+        </SecondaryButton>
       </SkillsListContainer>
     </Box>
   );

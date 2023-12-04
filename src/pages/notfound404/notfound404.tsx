@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import { LoginButton } from '../../components/buttons';
+import { PrimaryButton } from '../../components/buttons';
 import { COME_BACK, NOT_FOUND } from '../../utils/constants';
 import serverError404 from '../../static/assets/images/serverError404.png';
 
@@ -76,7 +76,7 @@ function NotFound404() {
               </Typography>
             </Box>
             <Link to={'/'}>
-              <LoginButton
+              <PrimaryButton
                 type="button"
                 variant="contained"
                 sx={{
@@ -87,7 +87,7 @@ function NotFound404() {
                 }}
               >
                 {COME_BACK}
-              </LoginButton>
+              </PrimaryButton>
             </Link>
           </Box>
           <Box

@@ -1,61 +1,37 @@
 import { styled } from '@mui/material/styles';
-import { Button, InputBase } from '@mui/material';
+import { Button } from '@mui/material';
+import vars from '../static/scss/export.module.scss';
 
-export const LoginButton = styled(Button)({
+export const PrimaryButton = styled(Button)({
+  color: `${vars.colorWhite}`,
+  fontFamily: ['YS Text Medium'],
   boxShadow: 'none',
   textTransform: 'none',
   fontSize: '16px',
   lineHeight: '20px',
   padding: '15px 24px',
   borderRadius: '4px',
-  backgroundColor: '#5A9BFF',
-  fontFamily: ['YS Text Medium'],
+  backgroundColor: `${vars.colorBlue}`,
   letterSpacing: 0,
   '&:hover': {
-    backgroundColor: '#1D6BF3',
+    backgroundColor: `${vars.colorBlueMain}`,
     boxShadow: 'none',
   },
   '&:active': {
     boxShadow: 'none',
-    backgroundColor: '#0062cc',
+    backgroundColor: `${vars.colorBlueMain}`,
   },
   '&:focus': {
     boxShadow: 'none',
   },
-});
-
-export const LogOutButton = styled(InputBase)(({ theme }) => ({
-  '& .MuiInputBase-input': {
-    borderRadius: 24,
-    position: 'relative',
-    backgroundColor: '#FFF',
-    border: '1px solid',
-    borderColor: '#858585',
-    padding: '10px 12px',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
-    fontFamily: ['YS Display'].join(','),
-    '&:focus': {},
-  },
-}));
-
-export const CustomButton = styled(Button)({
-  fontSize: '13px',
-  lineHeight: '16px',
-  letterSpacing: 0,
-  color: '#1d6bf3',
-  outline: 'none',
-  padding: 0,
-  textTransform: 'none',
-  '&:hover': {
-    backgroundColor: 'transparent',
+  '&.Mui-disabled': {
+    backgroundColor: `${vars.colorBlack300}`,
+    color: `${vars.colorWhite}`,
   },
 });
 
-export const MainButton = styled(Button)({
+export const SecondaryButton = styled(Button)({
+  fontFamily: ['YS Text Medium'],
   boxShadow: 'none',
   textTransform: 'none',
   fontSize: '13px',
@@ -64,91 +40,49 @@ export const MainButton = styled(Button)({
   padding: '10px 20px',
   borderRadius: '4px',
   backgroundColor: 'transparent',
-  border: '1px solid #1D6BF3',
-  fontFamily: ['YS Text Medium'],
+  border: `1px solid ${vars.colorBlueMain}`,
   '&:hover': {
-    backgroundColor: '#1D6BF3',
+    backgroundColor: `${vars.colorBlueMain}`,
     color: '#fff',
     boxShadow: 'none',
   },
   '&:active': {
     boxShadow: 'none',
-    backgroundColor: '#0062cc',
+    backgroundColor: `${vars.colorBlueMain}`,
   },
   '&:focus': {
     boxShadow: 'none',
+  },
+  '&.Mui-disabled': {
+    borderColor: `${vars.colorBlack300}`,
+    color: `${vars.colorBlack300}`,
   },
 });
 
-export const ActionButton = styled(Button)({
-  boxShadow: 'none',
-  textTransform: 'none',
+export const TextButton = styled(Button)({
   fontSize: '13px',
   lineHeight: '16px',
   letterSpacing: 0,
-  padding: '10px 20px',
-  borderRadius: '4px',
-  color: '#fff',
-  backgroundColor: '#1D6BF3',
-  fontFamily: ['YS Text Medium'],
+  color: `${vars.colorBlueMain}`,
+  outline: 'none',
+  padding: 0,
+  textTransform: 'none',
   '&:hover': {
-    backgroundColor: '#1D6BF3',
-    boxShadow: 'none',
+    backgroundColor: 'transparent',
   },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#0062cc',
-  },
-  '&:focus': {
-    boxShadow: 'none',
-  },
-  '&:disabled': {
-    backgroundColor: '#B5B5B7',
-    color: '#fff',
-  },
-})
+});
 
-export const ExpandButton = styled(Button)({
-  marginTop: '24px',
-  maxWidth: '266px',
-  textTransform: 'none',
-  alignSelf: 'center',
-  boxShadow: 'none',
+export const TextLinkButton = styled(Button) ({
   fontSize: '13px',
   lineHeight: '16px',
   letterSpacing: 0,
-  padding: '10px 20px',
-  borderRadius: '4px',
-  border: '1px solid #1D6BF3',
-  fontFamily: ['YS Text Medium'],
-  '&:hover': {
-    boxShadow: 'none',
-    backgroundColor: '#1D6BF3',
-    color: '#fff',
-  },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#1D6BF3',
-    color: '#fff',
-  },
-  '&:focus': {
-    boxShadow: 'none',
-  },
-  '&:disabled': {
-    backgroundColor: '#B5B5B7',
-    color: '#fff',
-  },
-})
-
-export const MoreButton = styled(Button) ({
+  color: `${vars.colorBlack900}`,
   textTransform: 'none',
-  color: '#1A1B22',
-  fontSize: '13px',
-  lineHeight: '16px',
-  letterSpacing: 0,
+  textUnderlineOffset: '4px',
+  padding: 0,
   '&:hover': {
     boxShadow: 'none',
-    color: '#1D6BF3',
+    color: `${vars.colorBlueMain}`,
     textDecoration: 'underline',
     backgroundColor: 'transparent',
   },
