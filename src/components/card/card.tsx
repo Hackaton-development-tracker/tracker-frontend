@@ -18,8 +18,8 @@ export const CardPaper = styled(Paper)({
 
 export const CardTypography = styled(Typography)({
   fontFamily: 'YS Text Regular',
-  fontSize: '13px',
-  lineHeight: '16px',
+  fontSize: '14px',
+  lineHeight: '20px',
   letterSpacing: 0,
 });
 

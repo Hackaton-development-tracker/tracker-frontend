@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
-import { Box, Link, Typography, styled } from '@mui/material';
+import { Link, Typography, styled } from '@mui/material';
 import styles from './gradeCards.module.scss';
 import vars from '../../static/scss/export.module.scss';
 import {
@@ -27,6 +27,41 @@ import {
   userNextLevel,
 } from '../../utils/backendData/constantsBackend';
 
+const CountdownTypography = styled(Typography)({
+  fontFamily: 'YS Text Regular',
+  fontSize: '13px',
+  lineHeight: '16px',
+  letterSpacing: 0,
+});
+
+const SmallTextTypography = styled(Typography)({
+  fontFamily: 'YS Text Regular',
+  fontSize: '13px',
+  lineHeight: '16px',
+  letterSpacing: 0,
+});
+
+const ProfessionTypography = styled(Typography)({
+  fontFamily: 'YS Text Medium',
+  fontSize: '18px',
+  lineHeight: '24px',
+  paddingTop: '8px',
+});
+
+const GradeTypography = styled(Typography)({
+  fontSize: '24px',
+  lineHeight: '32px',
+  letterSpacing: 0,
+});
+
+const PercentTypography = styled(Typography)({
+  fontFamily: 'YS Text Medium',
+  fontSize: '16px',
+  lineHeight: '20px',
+  color: vars.colorBlueMain,
+  letterSpacing: 0,
+});
+
 function GradeCards() {
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
@@ -35,27 +70,11 @@ function GradeCards() {
     locale: ruLocale,
   });
 
-  const CountdownTypography = styled(Typography)({
-    fontFamily: 'YS Text Regular',
-    fontSize: '13px',
-    lineHeight: '16px',
-    letterSpacing: 0,
-  });
-
   const currentTitle = (
     <>
       <div className={styles.gradeCards__title}>
-        {USER_TITLE}
-        <CardTypography
-          sx={{
-            fontFamily: 'YS Text Medium',
-            fontSize: '18px',
-            lineHeight: '24px',
-            paddingTop: '8px',
-          }}
-        >
-          {userTitle}
-        </CardTypography>
+        <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
+        <ProfessionTypography>{userTitle}</ProfessionTypography>
       </div>
       <CustomButton
         sx={{
@@ -70,17 +89,10 @@ function GradeCards() {
   const currentContent = (
     <>
       <div>
-        <CardTypography>
+        <SmallTextTypography>
           {USER_CURRENT_LEVEL} {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}
-        </CardTypography>
-        <CardTypography
-          sx={{
-            fontSize: '24px',
-            lineHeight: '32px',
-          }}
-        >
-          {userCurrentLevel}
-        </CardTypography>
+        </SmallTextTypography>
+        <GradeTypography>{userCurrentLevel}</GradeTypography>
       </div>
       <Link
         href="/map"
@@ -95,72 +107,38 @@ function GradeCards() {
 
   const nextTitle = (
     <div className={styles.gradeCards__title}>
-      {USER_NEXT_LEVEL}
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'baseline',
-        }}
-      >
-        <CardTypography
+      <SmallTextTypography>{USER_NEXT_LEVEL}</SmallTextTypography>
+      <div className={styles.gradeCards__nextTitle}>
+        <GradeTypography
           sx={{
-            fontSize: '24px',
-            lineHeight: '32px',
             color: vars.colorBlueMain,
           }}
         >
           {userNextLevel}
-        </CardTypography>
+        </GradeTypography>
         <CardTypography
           sx={{
-            fontSize: '14px',
-            lineHeight: '20px',
             paddingRight: '4px',
             paddingLeft: '8px',
           }}
         >
           {USER_NEXT_LEVEL_ACHIEVED}
         </CardTypography>
-        <CardTypography
-          sx={{
-            fontSize: '16px',
-            lineHeight: '20px',
-            color: vars.colorBlueMain,
-          }}
-        >
-          {progressValue}&#37;
-        </CardTypography>
-      </Box>
+        <PercentTypography>{progressValue}&#37;</PercentTypography>
+      </div>
     </div>
   );
 
   const nextContent = (
     <div className={styles.gradeCards__content}>
-      <Box
-        sx={{
-          display: 'flex',
-          width: '100%',
-          alignItems: 'center',
-          gap: '16px',
-        }}
-      >
+      <div className={styles.gradeCards__nextContent}>
         <ProgressBar
           progressValue={progressValue}
           setProgressValue={setProgressValue}
         />
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-          }}
-        >
+      </div>
+      <div className={styles.gradeCards__countdown}>
+        <div style={{ display: 'flex' }}>
           <CountdownTypography
             sx={{
               paddingRight: '4px',
@@ -173,7 +151,7 @@ function GradeCards() {
             timeRemaining={timeRemaining}
             setTimeRemaining={setTimeRemaining}
           />
-        </Box>
+        </div>
         <ActionButton
           disabled={(timeRemaining as number) > 0}
           sx={{
@@ -182,17 +160,15 @@ function GradeCards() {
         >
           {RETAKE_TEST}
         </ActionButton>
-      </Box>
+      </div>
     </div>
   );
 
   return (
-    <>
-      <div className={styles.gradeCards}>
-        <Card title={currentTitle} content={currentContent}></Card>
-        <Card title={nextTitle} content={nextContent}></Card>
-      </div>
-    </>
+    <div className={styles.gradeCards}>
+      <Card title={currentTitle} content={currentContent}></Card>
+      <Card title={nextTitle} content={nextContent}></Card>
+    </div>
   );
 }
 

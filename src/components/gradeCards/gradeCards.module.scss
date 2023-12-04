@@ -15,3 +15,21 @@
   width: 100%;
   min-height: 90px;
 }
+
+.gradeCards__nextTitle {
+  display: flex;
+  align-items: baseline;
+}
+
+.gradeCards__nextContent {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 16px;
+}
+
+.gradeCards__countdown {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
