@@ -1,24 +1,17 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useState } from 'react';
-import { format, parseISO } from 'date-fns';
-import ruLocale from 'date-fns/locale/ru';
-import { Link, Typography, styled } from '@mui/material';
-import styles from './gradeCards.module.scss';
+import { Typography, styled } from '@mui/material';
+import styles from './nextGradeCard.module.scss';
 import vars from '../../static/scss/export.module.scss';
 import {
-  USER_TITLE,
-  USER_CURRENT_LEVEL,
   USER_NEXT_LEVEL,
   USER_NEXT_LEVEL_ACHIEVED,
-  USER_CURRENT_LEVEL_ACHIEVED,
   RETAKE_TEST,
-  CHANGE,
-  OPEN_MAP,
   TEST_RETAKE_DAYS,
 } from '../../utils/constants';
 import { CardTypography, Card } from '../card/card';
 import ProgressBar from '../progressBar';
-import { TextButton, SecondaryButton, PrimaryButton } from '../buttons';
+import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
 import { user } from '../../utils/backendData/data';
 
@@ -37,13 +30,6 @@ const SmallTextTypography = styled(Typography)({
   letterSpacing: 0,
 });
 
-const ProfessionTypography = styled(Typography)({
-  fontFamily: 'YS Text Medium',
-  fontSize: '18px',
-  lineHeight: '24px',
-  paddingTop: '8px',
-});
-
 const GradeTypography = styled(Typography)({
   fontSize: '24px',
   lineHeight: '32px',
@@ -59,50 +45,11 @@ const PercentTypography = styled(Typography)({
 });
 
 //  renders two cards, first shows information about the user's current level, second shows progress towards the next level
-function GradeCards() {
+function NextGradeCard() {
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
-  const { title, test_date, next_test_date, grade_current, grade_next } = user[0];
-
-  const formattedTestDate = format(parseISO(test_date), 'dd MMMM yyyy', {
-    locale: ruLocale,
-  });
-
-  const currentTitle = (
-    <>
-      <div className={styles.gradeCards__title}>
-        <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
-        <ProfessionTypography>{title}</ProfessionTypography>
-      </div>
-      <TextButton
-        sx={{
-          alignSelf: 'flex-start',
-        }}
-      >
-        {CHANGE}
-      </TextButton>
-    </>
-  );
-
-  const currentContent = (
-    <>
-      <div>
-        <SmallTextTypography>
-          {USER_CURRENT_LEVEL} {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}
-        </SmallTextTypography>
-        <GradeTypography>{grade_current}</GradeTypography>
-      </div>
-      <Link
-        href="/map"
-        sx={{
-          textDecoration: 'none',
-        }}
-      >
-        <SecondaryButton>{OPEN_MAP}</SecondaryButton>
-      </Link>
-    </>
-  );
+  const { next_test_date, grade_next } = user[0];
 
   const nextTitle = (
     <div className={styles.gradeCards__title}>
@@ -165,12 +112,7 @@ function GradeCards() {
     </div>
   );
 
-  return (
-    <div className={styles.gradeCards}>
-      <Card title={currentTitle} content={currentContent}></Card>
-      <Card title={nextTitle} content={nextContent}></Card>
-    </div>
-  );
+  return <Card title={nextTitle} content={nextContent}></Card>;
 }
 
-export default GradeCards;
+export default NextGradeCard;
