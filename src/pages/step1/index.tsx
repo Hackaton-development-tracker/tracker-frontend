@@ -9,6 +9,7 @@ import React from 'react';
 // import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 import { LoginButton } from '../../components/formelements';
+import chooseSpecsData from '../../components/data/choose_specs.json';
 
 interface SelectSmallProps {
   onSelectChange: (value: string) => void;
@@ -32,13 +33,13 @@ function SelectSmall({ onSelectChange }: SelectSmallProps) {
         label=""
         onChange={handleChange}
       >
-        <MenuItem value="">
-          <em>Выбери специальность</em>
-        </MenuItem>
-        <MenuItem value={10}>Продакт-менеджер</MenuItem>
-        <MenuItem value={20}>Проджект-менеджер</MenuItem>
-        <MenuItem value={30}>Frontend-разработчик</MenuItem>
-        <MenuItem value={40}>Backend-разработчик</MenuItem>
+        {
+          chooseSpecsData.map((item) => (
+            <MenuItem key={item.id} value={item.id}>
+              {item.title}
+            </MenuItem>
+          ))
+        }
       </Select>
     </FormControl>
   );

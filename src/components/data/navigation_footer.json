@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Уйти в отпуск",
+        "url": "/vacation",
+        "icon": "vacation",
+        "active": false
+    },
+    {
+        "name": "Инфо профиля",
+        "url": "/setting",
+        "icon": "settings",
+        "active": false
+    },
+    {
+        "name": "Выход",
+        "url": "/logout",
+        "icon": "exit",
+        "active": true
+    }
+]
