@@ -9,6 +9,8 @@ import { LoginButton } from '../../components/formelements';
 import { RadioTap } from '../../components/radio';
 import { CheckboxTap } from '../../components/checkbox';
 import { FormControlLabelTap } from '../../components/label';
+// import QuizComponent from '../../components/quiz';
+// import quizData from '../../components/data/quiz.json';
 
 function Step2() {
   const navigate = useNavigate();
@@ -71,6 +73,7 @@ function Step2() {
           продакт-менеджера.
         </p>
       </Box>
+      {/* <QuizComponent questions={quizData} /> */}
       <div className="mediumContentBlock long">
         <div className={styles.title}>
           <span className={styles.numeration}>1.</span>
