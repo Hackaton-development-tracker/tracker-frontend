@@ -52,9 +52,9 @@ function NextGradeCard() {
   const { next_test_date, grade_next } = user[0];
 
   const nextTitle = (
-    <div className={styles.gradeCards__title}>
+    <div>
       <SmallTextTypography>{USER_NEXT_LEVEL}</SmallTextTypography>
-      <div className={styles.gradeCards__nextTitle}>
+      <div className={styles.nexttitle}>
         <GradeTypography
           sx={{
             color: vars.colorBlueMain,
@@ -76,14 +76,14 @@ function NextGradeCard() {
   );
 
   const nextContent = (
-    <div className={styles.gradeCards__content}>
-      <div className={styles.gradeCards__nextContent}>
+    <div className={styles.content}>
+      <div className={styles.nextcontent}>
         <ProgressBar
           progressValue={progressValue}
           setProgressValue={setProgressValue}
         />
       </div>
-      <div className={styles.gradeCards__countdown}>
+      <div className={styles.countdown}>
         <div style={{ display: 'flex' }}>
           <CountdownTypography
             sx={{

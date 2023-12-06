@@ -2,16 +2,17 @@
 import { format, parseISO } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 import { Link, Typography, styled } from '@mui/material';
+import styles from './currentGradeCard.module.scss';
 import {
   USER_TITLE,
   USER_CURRENT_LEVEL,
   USER_CURRENT_LEVEL_ACHIEVED,
   CHANGE,
   OPEN_MAP,
-} from '../utils/constants';
-import { Card } from './card/card';
-import { TextButton, SecondaryButton } from './buttons';
-import { user } from '../utils/backendData/data';
+} from '../../utils/constants';
+import { Card } from '../card/card';
+import { TextButton, SecondaryButton } from '../buttons';
+import { user } from '../../utils/backendData/data';
 
 // grade cards fonts
 const SmallTextTypography = styled(Typography)({
@@ -44,7 +45,7 @@ function CurrentGradeCard() {
 
   const currentTitle = (
     <>
-      <div>
+      <div className={styles.currenttitle}>
         <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
         <ProfessionTypography>{title}</ProfessionTypography>
       </div>

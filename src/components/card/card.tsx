@@ -33,8 +33,8 @@ export const Card: React.FC<CardProps> = ({ title, content }) => {
   return (
     <>
       <CardPaper elevation={0}>
-        <div className={styles.card__title}>{title}</div>
-        <div className={styles.card__content}>{content}</div>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.content}>{content}</div>
       </CardPaper>
     </>
   );

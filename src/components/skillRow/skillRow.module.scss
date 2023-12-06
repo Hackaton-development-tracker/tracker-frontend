@@ -1,30 +1,40 @@
-.skillRowList {
+.skilllist {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.skillRow {
+.skillrow {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+  }
 }
 
-.skillRow__levels {
+.skillrow:hover .button {
+  color: #1d6bf3;
+  transition: color 0.3s ease-in-out;
+}
+
+.levels {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.levelsContainer {
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 32px;
 }
 
-.levelsText {
+.text {
   display: flex;
   justify-content: space-between;
   align-items: center;

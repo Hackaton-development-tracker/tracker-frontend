@@ -9,9 +9,9 @@ function NotFound404() {
   return (
     <div className="layout">
       <div className={styles.notfound}>
-        <div className={styles.notfound__container}>
-          <div className={styles.notfound__content}>
-            <div className={styles.notfound__title}>
+        <div className={styles.notfoundcontainer}>
+          <div className={styles.notfoundcontent}>
+            <div className={styles.notfoundtitle}>
               <Typography
                 variant="h1"
                 component="h1"
