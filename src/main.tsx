@@ -14,9 +14,9 @@ import {
   ROUTE_STEP2,
   ROUTE_STEP3
 } from './utils/constants';
-import LoginPage from './pages/login';
-import NotFound404 from './pages/notfound404';
-import RegisterPage from './pages/register';
+import LoginPage from './pages/login/login';
+import NotFound404 from './pages/notfound404/notfound404';
+import RegisterPage from './pages/register/register';
 import Step1 from './pages/step1';
 import Step2 from './pages/step2';
 import Step3 from './pages/step3';

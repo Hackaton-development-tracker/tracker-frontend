@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import { Box, Button, Container, FormHelperText, Paper } from '@mui/material';
+import { Box, Container, FormHelperText, Paper } from '@mui/material';
 
 export const FormContainer = styled(Container)({
   display: 'flex',
@@ -24,7 +24,7 @@ export const ErrorLabel = styled(FormHelperText)({
   padding: '0 6px',
   fontFamily: 'YS Text Regular',
   color: '#ff0200',
-  letterSpacing: '0.002em',
+  letterSpacing: 0,
   textAlign: 'center',
 });
 
@@ -32,7 +32,7 @@ export const ErrorMessage = styled(FormHelperText)({
   fontSize: '11px',
   fontFamily: 'YS Text Regular',
   color: '#ff0200',
-  letterSpacing: '0.002em',
+  letterSpacing: 0,
   lineHeight: '1.66'
 })
 
@@ -59,29 +59,6 @@ export const LoginInput = styled(InputBase)(({ theme, error }) => ({
     },
   },
 }));
-
-export const LoginButton = styled(Button)({
-  boxShadow: 'none',
-  textTransform: 'none',
-  fontSize: '16px',
-  lineHeight: '20px',
-  padding: '15px 24px',
-  borderRadius: '4px',
-  backgroundColor: '#5A9BFF',
-  fontFamily: ['YS Text Medium'],
-  letterSpacing: '0.002em',
-  '&:hover': {
-    backgroundColor: '#1D6BF3',
-    boxShadow: 'none',
-  },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#0062cc',
-  },
-  '&:focus': {
-    boxShadow: 'none',
-  },
-});
 
 export const LogOutButton = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
