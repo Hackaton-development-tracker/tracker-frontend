@@ -7,11 +7,10 @@ import {
   USER_TITLE,
   USER_CURRENT_LEVEL,
   USER_CURRENT_LEVEL_ACHIEVED,
-  CHANGE,
   OPEN_MAP,
 } from '../../utils/constants';
 import { Card } from '../card/card';
-import { TextButton, SecondaryButton } from '../buttons';
+import { SecondaryButton } from '../buttons';
 import { user } from '../../utils/backendData/data';
 
 // grade cards fonts
@@ -49,13 +48,6 @@ function CurrentGradeCard() {
         <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
         <ProfessionTypography>{title}</ProfessionTypography>
       </div>
-      <TextButton
-        sx={{
-          alignSelf: 'flex-start',
-        }}
-      >
-        {CHANGE}
-      </TextButton>
     </>
   );
 
