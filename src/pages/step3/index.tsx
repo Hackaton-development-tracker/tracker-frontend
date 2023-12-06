@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 import { Box } from '@mui/material';
-import { LoginButton } from '../../components/formelements';
+import { LoginButton } from '../../components/buttons';
 
 function Step3() {
   const navigate = useNavigate();

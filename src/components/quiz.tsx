@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import React, { useState } from 'react';
-import { LoginButton } from './formelements';
+import { LoginButton } from './buttons';
 
 interface Option {
   id: number;

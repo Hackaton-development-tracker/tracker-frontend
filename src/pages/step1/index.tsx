@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import React from 'react';
 // import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
-import { LoginButton } from '../../components/formelements';
+import { LoginButton } from '../../components/buttons';
 import chooseSpecsData from '../../components/data/choose_specs.json';
 
 interface SelectSmallProps {

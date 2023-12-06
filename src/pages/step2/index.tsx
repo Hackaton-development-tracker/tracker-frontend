@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormGroup from '@mui/material/FormGroup';
 import { useState } from 'react';
-import { LoginButton } from '../../components/formelements';
+import { LoginButton } from '../../components/buttons';
 import { RadioTap } from '../../components/radio';
 import { CheckboxTap } from '../../components/checkbox';
 import { FormControlLabelTap } from '../../components/label';
