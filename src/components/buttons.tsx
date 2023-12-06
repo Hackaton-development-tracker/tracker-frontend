@@ -87,3 +87,29 @@ export const TextLinkButton = styled(Button) ({
     backgroundColor: 'transparent',
   },
 })
+
+export const CloseButton = styled(Button)({
+  width: '24px',
+  minWidth: 'auto',
+  height: '24px',
+  padding: '0',
+  background: 'transparent',
+  border: 'none',
+  cursor: 'pointer',
+  '&:hover': {
+    backgroundColor: 'transparent',
+  },
+});
+
+export const TextExpandButton = styled(Button)({
+  fontSize: '13px',
+  lineHeight: '16px',
+  letterSpacing: 0,
+  color: `${vars.colorBlueMain}`,
+  outline: 'none',
+  padding: 0,
+  textTransform: 'none',
+  '&:hover': {
+    backgroundColor: 'transparent',
+  },
+});

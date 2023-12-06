@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.leveltitle {
+  margin: 0;
+}
+
+.levels {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding-top: 18px;
+}

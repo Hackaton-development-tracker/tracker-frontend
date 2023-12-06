@@ -1,7 +1,7 @@
 import styles from './skillsProfile.module.scss';
 import CurrentGradeCard from '../../components/currentGradeCard/currentGradeCard';
 import NextGradeCard from '../../components/nextGradeCard/nextGradeCard';
-import SkillsList from '../../components/skillsList';
+import SkillsList from '../../components/skillList/skillsList';
 
 function SkillsProfile() {
   return (

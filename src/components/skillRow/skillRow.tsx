@@ -1,10 +1,28 @@
-import { Box, Typography, Grid, styled } from '@mui/material';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import vars from '../../static/scss/export.module.scss';
+import { useDispatch } from 'react-redux';
+import { Box, Typography, styled } from '@mui/material';
 import styles from './skillRow.module.scss';
-import { getColor } from '../../utils/helpers/getColor';
-import { MORE_INFO, LEVEL } from '../../utils/constants';
+import { MORE_INFO } from '../../utils/constants';
 import { TextLinkButton } from '../buttons';
+import { openPopup } from '../../services/redux/slices/popup/popup';
+import { LevelsGrid, LevelsArrow, shortLevel } from '../skillList/skillsList';
+
+type TSkill = {
+  id: number;
+  name: string;
+  current_level: number;
+  target_level: number;
+  total_levels: number;
+  description: string;
+  levels_description: {
+    [key: string]: string;
+  };
+};
+
+type SkillProps = {
+  setSelectedSkill: (skill: TSkill) => void;
+  skillsArray: TSkill[];
+  borderColor?: string;
+};
 
 // skillRow elements
 const SkillBox = styled(Box)((props) => ({
@@ -26,81 +44,37 @@ const SkillTypography = styled(Typography)({
   width: '100%',
 });
 
-export const LevelsContainer = styled(Grid)({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  padding: 0,
-  gap: '4px',
-});
-
-export const LevelGrid = styled(Grid)({
-  height: '14px',
-  width: '6px',
-  borderRadius: '6px',
-});
-
-export const ArrowForwardIcon = styled(ArrowForwardIosIcon)({
-  color: vars.colorBlueMain,
-  width: '14px',
-  height: '14px',
-  paddingLeft: '8px',
-  paddingRight: '8px',
-});
-
-type TSkill = {
-  id: number;
-  name: string;
-  currentLevel: number;
-  targetLevel: number;
-  levels: number;
-};
-
-interface SkillProps {
-  borderColor?: string;
-  skillsArray: TSkill[];
-}
-
 // renders a row with skill name, level progress bar, current level and target level
 export const SkillRow: React.FC<SkillProps> = ({
+  setSelectedSkill,
   skillsArray,
   borderColor,
+
 }) => {
-  const shortLevel = LEVEL.toLowerCase().substring(0, 2) + '.';
+  const dispatch = useDispatch();
+  const handleOpenPopup = (skill: TSkill) => {
+    dispatch(openPopup('skillPopup'));
+    setSelectedSkill(skill);
+  };
 
   return (
-    <div className={styles.skillRowList}>
+    <div className={styles.skilllist}>
       {skillsArray.map((skill) => (
-        <div key={skill.id} className={styles.skillRow}>
+        <div
+          key={skill.id}
+          className={styles.skillrow}
+          onClick={() => handleOpenPopup(skill)}
+        >
           <SkillBox borderColor={borderColor}>
             <SkillTypography>{skill.name}</SkillTypography>
-            <div className={styles.skillRow__levels}>
-              <div className={styles.levelsContainer}>
-                <LevelsContainer>
-                  {Array.from({ length: skill.levels }).map((_, index) => (
-                    <LevelGrid
-                      key={index}
-                      sx={{
-                        backgroundColor: getColor(
-                          index + 1,
-                          skill.currentLevel,
-                          skill.targetLevel,
-                        ),
-                      }}
-                    />
-                  ))}
-                </LevelsContainer>
-                <div className={styles.levelsText}>
-                  {shortLevel} {skill.currentLevel}
-                  {skill.currentLevel < skill.targetLevel && (
-                    <>
-                      <ArrowForwardIcon />
-                      {shortLevel} {skill.targetLevel}
-                    </>
-                  )}
-                </div>
+            <div className={styles.levels}>
+              <div className={styles.container}>
+                <LevelsGrid skill={skill} />
+                <LevelsArrow skill={skill} level={shortLevel} />
               </div>
-              <TextLinkButton>{MORE_INFO}</TextLinkButton>
+              <TextLinkButton className={styles.button}>
+                {MORE_INFO}
+              </TextLinkButton>
             </div>
           </SkillBox>
         </div>
@@ -108,3 +82,5 @@ export const SkillRow: React.FC<SkillProps> = ({
     </div>
   );
 };
+
+export default SkillRow;
