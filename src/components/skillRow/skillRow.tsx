@@ -4,19 +4,7 @@ import styles from './skillRow.module.scss';
 import { MORE_INFO } from '../../utils/constants';
 import { TextLinkButton } from '../buttons';
 import { openPopup } from '../../services/redux/slices/popup/popup';
-import { LevelsGrid, LevelsArrow, shortLevel } from '../skillList/skillsList';
-
-type TSkill = {
-  id: number;
-  name: string;
-  current_level: number;
-  target_level: number;
-  total_levels: number;
-  description: string;
-  levels_description: {
-    [key: string]: string;
-  };
-};
+import { TSkill, LevelsGrid, LevelsArrow, shortLevel } from '../levelelements';
 
 type SkillProps = {
   setSelectedSkill: (skill: TSkill) => void;
