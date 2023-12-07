@@ -1,6 +1,7 @@
 .content {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 .leveltitle {
@@ -13,4 +14,30 @@
   align-items: center;
   gap: 16px;
   padding-top: 18px;
+}
+
+.description {
+  margin: 0;
+  padding-top: 18px;
+  padding-bottom: 24px;
+}
+
+.expanded {
+  max-height: 366px;
+  overflow: auto;
+}
+
+.levelblock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.leveltitle {
+  margin: 0;
+  padding-bottom: 4px;
+}
+
+.expandbutton {
+  justify-content: flex-start;
 }
