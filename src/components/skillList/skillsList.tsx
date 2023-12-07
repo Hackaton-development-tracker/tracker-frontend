@@ -10,7 +10,7 @@ import styles from './skillList.module.scss';
 import { getColor } from '../../utils/helpers/getColor';
 import { LEVEL } from '../../utils/constants';
 import {
-  SHOW_ACHIEVED_SKILLS,
+  EXPAND_ACHIEVED_SKILLS,
   ACHIEVED_SKILLS,
   SKILLS_TO_IMPROVE,
   COLLAPSE,
@@ -18,7 +18,7 @@ import {
 import { SecondaryButton } from '../buttons';
 import { SkillRow } from '../skillRow/skillRow';
 import SkillPopup from '../skillPopup/skillPopup';
-import { skillsToImprove, achievedSkills } from '../../utils/backendData/data';
+import skillsData from './skills.json';
 import Counter from '../counter';
 
 type TSkill = {
@@ -120,15 +120,16 @@ export const LevelsArrow = ({
 // renders a list of skills with an expand and collapse buttons
 const SkillsList = () => {
   const [expanded, setExpanded] = useState(false);
-  const [selectedSkill, setSelectedSkill] = useState<TSkill | undefined>(
-    undefined,
-  );
+  const [selectedSkill, setSelectedSkill] = useState<TSkill | null>(null);
   const isSkillPopupOpen = useSelector((state: RootState) => state.popup);
 
   // toggles the expanded state
   const handleExpand = () => {
     setExpanded(!expanded);
   };
+
+  const skillsToImprove: TSkill[] = skillsData[0].skillsToImprove || [];
+  const achievedSkills: TSkill[] = skillsData[1].achievedSkills || [];
 
   return (
     <Box>
@@ -162,16 +163,14 @@ const SkillsList = () => {
           onClick={handleExpand}
           startIcon={expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         >
-          {`${expanded ? COLLAPSE : SHOW_ACHIEVED_SKILLS}`}
+          {`${expanded ? COLLAPSE : EXPAND_ACHIEVED_SKILLS}`}
         </SecondaryButton>
       </SkillsListContainer>
       {isSkillPopupOpen && selectedSkill && (
         <SkillPopup
           title={selectedSkill.name}
           levelsGrid={<LevelsGrid skill={selectedSkill} />}
-          levelsArrow={
-            <LevelsArrow skill={selectedSkill} level={shortLevel} />
-          }
+          levelsArrow={<LevelsArrow skill={selectedSkill} level={shortLevel} />}
           description={selectedSkill.description}
           levels_description={selectedSkill.levels_description || {}}
         />

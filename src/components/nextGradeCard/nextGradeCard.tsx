@@ -13,7 +13,7 @@ import { CardTypography, Card } from '../card/card';
 import ProgressBar from '../progressBar';
 import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
-import { user } from '../../utils/backendData/data';
+import { user } from '../currentGradeCard/user.json'
 
 // grade cards fonts
 const CountdownTypography = styled(Typography)({

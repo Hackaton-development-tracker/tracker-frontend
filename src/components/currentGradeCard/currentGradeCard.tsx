@@ -11,7 +11,8 @@ import {
 } from '../../utils/constants';
 import { Card } from '../card/card';
 import { SecondaryButton } from '../buttons';
-import { user } from '../../utils/backendData/data';
+// import { user } from '../../utils/backendData/data';
+import {user} from './user.json'
 
 // grade cards fonts
 const SmallTextTypography = styled(Typography)({
