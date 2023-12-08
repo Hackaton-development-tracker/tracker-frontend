@@ -13,7 +13,7 @@ import { CardTypography, Card } from '../card/card';
 import ProgressBar from '../progressBar';
 import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
-import { user } from '../currentGradeCard/user.json'
+import { user } from '../../utils/backendData/user.json';
 
 // grade cards fonts
 const CountdownTypography = styled(Typography)({
@@ -112,7 +112,7 @@ function NextGradeCard() {
     </div>
   );
 
-  return <Card title={nextTitle} content={nextContent}></Card>;
+  return <Card title={nextTitle} content={nextContent} classname="gradecard"></Card>;
 }
 
 export default NextGradeCard;

@@ -14,7 +14,7 @@ import {
 import { SecondaryButton } from '../buttons';
 import { SkillRow } from '../skillRow/skillRow';
 import SkillPopup from '../skillPopup/skillPopup';
-import skillsData from './skills.json';
+import skillsData from '../../utils/backendData/skills.json';
 import Counter from '../counter';
 import { TSkill, LevelsGrid, LevelsArrow, shortLevel } from '../levelelements';
 

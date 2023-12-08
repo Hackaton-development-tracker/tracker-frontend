@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, LinearProgress } from '@mui/material';
 import vars from '../static/scss/export.module.scss';
-import skillsData from './skillList/skills.json';
+import skillsData from '../utils/backendData/skills.json';
 import { TSkill} from './levelelements';
 
 

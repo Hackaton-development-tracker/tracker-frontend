@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { format, parseISO } from 'date-fns';
-import ruLocale from 'date-fns/locale/ru';
 import { Link, Typography, styled } from '@mui/material';
 import styles from './currentGradeCard.module.scss';
 import {
@@ -11,8 +9,8 @@ import {
 } from '../../utils/constants';
 import { Card } from '../card/card';
 import { SecondaryButton } from '../buttons';
-// import { user } from '../../utils/backendData/data';
-import {user} from './user.json'
+import { formattedDate } from '../../utils/helpers/formatTime';
+import { user } from '../../utils/backendData/user.json';
 
 // grade cards fonts
 const SmallTextTypography = styled(Typography)({
@@ -39,9 +37,7 @@ const GradeTypography = styled(Typography)({
 function CurrentGradeCard() {
   const { title, test_date, grade_current } = user[0];
 
-  const formattedTestDate = format(parseISO(test_date), 'dd MMMM yyyy', {
-    locale: ruLocale,
-  });
+  const formattedTestDate = formattedDate(test_date);
 
   const currentTitle = (
     <>
@@ -71,7 +67,7 @@ function CurrentGradeCard() {
     </>
   );
 
-  return <Card title={currentTitle} content={currentContent}></Card>;
+  return <Card title={currentTitle} content={currentContent} classname="gradecard"></Card>;
 }
 
 export default CurrentGradeCard;
