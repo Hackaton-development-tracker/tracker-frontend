@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Link, Typography, styled } from '@mui/material';
+import { Typography, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styles from './currentGradeCard.module.scss';
 import {
   USER_TITLE,
@@ -56,18 +57,19 @@ function CurrentGradeCard() {
         </SmallTextTypography>
         <GradeTypography>{grade_current}</GradeTypography>
       </div>
-      <Link
-        href="/map"
-        sx={{
-          textDecoration: 'none',
-        }}
-      >
+      <Link to="/map">
         <SecondaryButton>{OPEN_MAP}</SecondaryButton>
       </Link>
     </>
   );
 
-  return <Card title={currentTitle} content={currentContent} classname="gradecard"></Card>;
+  return (
+    <Card
+      title={currentTitle}
+      content={currentContent}
+      classname="gradecard"
+    ></Card>
+  );
 }
 
 export default CurrentGradeCard;

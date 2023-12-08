@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Typography, styled } from '@mui/material';
 import styles from './nextGradeCard.module.scss';
 import vars from '../../static/scss/export.module.scss';
@@ -8,6 +9,7 @@ import {
   USER_NEXT_LEVEL_ACHIEVED,
   RETAKE_TEST,
   TEST_RETAKE_DAYS,
+  ROUTE_STEP1,
 } from '../../utils/constants';
 import { CardTypography, Card } from '../card/card';
 import ProgressBar from '../progressBar';
@@ -46,10 +48,15 @@ const PercentTypography = styled(Typography)({
 
 //  renders two cards, first shows information about the user's current level, second shows progress towards the next level
 function NextGradeCard() {
+  const navigate = useNavigate();
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
   const { next_test_date, grade_next } = user[0];
+
+  const handleTestRetake = () => {
+    navigate(ROUTE_STEP1);
+  };
 
   const nextTitle = (
     <div>
@@ -99,6 +106,7 @@ function NextGradeCard() {
           />
         </div>
         <PrimaryButton
+          onClick={handleTestRetake}
           disabled={(timeRemaining as number) > 0}
           sx={{
             fontSize: '14px',

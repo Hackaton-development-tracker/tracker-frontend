@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import styles from './projects.module.scss';
 import projectsData from '../../utils/backendData/projects.json';
 import { Card } from '../card/card';
@@ -60,9 +61,9 @@ const Projects = () => {
             ' - ' +
             formattedDate(project.end_date)}
         </ProjectGreyTypography>
-        <a href="/" target="_blank">
+        <Link to="/workshop">
           <SecondaryButton>{MORE_INFO}</SecondaryButton>
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -76,7 +77,7 @@ const Projects = () => {
             key={project.id}
             title={projectTitle(project)}
             content={projectContent(project)}
-            classname={styles.card}
+            classname={styles.projectcard}
           />
         ))}
       </div>

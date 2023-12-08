@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import styles from './courses.module.scss';
 import coursesData from '../../utils/backendData/courses.json';
 import { ProfCard } from '../profCard/profCard';
@@ -70,9 +71,9 @@ const Courses = () => {
             {formattedDate(course.start_date)}
           </CourseTextTypography>
         </div>
-        <a href={course.source} target="_blank">
+        <Link to={course.source} target="_blank">
           <SecondaryButton>{MORE_INFO}</SecondaryButton>
-        </a>
+        </Link>
       </div>
     </div>
   );
