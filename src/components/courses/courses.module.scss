@@ -1,8 +1,9 @@
+@import '../../static/scss/vars.scss';
+
 .coursescontainer {
   display: flex;
   gap: 16px;
   padding-top: 24px;
-  max-height: 448px;
 }
 
 .titlecontainer {
@@ -39,4 +40,9 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.profcard:hover .coursetitle {
+  color: $color-blue-main;
+  transition: color 0.3s ease-in-out;
 }

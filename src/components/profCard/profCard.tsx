@@ -19,7 +19,10 @@ export const CardTypography = styled(Typography)({
 export const ProfCard: React.FC<CardProps> = ({ image, title, content }) => {
   return (
     <article className={styles.profcard}>
-      <img src={image} alt="image" className={styles.image} />
+      <div className={styles.imagecontainer}>
+        <img src={image} alt="image" className={styles.image} />
+        <div className={styles.overlay}></div>
+      </div>
       <Card title={title} content={content} classname={styles.cardtext} />
     </article>
   );
