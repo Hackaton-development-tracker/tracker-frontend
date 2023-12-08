@@ -10,6 +10,9 @@ import {
   formattedDate,
 } from '../../utils/helpers/formatTime';
 import { SecondaryButton } from '../buttons';
+import thinking from '../../static/assets/images/thinking.svg';
+import economics from '../../static/assets/images/economics.svg';
+import argumentation from '../../static/assets/images/argumentation.svg'
 
 type Course = {
   id: number;
@@ -18,7 +21,7 @@ type Course = {
   start_date: string;
   source: string;
   completion_time: number;
-  image: string;
+  // image: string;
 };
 
 const CourseTitleTypography = styled(Typography)({
@@ -40,7 +43,7 @@ const CourseGreyTypography = styled(Typography)({
   fontSize: '13px',
   lineHeight: '16px',
   letterSpacing: 0,
-  color: `${vars.colorBlack300}`,
+  color: `${vars.colorBlack500}`,
 });
 
 const Courses = () => {
@@ -67,12 +70,26 @@ const Courses = () => {
             {formattedDate(course.start_date)}
           </CourseTextTypography>
         </div>
-        <a href={course.source} target="_blank" rel="noopener noreferrer">
+        <a href={course.source} target="_blank">
           <SecondaryButton>{MORE_INFO}</SecondaryButton>
         </a>
       </div>
     </div>
   );
+
+  // TODO: get image from server
+  const getImage = (courseId: number) => {
+    switch (courseId) {
+      case 1:
+        return thinking;
+      case 2:
+        return economics;
+      case 3:
+        return argumentation;
+      default:
+        return '';
+    }
+  }
 
   return (
     <div>
@@ -81,7 +98,7 @@ const Courses = () => {
         {coursesData[0].recommended_courses.map((course) => (
           <ProfCard
             key={course.id}
-            image={course.image}
+            image={getImage(course.id)}
             title={courseTitle(course)}
             content={courseContent(course)}
           />

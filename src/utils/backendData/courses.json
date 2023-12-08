@@ -7,8 +7,7 @@
         "description": "За 2 месяца разовьёте навыки, которые помогают анализировать информацию и принимать взвешенные решения.",
         "start_date": "2024-01-25T15:00:00.000Z",
         "source": "https://practicum.yandex.ru/thinking",
-        "completion_time": 1440,
-        "image": "https://code.s3.yandex.net/prof-window-images/critical-thinking.svg"
+        "completion_time": 1440
       },
       {
         "id": 2,
@@ -16,9 +15,7 @@
         "description": "Вы сможете разобраться, как пользователи приходят в продукты и приносят деньги, что и на каких этапах с этими деньгами происходит, какими способами на это можно влиять и масштабировать как прибыль.",
         "start_date": "2023-12-14T15:00:00.000Z",
         "source": "https://practicum.yandex.ru/unit-economics/",
-        "completion_time": 1440,
-        "image": "https://code.s3.yandex.net/prof-window-images/unit-economix.svg"
-
+        "completion_time": 1440
       },
       {
         "id": 3,
@@ -26,8 +23,7 @@
         "description": "За 9 дней интенсивной учёбы вы освоите алгоритм, который поможет готовиться к важным встречам и аргументировать свою точку зрения.",
         "start_date": "2024-02-01T15:00:00.000Z",
         "source": "https://practicum.yandex.ru/argumentation",
-        "completion_time": 16,
-        "image": "https://code.s3.yandex.net/landings-v2-argumentation/Argumentation_2.svg"
+        "completion_time": 16
       }
     ]
   }
