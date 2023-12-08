@@ -1,6 +1,6 @@
 import vars from '../../static/scss/export.module.scss';
 
-export const getColor = (
+export const getLevelColor = (
   index: number,
   currentLevel: number,
   targetLevel: number,

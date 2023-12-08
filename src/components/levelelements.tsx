@@ -3,7 +3,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Grid, Typography } from '@mui/material';
 import vars from '../static/scss/export.module.scss';
 import { LEVEL } from '../utils/constants';
-import { getColor } from '../utils/helpers/getColor';
+import { getLevelColor } from '../utils/helpers/getLevelColor';
 
 export type TSkill = {
   id: number;
@@ -55,7 +55,7 @@ export const LevelsGrid = ({ skill }: { skill: TSkill }) => (
       <LevelGrid
         key={index}
         sx={{
-          backgroundColor: getColor(
+          backgroundColor: getLevelColor(
             index + 1,
             skill.current_level,
             skill.target_level,

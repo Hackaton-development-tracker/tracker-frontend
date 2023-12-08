@@ -1,0 +1,55 @@
+.sourcescontainer {
+  display: flex;
+  gap: 16px;
+  padding-top: 24px;
+}
+
+.card {
+  box-sizing: border-box;
+  border: 1px solid #dde0e4;
+  padding: 16px;
+  max-width: 389px;
+}
+
+.titlecontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sourcetitle {
+  display: flex;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sourcecontent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: flex-start;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sourceinfo {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

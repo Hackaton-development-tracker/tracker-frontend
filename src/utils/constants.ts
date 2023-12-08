@@ -24,7 +24,9 @@ export const ROUTE_REGISTER = '/register';
 export const ROUTE_FORGOT_PASS = '/forgot-password';
 export const ROUTE_RESET_PASS = '/reset-password';
 export const ROUTE_NOT_FOUND = '/404';
-export const DEVELOPMENT_MAP = '/map';
+export const ROUTE_STEP1 = '/step1';
+export const ROUTE_PROFILE = '/profile';
+export const ROUTE_DEVELOPMENT_MAP = '/map';
 
 export const ACCESS_TOKEN = 'accessToken';
 export const REFRESH_TOKEN = 'refreshToken';
@@ -52,3 +54,4 @@ export const EXPAND_LEVELS = 'Показать уровни навыка';
 export const COURSES = "Рекомендуемые мини курсы";
 export const NEXT_START_DATE = "Ближайший старт";
 export const PROJECTS = "Проекты Мастерской";
+export const KNOWLEDGE_BASE = "База знаний";

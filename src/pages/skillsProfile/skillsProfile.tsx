@@ -4,6 +4,7 @@ import NextGradeCard from '../../components/nextGradeCard/nextGradeCard';
 import SkillsList from '../../components/skillList/skillsList';
 import Courses from '../../components/courses/courses';
 import Projects from '../../components/projects/projects';
+import KnowledgeBase from '../../components/knowledgeBase/knowledgeBase';
 
 function SkillsProfile() {
   return (
@@ -15,6 +16,7 @@ function SkillsProfile() {
       <SkillsList />
       <Courses />
       <Projects />
+      <KnowledgeBase />
     </div>
   );
 }
