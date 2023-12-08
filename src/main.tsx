@@ -6,7 +6,13 @@ import { Layout } from './pages/layout/layout';
 import { Provider } from 'react-redux';
 import { RootState, store } from './services/redux/store';
 import { useAppDispatch, useAppSelector } from './services/typeHooks';
-import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER, DEVELOPMENT_MAP } from './utils/constants';
+import {
+  ROUTE_HOME,
+  ROUTE_LOGIN,
+  ROUTE_REGISTER,
+  ROUTE_PROFILE,
+  ROUTE_DEVELOPMENT_MAP,
+} from './utils/constants';
 import LoginPage from './pages/login/login';
 import NotFound404 from './pages/notfound404/notfound404';
 import RegisterPage from './pages/register/register';
@@ -61,7 +67,7 @@ const App = () => {
         path={ROUTE_HOME}
         element={
           <RequireAuth
-            onlyAuth={true}
+            onlyAuth={false}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
           >
@@ -71,8 +77,9 @@ const App = () => {
           </RequireAuth>
         }
       >
-        <Route path="/" element={<SkillsProfile />} />
-        <Route path={DEVELOPMENT_MAP} element={<DevelopmentMap />} />
+        <Route path={ROUTE_HOME} element={<Navigate to={ROUTE_PROFILE} />} />
+        <Route path={ROUTE_PROFILE} element={<SkillsProfile />} />
+        <Route path={ROUTE_DEVELOPMENT_MAP} element={<DevelopmentMap />} />
       </Route>
       <Route
         path={ROUTE_LOGIN}
