@@ -1,0 +1,40 @@
+.projectscontainer {
+  display: flex;
+  gap: 16px;
+  padding-top: 24px;
+  max-height: 448px;
+}
+
+.card {
+  border: 1px solid #dde0e4;
+  padding: 16px;
+}
+
+.titlecontainer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.projecttitle {
+  display: flex;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projectcontent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+  padding-top: 24px;
+}
+
+.projectinfo {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}

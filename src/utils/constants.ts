@@ -51,3 +51,4 @@ export const EXPAND_LEVELS = 'Показать уровни навыка';
 
 export const COURSES = "Рекомендуемые мини курсы";
 export const NEXT_START_DATE = "Ближайший старт";
+export const PROJECTS = "Проекты Мастерской";

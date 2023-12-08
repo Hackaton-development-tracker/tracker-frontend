@@ -3,6 +3,7 @@ import CurrentGradeCard from '../../components/currentGradeCard/currentGradeCard
 import NextGradeCard from '../../components/nextGradeCard/nextGradeCard';
 import SkillsList from '../../components/skillList/skillsList';
 import Courses from '../../components/courses/courses';
+import Projects from '../../components/projects/projects';
 
 function SkillsProfile() {
   return (
@@ -13,6 +14,7 @@ function SkillsProfile() {
       </div>
       <SkillsList />
       <Courses />
+      <Projects />
     </div>
   );
 }
