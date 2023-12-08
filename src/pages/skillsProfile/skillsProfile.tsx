@@ -2,6 +2,7 @@ import styles from './skillsProfile.module.scss';
 import CurrentGradeCard from '../../components/currentGradeCard/currentGradeCard';
 import NextGradeCard from '../../components/nextGradeCard/nextGradeCard';
 import SkillsList from '../../components/skillList/skillsList';
+import Courses from '../../components/courses/courses';
 
 function SkillsProfile() {
   return (
@@ -11,7 +12,7 @@ function SkillsProfile() {
         <NextGradeCard />
       </div>
       <SkillsList />
-      <div>Рекомендуемые мини курсы</div>
+      <Courses />
     </div>
   );
 }

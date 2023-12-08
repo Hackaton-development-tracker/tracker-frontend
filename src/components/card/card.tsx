@@ -1,19 +1,11 @@
 import { styled } from '@mui/material/styles';
 import { Paper, Typography } from '@mui/material';
 import styles from './card.module.scss';
-import vars from '../../static/scss/export.module.scss';
 
 export const CardPaper = styled(Paper)({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  padding: '16px',
-  borderRadius: '8px',
-  border: `1px solid ${vars.colorBlack100}`,
-  minWidth: '296px',
-  maxWidth: '592px',
-  width: '100%',
-  minHeight: '166px',
 });
 
 export const CardTypography = styled(Typography)({
@@ -26,13 +18,14 @@ export const CardTypography = styled(Typography)({
 interface CardProps {
   title: React.ReactNode;
   content: React.ReactNode;
+  classname?: string;
 }
 
 // renders basic card component witht title and content
-export const Card: React.FC<CardProps> = ({ title, content }) => {
+export const Card: React.FC<CardProps> = ({ title, content, classname }) => {
   return (
     <>
-      <CardPaper elevation={0}>
+      <CardPaper elevation={0} className={classname}>
         <div className={styles.title}>{title}</div>
         <div className={styles.content}>{content}</div>
       </CardPaper>

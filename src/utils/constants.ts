@@ -48,3 +48,6 @@ export const ACHIEVED_SKILLS = 'Достигнутые навыки';
 export const COLLAPSE = 'Свернуть';
 export const LEVEL = 'Уровень';
 export const EXPAND_LEVELS = 'Показать уровни навыка';
+
+export const COURSES = "Рекомендуемые мини курсы";
+export const NEXT_START_DATE = "Ближайший старт";
