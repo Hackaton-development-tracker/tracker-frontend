@@ -100,6 +100,7 @@ const RegisterPage = () => {
           handleSnackbarClose();
         }, 5000);
       } else {
+        console.log(resultAction);
         setError('Ошибка регистрации');
         return;
       }

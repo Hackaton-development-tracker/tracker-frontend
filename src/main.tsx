@@ -9,10 +9,11 @@ import { useAppDispatch, useAppSelector } from './services/typeHooks';
 import {
   ROUTE_HOME,
   ROUTE_LOGIN,
+  ROUTE_LOGOUT,
   ROUTE_REGISTER,
   ROUTE_STEP1,
   ROUTE_STEP2,
-  ROUTE_STEP3
+  ROUTE_STEP3,
 } from './utils/constants';
 import LoginPage from './pages/login/login';
 import NotFound404 from './pages/notfound404/notfound404';
@@ -21,7 +22,8 @@ import Step1 from './pages/step1';
 import Step2 from './pages/step2';
 import Step3 from './pages/step3';
 import Loader from './components/loader';
-import { logoutUser } from './services/redux/slices/auth/auth';
+import { getProfileUser, logoutUser } from './services/redux/slices/auth/auth';
+import LogoutPage from './pages/logout/logout';
 
 const RequireAuth = ({
   children: children,
@@ -37,7 +39,7 @@ const RequireAuth = ({
   if (isLoading === false)
     if (onlyAuth === true)
       return isLoggedIn === true ? children : <Navigate to={ROUTE_LOGIN} />;
-    else return isLoggedIn === false ? children : <Navigate to={ROUTE_HOME} />;
+    else return isLoggedIn === false ? children : <Navigate to={ROUTE_STEP1} />;
 };
 
 const App = () => {
@@ -47,12 +49,11 @@ const App = () => {
     (state: RootState) => state.user.isLoggedIn,
   );
   const access = localStorage.getItem('accessToken') ?? '';
-  const refresh = localStorage.getItem('refreshToken') ?? '';
   useEffect(() => {
     if (access.length !== 0) {
-      // dispatch(getProfileUser({ access }));
+      dispatch(getProfileUser({ access }));
     } else {
-      dispatch(logoutUser({ access, refresh }));
+      dispatch(logoutUser({ access }));
     }
   }, [dispatch]);
 
@@ -69,7 +70,7 @@ const App = () => {
         path={ROUTE_HOME}
         element={
           <RequireAuth
-            onlyAuth={false}
+            onlyAuth={true}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
           >
@@ -101,6 +102,20 @@ const App = () => {
             <section className="page">
               <Step3 />
             </section>
+          }
+        ></Route>
+        <Route
+          path={ROUTE_LOGOUT}
+          element={
+            <RequireAuth
+              onlyAuth={true}
+              isLoggedIn={isLoggedIn}
+              isLoading={isLoading}
+            >
+              <section className="auth-page">
+                <LogoutPage />
+              </section>
+            </RequireAuth>
           }
         ></Route>
       </Route>

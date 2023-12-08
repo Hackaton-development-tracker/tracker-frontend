@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .open {
@@ -14,6 +15,22 @@
   flex-direction: column;
   position: relative;
   justify-content: space-between;
+}
+
+.close_down {
+  margin: 0 0 12px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  justify-content: space-between;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 8px;
 }
 
 .open__avatar {

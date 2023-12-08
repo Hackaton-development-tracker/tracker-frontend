@@ -2,8 +2,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login, logout, getuser, register } from './authAPI';
 
 export interface IUser {
+  id: number;
   email: string;
-  refreshToken: string;
+  id_speciality: number;
+  title_speciality: string;
   accessToken: string;
 }
 
@@ -32,11 +34,11 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   '@@auth/logout',
   async (
-    payload: { access: string; refresh: string },
+    payload: { access: string },
     { fulfillWithValue, rejectWithValue },
   ) => {
     try {
-      const response = await logout(payload.access, payload.refresh);
+      const response = await logout(payload.access);
       return fulfillWithValue(response);
     } catch (error: unknown) {
       return rejectWithValue({ error: 'Failed to logout' }); // Возвращаем объект с ошибкой
@@ -93,8 +95,8 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        localStorage.setItem('accessToken', action.payload.access);
-        localStorage.setItem('refreshToken', action.payload.refresh);
+        localStorage.setItem('accessToken', action.payload.auth_token);
+        // localStorage.setItem('refreshToken', action.payload.refresh);
         state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload;
@@ -102,6 +104,7 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = false;
+        state.user = null;
         state.error = action.error.message as string;
       })
       .addCase(logoutUser.pending, (state) => {
@@ -110,15 +113,16 @@ const authSlice = createSlice({
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        // localStorage.removeItem('refreshToken');
         state.isLoading = false;
         state.isLoggedIn = false;
+        state.user = null;
         console.log(action);
         // state.user = action.payload;
       })
       .addCase(logoutUser.rejected, (state, action) => {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        // localStorage.removeItem('refreshToken');
         state.isLoading = false;
         state.isLoggedIn = false;
         state.error = action.error.message as string;

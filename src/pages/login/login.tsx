@@ -10,11 +10,11 @@ import { loginSchema } from '../../utils/validationSchema';
 import {
   ENTER,
   ENTER_TO_SYSTEM,
-  ROUTE_HOME,
   ROUTE_REGISTER,
   REGISTRATION,
   NO_ACCOUNT,
   TITLE,
+  ROUTE_STEP1,
 } from '../../utils/constants';
 import {
   getProfileUser,
@@ -66,7 +66,7 @@ const LoginPage = () => {
         // После успешного входа, пользователь будет перенаправлен на главную страницу
         const access = localStorage.getItem('accessToken') ?? '';
         dispatch(getProfileUser({ access }));
-        navigate(ROUTE_HOME);
+        navigate(ROUTE_STEP1);
       } else {
         // Если вход не успешный, устанавливаем состояние ошибки
         setError(
