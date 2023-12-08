@@ -1,3 +1,5 @@
+@import '../../static/scss/vars.scss';
+
 .header {
   background-color: #001e64;
   height: 90px;
@@ -6,4 +8,56 @@
   align-items: center;
   padding-left: 44px;
   padding-right: 44px;
+}
+
+.headercontainer {
+  width: 100%;
+  display: flex;
+  padding: 0 12px;
+  min-height: 60px;
+  align-items: center;
+  padding-left: 200px;
+  justify-content: space-between;
+}
+
+.headerlinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menulink {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 9px 20px;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  opacity: 0.6;
+  line-height: 20px;
+  color: $color-white;
+  transition: all 0.2s ease-in;
+}
+
+.menulink:hover {
+  opacity: 1;
+}
+
+.menuactive {
+  font-weight: 500;
+  opacity: 1;
+}
+
+.menuactive::after {
+  left: 0;
+  width: 100%;
+  bottom: -3px;
+  height: 3px;
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 3px;
+  background-color: #fff;
 }

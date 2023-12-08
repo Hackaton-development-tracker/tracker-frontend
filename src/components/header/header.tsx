@@ -1,56 +1,42 @@
-import { Toolbar, Box, Typography } from '@mui/material';
+import { Toolbar, Typography, styled } from '@mui/material';
 import { SKILLS_PROFILE, MAP } from '../../utils/constants';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import styles from './header.module.scss';
+
+const HeaderTypography = styled(Typography)({
+  fontFamily: 'YS Text Regular',
+  fontSize: '14px',
+});
 
 const Header = () => {
+  const location = useLocation();
+
   return (
     <Toolbar
       sx={{
         backgroundColor: '#1A1B22',
       }}
     >
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          padding: '0 12px',
-          minHeight: '60px',
-          alignItems: 'center',
-          paddingLeft: '200px',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-          }}
-        >
-          <NavLink to="/">
-            <Typography
-              sx={{
-                fontFamily: 'YS Text Regular',
-                fontSize: '14px',
-                color: '#FFFFFF',
-              }}
-            >
-              {SKILLS_PROFILE}
-            </Typography>
+      <div className={styles.headercontainer}>
+        <div className={styles.headerlinks}>
+          <NavLink
+            to="/profile"
+            className={`${styles.menulink} ${
+              location.pathname === '/profile' ? styles.menuactive : ''
+            }`}
+          >
+            <HeaderTypography>{SKILLS_PROFILE}</HeaderTypography>
           </NavLink>
-          <NavLink to="/map">
-            <Typography
-              sx={{
-                fontFamily: 'YS Text Regular',
-                fontSize: '14px',
-                color: '#FFFFFF',
-              }}
-            >
-              {MAP}
-            </Typography>
+          <NavLink
+            to="/map"
+            className={`${styles.menulink} ${
+              location.pathname === '/map' ? styles.menuactive : ''
+            }`}
+          >
+            <HeaderTypography>{MAP}</HeaderTypography>
           </NavLink>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </Toolbar>
   );
 };
