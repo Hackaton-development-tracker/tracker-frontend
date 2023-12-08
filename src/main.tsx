@@ -67,7 +67,7 @@ const App = () => {
         path={ROUTE_HOME}
         element={
           <RequireAuth
-            onlyAuth={false}
+            onlyAuth={true}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
           >
