@@ -1,12 +1,8 @@
-import { Toolbar, Typography, styled } from '@mui/material';
+import { Toolbar } from '@mui/material';
 import { SKILLS_PROFILE, MAP } from '../../utils/constants';
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './header.module.scss';
-
-const HeaderTypography = styled(Typography)({
-  fontFamily: 'YS Text Regular',
-  fontSize: '14px',
-});
+import { TextTypography } from '../cardelements';
 
 const Header = () => {
   const location = useLocation();
@@ -17,23 +13,23 @@ const Header = () => {
         backgroundColor: '#1A1B22',
       }}
     >
-      <div className={styles.headercontainer}>
-        <div className={styles.headerlinks}>
+      <div className={styles.headerContainer}>
+        <div className={styles.headerLinks}>
           <NavLink
             to="/profile"
-            className={`${styles.menulink} ${
-              location.pathname === '/profile' ? styles.menuactive : ''
+            className={`${styles.headerMenuLink} ${
+              location.pathname === '/profile' ? styles.headerMenuActive : ''
             }`}
           >
-            <HeaderTypography>{SKILLS_PROFILE}</HeaderTypography>
+            <TextTypography>{SKILLS_PROFILE}</TextTypography>
           </NavLink>
           <NavLink
             to="/map"
-            className={`${styles.menulink} ${
-              location.pathname === '/map' ? styles.menuactive : ''
+            className={`${styles.headerMenuLink} ${
+              location.pathname === '/map' ? styles.headerMenuActive : ''
             }`}
           >
-            <HeaderTypography>{MAP}</HeaderTypography>
+            <TextTypography>{MAP}</TextTypography>
           </NavLink>
         </div>
       </div>
