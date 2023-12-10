@@ -1,11 +1,13 @@
-.title {
-  display: flex;
-  justify-content: space-between;
-}
+.card {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+  }
 
-.content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  height: 100%;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+  }
 }

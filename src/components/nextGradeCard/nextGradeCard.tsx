@@ -15,7 +15,7 @@ import { CardTypography, Card } from '../card/card';
 import ProgressBar from '../progressBar';
 import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
-import { user } from '../../utils/backendData/user.json';
+import userData from '../../utils/backendData/user.json';
 
 // grade cards fonts
 const CountdownTypography = styled(Typography)({
@@ -46,13 +46,13 @@ const PercentTypography = styled(Typography)({
   letterSpacing: 0,
 });
 
+const { next_test_date, grade_next } = userData;
+
 //  renders two cards, first shows information about the user's current level, second shows progress towards the next level
-function NextGradeCard() {
+export function NextGradeCard() {
   const navigate = useNavigate();
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
-
-  const { next_test_date, grade_next } = user[0];
 
   const handleTestRetake = () => {
     navigate(ROUTE_STEP1);
@@ -61,7 +61,7 @@ function NextGradeCard() {
   const nextTitle = (
     <div>
       <SmallTextTypography>{USER_NEXT_LEVEL}</SmallTextTypography>
-      <div className={styles.nexttitle}>
+      <div className={styles.nextTitle}>
         <GradeTypography
           sx={{
             color: vars.colorBlueMain,
@@ -83,8 +83,8 @@ function NextGradeCard() {
   );
 
   const nextContent = (
-    <div className={styles.content}>
-      <div className={styles.nextcontent}>
+    <div className={styles.nextContainer}>
+      <div className={styles.nextContent}>
         <ProgressBar
           progressValue={progressValue}
           setProgressValue={setProgressValue}
@@ -120,7 +120,51 @@ function NextGradeCard() {
     </div>
   );
 
-  return <Card title={nextTitle} content={nextContent} classname="gradecard"></Card>;
+  return (
+    <Card title={nextTitle} content={nextContent} classname="gradecard"></Card>
+  );
 }
 
-export default NextGradeCard;
+export function ShortNextGradeCard() {
+  const [progressValue, setProgressValue] = useState(0);
+
+  const nextTitle = (
+    <div>
+      <div className={styles.nextTitle}>
+        <GradeTypography
+          sx={{
+            color: vars.colorBlueMain,
+          }}
+        >
+          {grade_next}
+        </GradeTypography>
+        <CardTypography
+          sx={{
+            paddingRight: '4px',
+            paddingLeft: '8px',
+          }}
+        >
+          {USER_NEXT_LEVEL_ACHIEVED}
+        </CardTypography>
+        <PercentTypography>{progressValue}&#37;</PercentTypography>
+      </div>
+    </div>
+  );
+
+  const nextContent = (
+    <div className={styles.nextContent}>
+      <ProgressBar
+        progressValue={progressValue}
+        setProgressValue={setProgressValue}
+      />
+    </div>
+  );
+
+  return (
+    <Card
+      title={nextTitle}
+      content={nextContent}
+      classname="shortgradecard"
+    ></Card>
+  );
+}

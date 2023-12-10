@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../services/redux/store';
+import { RootState } from '../services/redux/store';
 import { Box, Paper, Collapse, Typography, styled } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import vars from '../../static/scss/export.module.scss';
+import vars from '../static/scss/export.module.scss';
 import {
   EXPAND_ACHIEVED_SKILLS,
   ACHIEVED_SKILLS,
   SKILLS_TO_IMPROVE,
   COLLAPSE,
-} from '../../utils/constants';
-import { SecondaryButton } from '../buttons';
-import { SkillRow } from '../skillRow/skillRow';
-import SkillPopup from '../skillPopup/skillPopup';
-import skillsData from '../../utils/backendData/skills.json';
-import Counter from '../counter';
-import { TSkill, LevelsGrid, LevelsArrow, shortLevel } from '../levelelements';
+} from '../utils/constants';
+import { SecondaryButton } from './buttons';
+import { SkillRow } from './skillRow/skillRow';
+import SkillPopup from './skillPopup/skillPopup';
+import skillsData from '../utils/backendData/skills.json';
+import Counter from './counter';
+import { TSkill, LevelsGrid, LevelsArrow, shortLevel } from './levelelements';
 
 // skillList elements
 const SkillsListContainer = styled(Paper)({

@@ -46,21 +46,21 @@ export const SkillRow: React.FC<SkillProps> = ({
   };
 
   return (
-    <div className={styles.skilllist}>
+    <div className={styles.skillsContainer}>
       {skillsArray.map((skill) => (
         <div
           key={skill.id}
-          className={styles.skillrow}
+          className={styles.skillsRow}
           onClick={() => handleOpenPopup(skill)}
         >
           <SkillBox borderColor={borderColor}>
             <SkillTypography>{skill.name}</SkillTypography>
-            <div className={styles.levels}>
-              <div className={styles.container}>
+            <div className={styles.skillsLevels}>
+              <div className={styles.skillsLevelsContainer}>
                 <LevelsGrid skill={skill} />
                 <LevelsArrow skill={skill} level={shortLevel} />
               </div>
-              <TextLinkButton className={styles.button}>
+              <TextLinkButton>
                 {MORE_INFO}
               </TextLinkButton>
             </div>

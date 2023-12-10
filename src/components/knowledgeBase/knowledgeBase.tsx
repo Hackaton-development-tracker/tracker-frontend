@@ -19,9 +19,10 @@ type Source = {
 
 const SourceTitleTypography = styled(Typography)({
   fontFamily: ['YS Display Medium'],
-  fontSize: '20px',
-  lineHeight: '24px',
+  fontSize: '16px',
+  lineHeight: '20px',
   letterSpacing: 0,
+  maxWidth: '200px'
 });
 
 const SourceTextTypography = styled(Typography)({
@@ -42,7 +43,7 @@ const SourceGreyTypography = styled(Typography)({
 const KnowledgeBase = () => {
   const sourceTitle = (source: Source) => (
     <>
-      <div className={styles.titlecontainer}>
+      <div className={styles.sourceTitle}>
         <SourceTitleTypography>{source.title}</SourceTitleTypography>
         <SourceGreyTypography>{source.author}</SourceGreyTypography>
       </div>
@@ -55,11 +56,11 @@ const KnowledgeBase = () => {
   );
 
   const sourceContent = (source: Source) => (
-    <div className={styles.sourcecontent}>
-      <div className={styles.description}>
+    <div className={styles.sourceContent}>
+      <div className={styles.sourceDescription}>
         <SourceTextTypography>{source.description}</SourceTextTypography>
       </div>
-      <div className={styles.tags}>
+      <div className={styles.sourceTags}>
         {source.tags.map((tag) => {
           return (
             <Tag key={tag} text={tag} color={vars.colorGrey} radius="6px" />
@@ -72,13 +73,13 @@ const KnowledgeBase = () => {
   return (
     <div>
       <SourceTitleTypography>{KNOWLEDGE_BASE}</SourceTitleTypography>
-      <div className={styles.sourcescontainer}>
+      <div className={styles.sourceContainer}>
         {knowledgeBase[0].knowledge_base.map((source) => (
           <Card
             key={source.id}
             title={sourceTitle(source)}
             content={sourceContent(source)}
-            classname={styles.card}
+            classname={styles.sourceCard}
           />
         ))}
       </div>

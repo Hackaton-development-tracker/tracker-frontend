@@ -43,7 +43,7 @@ const ProjectGreyTypography = styled(Typography)({
 
 const Projects = () => {
   const projectTitle = (project: Project) => (
-    <div className={styles.titlecontainer}>
+    <div className={styles.projectTitleContainer}>
       <img
         src={project.title === 'Хакатон+' ? hackathon : alpha}
         alt={project.title}
@@ -53,9 +53,9 @@ const Projects = () => {
   );
 
   const projectContent = (project: Project) => (
-    <div className={styles.projectcontent}>
+    <div className={styles.projectContent}>
       <ProjectTextTypography>{project.description}</ProjectTextTypography>
-      <div className={styles.projectinfo}>
+      <div className={styles.projectInfo}>
         <ProjectGreyTypography>
           {formattedDate(project.start_date) +
             ' - ' +
@@ -71,13 +71,13 @@ const Projects = () => {
   return (
     <div>
       <ProjectTitleTypography>{PROJECTS}</ProjectTitleTypography>
-      <div className={styles.projectscontainer}>
+      <div className={styles.projectContainer}>
         {projectsData[0].recommended_projects.map((project) => (
           <Card
             key={project.id}
             title={projectTitle(project)}
             content={projectContent(project)}
-            classname={styles.projectcard}
+            classname={styles.projectCard}
           />
         ))}
       </div>

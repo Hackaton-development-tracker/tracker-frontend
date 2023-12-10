@@ -13,7 +13,7 @@ import {
 import { SecondaryButton } from '../buttons';
 import thinking from '../../static/assets/images/thinking.svg';
 import economics from '../../static/assets/images/economics.svg';
-import argumentation from '../../static/assets/images/argumentation.svg'
+import argumentation from '../../static/assets/images/argumentation.svg';
 
 type Course = {
   id: number;
@@ -22,7 +22,7 @@ type Course = {
   start_date: string;
   source: string;
   completion_time: number;
-  // image: string;
+  // TODO: image: string;
 };
 
 const CourseTitleTypography = styled(Typography)({
@@ -47,25 +47,24 @@ const CourseGreyTypography = styled(Typography)({
   color: `${vars.colorBlack500}`,
 });
 
+// renders recommended mini courses
 const Courses = () => {
-  const courseTitle = (course: Course) => (
-    <>
-      <div className={styles.titlecontainer}>
-        <div className={styles.coursetitle}>
-          <CourseTitleTypography>{course.title}</CourseTitleTypography>
-        </div>
-        <CourseGreyTypography>
-          {hoursToDaysOrMonths(course.completion_time)}
-        </CourseGreyTypography>
+  const courseTitle = (course: Course) => (  
+    <div className={styles.coursesContainer}>
+      <div className={styles.coursesTitle}>
+        <CourseTitleTypography>{course.title}</CourseTitleTypography>
       </div>
-    </>
+      <CourseGreyTypography>
+        {hoursToDaysOrMonths(course.completion_time)}
+      </CourseGreyTypography>
+    </div>
   );
 
   const courseContent = (course: Course) => (
-    <div className={styles.coursecontent}>
+    <div className={styles.coursesContent}>
       <CourseTextTypography>{course.description}</CourseTextTypography>
-      <div className={styles.courseinfo}>
-        <div className={styles.coursedate}>
+      <div className={styles.coursesInfo}>
+        <div className={styles.courseDate}>
           <CourseGreyTypography>{NEXT_START_DATE}</CourseGreyTypography>
           <CourseTextTypography>
             {formattedDate(course.start_date)}
@@ -78,7 +77,7 @@ const Courses = () => {
     </div>
   );
 
-  // TODO: get image from server
+  // TODO: get images from server
   const getImage = (courseId: number) => {
     switch (courseId) {
       case 1:
@@ -90,12 +89,12 @@ const Courses = () => {
       default:
         return '';
     }
-  }
+  };
 
   return (
     <div>
       <CourseTitleTypography>{COURSES}</CourseTitleTypography>
-      <div className={styles.coursescontainer}>
+      <div className={styles.courses}>
         {coursesData[0].recommended_courses.map((course) => (
           <ProfCard
             key={course.id}

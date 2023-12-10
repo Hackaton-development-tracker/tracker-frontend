@@ -1,43 +1,36 @@
-.skilllist {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.skillrow {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease-in-out;
+.skills {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
-}
 
-.skillrow:hover .button {
-  color: #1d6bf3;
-  transition: color 0.3s ease-in-out;
-}
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+    &::hover .button {
+      color: #1d6bf3;
+      transition: color 0.3s ease-in-out;
+    }
+  }
 
-.levels {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
+  &__levels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 32px;
-}
-
-.text {
-  display: flex;
-  align-items: center;
-  font-family: 'YS Text Regular';
-  font-size: 14px;
-  line-height: 20px;
+  &__levels-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
 }

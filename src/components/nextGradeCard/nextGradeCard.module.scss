@@ -1,21 +1,24 @@
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 90px;
-}
-
-.nexttitle {
-  display: flex;
-  align-items: baseline;
-}
-
-.nextcontent {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  gap: 16px;
+.next {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 90px;
+  }
+  
+  &__title {
+    display: flex;
+    align-items: baseline;
+  }
+  
+  &__content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 16px;
+  }
+  
 }
 
 .countdown {

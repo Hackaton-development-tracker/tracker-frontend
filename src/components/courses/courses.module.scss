@@ -1,48 +1,43 @@
 @import '../../static/scss/vars.scss';
 
-.coursescontainer {
+.courses {
   display: flex;
   gap: 16px;
   padding-top: 24px;
-}
 
-.titlecontainer {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-.coursetitle {
-  display: flex;
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  &__title {
+    display: flex;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.coursecontent {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
 
-.courseinfo {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  gap: 4px;
-  height: min-content;
-}
+  &__info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    height: min-content;
+  }
 
-.coursedate {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.profcard:hover .coursetitle {
-  color: $color-blue-main;
-  transition: color 0.3s ease-in-out;
+  &__date {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 }

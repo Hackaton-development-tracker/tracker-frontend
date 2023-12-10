@@ -12,6 +12,38 @@
   &:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
+
+  &__image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* Ensure the overlay doesn't overflow */
+  }
+  
+  &__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F9FAFB; 
+    transition: height 0.3s ease, opacity 0.3s ease;
+    z-index: 1; 
+  }
+  
+  &__image {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  &:hover &__overlay {
+    height: 0;
+    opacity: 0;
+  }
+
 }
 
 .cardtext {
@@ -19,36 +51,4 @@
   gap: 16px;
   min-height: 236px;
   justify-content: space-between;
-}
-
-.imagecontainer {
-  position: relative;
-  display: inline-block;
-  overflow: hidden; /* Ensure the overlay doesn't overflow */
-}
-
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #F9FAFB; 
-  transition: height 0.3s ease, opacity 0.3s ease;
-  z-index: 1; 
-}
-
-/* Style the image */
-.image {
-  display: block;
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.profcard:hover .overlay {
-  height: 0;
-  opacity: 0;
 }
