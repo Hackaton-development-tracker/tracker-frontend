@@ -17,6 +17,7 @@ interface IProject {
   end_date: string;
 };
 
+// renders projects from Workshop
 const Projects = () => {
   const projectTitle = (project: IProject) => (
     <div className={styles.projectTitleContainer}>

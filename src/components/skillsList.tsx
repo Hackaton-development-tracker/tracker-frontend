@@ -16,7 +16,7 @@ import { SkillRow } from './skillRow/skillRow';
 import SkillPopup from './skillPopup/skillPopup';
 import skillsData from '../utils/backendData/skills.json';
 import Counter from './counter';
-import { TSkill, LevelsGrid, LevelsArrow, shortLevel } from './levelelements';
+import { ISkill, LevelsGrid, LevelsArrow, shortLevel } from './levelelements';
 
 // skillList elements
 const SkillsListContainer = styled(Paper)({
@@ -46,7 +46,7 @@ const HeaderTypography = styled(Typography)({
 // renders a list of skills with an expand and collapse buttons
 const SkillsList = () => {
   const [expanded, setExpanded] = useState(false);
-  const [selectedSkill, setSelectedSkill] = useState<TSkill | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<ISkill | null>(null);
   const isSkillPopupOpen = useSelector((state: RootState) => state.popup);
 
   // toggles the expanded state
@@ -54,8 +54,8 @@ const SkillsList = () => {
     setExpanded(!expanded);
   };
 
-  const skillsToImprove: TSkill[] = skillsData[0].skillsToImprove || [];
-  const achievedSkills: TSkill[] = skillsData[1].achievedSkills || [];
+  const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
+  const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 
   return (
     <Box>

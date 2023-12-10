@@ -1,6 +1,6 @@
 import { Paper, styled } from '@mui/material';
 import vars from '../static/scss/export.module.scss';
-import { TSkill } from './levelelements';
+import { ISkill } from './levelelements';
 import { SKILLS_TO_IMPROVE, ACHIEVED_SKILLS } from '../utils/constants';
 
 import skillsData from '../utils/backendData/skills.json';
@@ -18,8 +18,8 @@ const SkillsListContainer = styled(Paper)({
 
 // renders a list of skills with an expand and collapse buttons
 const DevelopSkillsList = () => {
-  const skillsToImprove: TSkill[] = skillsData[0].skillsToImprove || [];
-  const achievedSkills: TSkill[] = skillsData[1].achievedSkills || [];
+  const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
+  const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 
   return (
     <SkillsListContainer elevation={0}>

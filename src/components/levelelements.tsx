@@ -8,7 +8,7 @@ import {
   getNextLevelColor,
 } from '../utils/helpers/getLevelColor';
 
-export type TSkill = {
+export interface ISkill {
   id: number;
   name: string;
   current_level: number;
@@ -56,11 +56,12 @@ export const LevelText = styled(Typography)({
   lineHeight: '20px',
 });
 
+// renders visual representation of skill levels, sets colors depending on current level
 export const LevelsGrid = ({
   skill,
   nextLevel,
 }: {
-  skill: TSkill;
+  skill: ISkill;
   nextLevel?: boolean;
 }) => (
   <LevelsContainer>
@@ -82,11 +83,12 @@ export const LevelsGrid = ({
   </LevelsContainer>
 );
 
+// renders two text elements with current and target level and arrow between them
 export const LevelsArrow = ({
   skill,
   level,
 }: {
-  skill: TSkill;
+  skill: ISkill;
   level: string;
 }) => (
   <LevelText>

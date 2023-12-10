@@ -15,7 +15,7 @@ const CounterTypography = styled(Typography)({
   letterSpacing: 0,
 });
 
-interface CounterProps {
+type CounterProps = {
   number: number;
   color: string;
 }

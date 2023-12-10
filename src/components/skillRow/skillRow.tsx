@@ -4,11 +4,11 @@ import styles from './skillRow.module.scss';
 import { MORE_INFO } from '../../utils/constants';
 import { TextLinkButton } from '../buttons';
 import { openPopup } from '../../services/redux/slices/popup/popup';
-import { TSkill, LevelsGrid, LevelsArrow, shortLevel } from '../levelelements';
+import { ISkill, LevelsGrid, LevelsArrow, shortLevel } from '../levelelements';
 
 type SkillProps = {
-  setSelectedSkill: (skill: TSkill) => void;
-  skillsArray: TSkill[];
+  setSelectedSkill: (skill: ISkill) => void;
+  skillsArray: ISkill[];
   borderColor?: string;
 };
 
@@ -40,7 +40,7 @@ export const SkillRow: React.FC<SkillProps> = ({
 
 }) => {
   const dispatch = useDispatch();
-  const handleOpenPopup = (skill: TSkill) => {
+  const handleOpenPopup = (skill: ISkill) => {
     dispatch(openPopup('skillPopup'));
     setSelectedSkill(skill);
   };

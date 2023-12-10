@@ -1,21 +1,13 @@
-import { styled } from '@mui/material/styles';
-import { Typography } from '@mui/material';
 import styles from './profCard.module.scss';
 import { Card } from '../card/card';
 
-interface CardProps {
+type CardProps = {
   image: string;
   title: React.ReactNode;
   content: React.ReactNode;
 }
 
-export const CardTypography = styled(Typography)({
-  fontFamily: 'YS Text Regular',
-  fontSize: '14px',
-  lineHeight: '20px',
-  letterSpacing: 0,
-});
-
+// renders card for courses with image
 export const ProfCard: React.FC<CardProps> = ({ image, title, content }) => {
   return (
     <article className={styles.profcard}>

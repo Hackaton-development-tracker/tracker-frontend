@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { formatTime } from '../utils/helpers/formatTime';
 
-interface CountdownTimerProps {
+type CountdownTimerProps = {
   nextTestDate: string;
   timeRemaining: number | null;
   setTimeRemaining: React.Dispatch<React.SetStateAction<number | null>>;
