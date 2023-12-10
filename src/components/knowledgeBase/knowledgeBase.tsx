@@ -19,6 +19,13 @@ type Source = {
 
 const SourceTitleTypography = styled(Typography)({
   fontFamily: ['YS Display Medium'],
+  fontSize: '20px',
+  lineHeight: '24px',
+  letterSpacing: 0,
+});
+
+const SourceTypography = styled(Typography)({
+  fontFamily: ['YS Display Medium'],
   fontSize: '16px',
   lineHeight: '20px',
   letterSpacing: 0,
@@ -44,7 +51,7 @@ const KnowledgeBase = () => {
   const sourceTitle = (source: Source) => (
     <>
       <div className={styles.sourceTitle}>
-        <SourceTitleTypography>{source.title}</SourceTitleTypography>
+        <SourceTypography>{source.title}</SourceTypography>
         <SourceGreyTypography>{source.author}</SourceGreyTypography>
       </div>
       <Tag

@@ -59,12 +59,16 @@ const SkillPopup: React.FC<SkillPopupProps> = ({
   return (
     <Popup popupId="skillPopup">
       <div className={styles.skillsPopupContent}>
-        <TitleTypography className={styles.skillsPopupLevelTitle}>{title}</TitleTypography>
+        <TitleTypography className={styles.skillsPopupLevelTitle}>
+          {title}
+        </TitleTypography>
         <div className={styles.skillsPopupLevel}>
           <div>{levelsGrid}</div>
           <div>{levelsArrow}</div>
         </div>
-        <DescriptionTypography className={styles.skillsPopupDescription}>{description}</DescriptionTypography>
+        <DescriptionTypography className={styles.skillsPopupDescription}>
+          {description}
+        </DescriptionTypography>
         <div className={styles.skillsPopupExpand}>
           <Collapse in={expanded}>
             <div className={styles.skillsPopupLevelBlock}>
