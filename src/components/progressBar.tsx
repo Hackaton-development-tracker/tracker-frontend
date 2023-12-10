@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Box, LinearProgress } from '@mui/material';
 import vars from '../static/scss/export.module.scss';
 import skillsData from '../utils/backendData/skills.json';
-import { TSkill} from './levelelements';
+import { ISkill } from './levelelements';
 
 
 // progressBar elements
@@ -45,8 +45,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   setProgressValue,
 }) => {
   const [remainingValue, setRemainingValue] = useState(0);
-  const skillsToImprove: TSkill[] = skillsData[0].skillsToImprove || [];
-  const achievedSkills: TSkill[] = skillsData[1].achievedSkills || [];
+  const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
+  const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 
   // calculate total number of skills
   const totalSkillsNumber = achievedSkills.length + skillsToImprove.length;

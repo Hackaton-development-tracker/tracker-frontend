@@ -44,6 +44,7 @@ const HeaderBox = styled(Box)({
 });
 
 
+// renders skills as a box with description, levels description
 export const DevelopSkills: React.FC<DevelopSkillProps> = ({
   header,
   skillsToImprove,

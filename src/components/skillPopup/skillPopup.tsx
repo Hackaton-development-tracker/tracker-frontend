@@ -4,6 +4,7 @@ import { RootState } from '../../services/redux/store';
 import Popup from '../popup/popup';
 import styles from './skillPopup.module.scss';
 import { Collapse, Typography, styled } from '@mui/material';
+import { TextTypography } from '../cardelements';
 import { TextExpandButton } from '../buttons';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -32,13 +33,7 @@ const LevelTypography = styled(Typography)({
   letterSpacing: 0,
 });
 
-const DescriptionTypography = styled(Typography)({
-  fontFamily: 'YS Text Regular',
-  fontSize: '14px',
-  lineHeight: '20px',
-  letterSpacing: 0,
-});
-
+// reners popup when skill is clicked
 const SkillPopup: React.FC<SkillPopupProps> = ({
   title,
   levelsGrid,
@@ -66,9 +61,11 @@ const SkillPopup: React.FC<SkillPopupProps> = ({
           <div>{levelsGrid}</div>
           <div>{levelsArrow}</div>
         </div>
-        <DescriptionTypography className={styles.skillsPopupDescription}>
+        <TextTypography className={styles.skillsPopupDescription}>
           {description}
-        </DescriptionTypography>
+        </TextTypography>
+
+        {/* expanded levels description */}
         <div className={styles.skillsPopupExpand}>
           <Collapse in={expanded}>
             <div className={styles.skillsPopupLevelBlock}>
@@ -77,9 +74,7 @@ const SkillPopup: React.FC<SkillPopupProps> = ({
                   <LevelTypography className={styles.skillsPopupLevelTitle}>
                     {LEVEL} {key}
                   </LevelTypography>
-                  <DescriptionTypography>
-                    {levels_description[key]}
-                  </DescriptionTypography>
+                  <TextTypography>{levels_description[key]}</TextTypography>
                 </div>
               ))}
             </div>
