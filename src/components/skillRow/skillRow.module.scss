@@ -9,14 +9,11 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+
     &:hover {
       cursor: pointer;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       transition: box-shadow 0.3s ease-in-out;
-    }
-    &::hover .button {
-      color: #1d6bf3;
-      transition: color 0.3s ease-in-out;
     }
   }
 
@@ -27,10 +24,15 @@
     width: 100%;
   }
 
-  &__levels-container {
+  &__levels_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 32px;
   }
+}
+
+.skills__row:hover + .morebutton {
+  color: #1d6bf3;
+  transition: color 0.3s ease-in-out;
 }

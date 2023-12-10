@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import caseImg from '@/static/assets/icons/case.svg';
-import masterImg from '@/static/assets/icons/study.svg';
-import trackerImg from '@/static/assets/icons/grow_up.svg';
-import diaryImg from '@/static/assets/icons/book.svg';
-import contactImg from '@/static/assets/icons/phone.svg';
-import chatImg from '@/static/assets/icons/chat.svg';
-import vacationImg from '@/static/assets/icons/vacation.svg';
-import settingImg from '@/static/assets/icons/settings.svg';
-import exitImg from '@/static/assets/icons/exit.svg';
-import profileImg from '@/static/assets/icons/profile.png';
+import caseImg from '../../static/assets/icons/case.svg';
+import masterImg from '../../static/assets/icons/study.svg';
+import trackerImg from '../../static/assets/icons/grow_up.svg';
+import diaryImg from '../../static/assets/icons/book.svg';
+import contactImg from '../../static/assets/icons/phone.svg';
+import chatImg from '../../static/assets/icons/chat.svg';
+import vacationImg from '../../static/assets/icons/vacation.svg';
+import settingImg from '../../static/assets/icons/settings.svg';
+import exitImg from '../../static/assets/icons/exit.svg';
+import profileImg from '../../static/assets/icons/profile.png';
 import './navigation.scss';
 import { NavLink, useLocation } from 'react-router-dom';
 

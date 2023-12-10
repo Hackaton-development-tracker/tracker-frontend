@@ -20,7 +20,7 @@ interface IProject {
 // renders projects from Workshop
 const Projects = () => {
   const projectTitle = (project: IProject) => (
-    <div className={styles.projectTitleContainer}>
+    <div className={styles.project__title_container}>
       <img
         src={project.title === 'Хакатон+' ? hackathon : alpha}
         alt={project.title}
@@ -30,9 +30,9 @@ const Projects = () => {
   );
 
   const projectContent = (project: IProject) => (
-    <div className={styles.projectContent}>
+    <div className={styles.project__content}>
       <TextTypography>{project.description}</TextTypography>
-      <div className={styles.projectInfo}>
+      <div className={styles.project__info}>
         <GreyTypography>
           {formattedDate(project.start_date) +
             ' - ' +
@@ -48,13 +48,13 @@ const Projects = () => {
   return (
     <div>
       <TitleTypography>{PROJECTS}</TitleTypography>
-      <div className={styles.projectContainer}>
+      <div className={styles.project__container}>
         {projectsData[0].recommended_projects.map((project) => (
           <Card
             key={project.id}
             title={projectTitle(project)}
             content={projectContent(project)}
-            classname={styles.projectCard}
+            classname={styles.project__card}
           />
         ))}
       </div>

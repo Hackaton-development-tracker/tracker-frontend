@@ -11,9 +11,9 @@ type CardProps = {
 export const ProfCard: React.FC<CardProps> = ({ image, title, content }) => {
   return (
     <article className={styles.profcard}>
-      <div className={styles.profcardImageContainer}>
-        <img src={image} alt="image" className={styles.profcardImage} />
-        <div className={styles.profcardOverlay}></div>
+      <div className={styles.profcard__imagecontainer}>
+        <img src={image} alt="image" className={styles.profcard__image} />
+        <div className={styles.profcard__overlay}></div>
       </div>
       <Card title={title} content={content} classname={styles.cardtext} />
     </article>

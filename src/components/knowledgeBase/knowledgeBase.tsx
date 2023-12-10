@@ -20,7 +20,7 @@ interface ISource {
 const KnowledgeBase = () => {
   const sourceTitle = (source: ISource) => (
     <>
-      <div className={styles.sourceTitle}>
+      <div className={styles.source__title}>
         <SourceTypography>{source.title}</SourceTypography>
         <GreyTypography>{source.author}</GreyTypography>
       </div>
@@ -33,8 +33,8 @@ const KnowledgeBase = () => {
   );
 
   const sourceContent = (source: ISource) => (
-    <div className={styles.sourceContent}>
-      <div className={styles.sourceDescription}>
+    <div className={styles.source__content}>
+      <div className={styles.source__description}>
         <TextTypography>{source.description}</TextTypography>
       </div>
       <div className={styles.sourceTags}>
@@ -50,13 +50,13 @@ const KnowledgeBase = () => {
   return (
     <div>
       <TitleTypography>{KNOWLEDGE_BASE}</TitleTypography>
-      <div className={styles.sourceContainer}>
+      <div className={styles.source__container}>
         {knowledgeBase[0].knowledge_base.map((source) => (
           <Card
             key={source.id}
             title={sourceTitle(source)}
             content={sourceContent(source)}
-            classname={styles.sourceCard}
+            classname={styles.source__card}
           />
         ))}
       </div>

@@ -74,8 +74,8 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
     level: number;
     grade: string;
   }) => (
-    <div className={styles.levelBox}>
-      <div className={styles.levelHeader}>
+    <div className={styles.level__box}>
+      <div className={styles.level__header}>
         <TextTypography>
           {LEVEL} {level}
         </TextTypography>
@@ -106,7 +106,7 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
   );
 
   return (
-    <div className={styles.skillList}>
+    <div className={styles.skill__list}>
       <HeaderBox>
         <TitleTypography>{header}</TitleTypography>
         <Counter number={skillsArray.length} color={counterColor} />
@@ -114,7 +114,7 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
       {skillsArray.map((skill) => (
         <div key={skill.id}>
           <SkillBox borderColor={borderColor}>
-            <div className={styles.skillHeader}>
+            <div className={styles.skill__header}>
               <TitleTypography>{skill.name}</TitleTypography>
 
               {/* blue color tag */}
@@ -153,7 +153,7 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
             </TextExpandButton>
 
             {/* renders left and right level colums with arrow */}
-            <div className={styles.skillInfo}>
+            <div className={styles.skill__info}>
               <LevelBox
                 skill={skill}
                 level={skill.current_level}

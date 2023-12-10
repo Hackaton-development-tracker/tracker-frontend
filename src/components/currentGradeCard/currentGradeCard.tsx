@@ -23,8 +23,10 @@ const { title, test_date, grade_current } = userData;
 export function CurrentGradeCard() {
   const formattedTestDate = formattedDate(test_date);
 
+  console.log(styles);
+
   const currentTitle = (
-    <div className={styles.currentTitle}>
+    <div className={styles.current__title}>
       <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
       <ProfessionTypography
         sx={{
@@ -64,7 +66,7 @@ export function ShortCurrentGradeCard() {
   const formattedTestDate = formattedDate(test_date);
 
   const currentTitle = (
-    <div className={styles.currentContent}>
+    <div className={styles.current__content}>
       <GradeTypography>{grade_current}</GradeTypography>
       <SmallTextTypography>
         {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}

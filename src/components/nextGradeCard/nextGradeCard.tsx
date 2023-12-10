@@ -37,7 +37,7 @@ export function NextGradeCard() {
   const nextTitle = (
     <div>
       <SmallTextTypography>{USER_NEXT_LEVEL}</SmallTextTypography>
-      <div className={styles.nextTitle}>
+      <div className={styles.next__title}>
         <GradeTypography
           sx={{
             color: vars.colorBlueMain,
@@ -59,8 +59,8 @@ export function NextGradeCard() {
   );
 
   const nextContent = (
-    <div className={styles.nextContainer}>
-      <div className={styles.nextContent}>
+    <div className={styles.next__container}>
+      <div className={styles.next__content}>
         <ProgressBar
           progressValue={progressValue}
           setProgressValue={setProgressValue}
@@ -107,7 +107,7 @@ export function ShortNextGradeCard() {
 
   const nextTitle = (
     <div>
-      <div className={styles.nextTitle}>
+      <div className={styles.next__title}>
         <GradeTypography
           sx={{
             color: vars.colorBlueMain,
@@ -129,7 +129,7 @@ export function ShortNextGradeCard() {
   );
 
   const nextContent = (
-    <div className={styles.nextContent}>
+    <div className={styles.next__content}>
       <ProgressBar
         progressValue={progressValue}
         setProgressValue={setProgressValue}

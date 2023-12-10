@@ -26,8 +26,8 @@ interface ICourse {
 // renders recommended mini courses
 const Courses = () => {
   const courseTitle = (course: ICourse) => (  
-    <div className={styles.coursesContainer}>
-      <div className={styles.coursesTitle}>
+    <div className={styles.courses__container}>
+      <div className={styles.courses__title}>
         <TitleTypography>{course.title}</TitleTypography>
       </div>
       <GreyTypography>
@@ -37,17 +37,17 @@ const Courses = () => {
   );
 
   const courseContent = (course: ICourse) => (
-    <div className={styles.coursesContent}>
+    <div className={styles.courses__content}>
       <TextTypography>{course.description}</TextTypography>
-      <div className={styles.coursesInfo}>
-        <div className={styles.courseDate}>
+      <div className={styles.courses__info}>
+        <div className={styles.courses__date}>
           <GreyTypography>{NEXT_START_DATE}</GreyTypography>
           <TextTypography>
             {formattedDate(course.start_date)}
           </TextTypography>
         </div>
         <Link to={course.source} target="_blank">
-          <SecondaryButton>{MORE_INFO}</SecondaryButton>
+          <SecondaryButton className="button">{MORE_INFO}</SecondaryButton>
         </Link>
       </div>
     </div>

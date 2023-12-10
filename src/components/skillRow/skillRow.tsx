@@ -37,7 +37,6 @@ export const SkillRow: React.FC<SkillProps> = ({
   setSelectedSkill,
   skillsArray,
   borderColor,
-
 }) => {
   const dispatch = useDispatch();
   const handleOpenPopup = (skill: ISkill) => {
@@ -46,21 +45,26 @@ export const SkillRow: React.FC<SkillProps> = ({
   };
 
   return (
-    <div className={styles.skillsContainer}>
+    <div className={styles.skills__container}>
       {skillsArray.map((skill) => (
         <div
           key={skill.id}
-          className={styles.skillsRow}
+          className={styles.skills__row}
           onClick={() => handleOpenPopup(skill)}
         >
           <SkillBox borderColor={borderColor}>
             <SkillTypography>{skill.name}</SkillTypography>
-            <div className={styles.skillsLevels}>
-              <div className={styles.skillsLevelsContainer}>
-                <LevelsGrid skill={skill} nextLevel={(skill.current_level < skill.target_level)? true : false}/>
+            <div className={styles.skills__levels}>
+              <div className={styles.skills__levels_container}>
+                <LevelsGrid
+                  skill={skill}
+                  nextLevel={
+                    skill.current_level < skill.target_level ? true : false
+                  }
+                />
                 <LevelsArrow skill={skill} level={shortLevel} />
               </div>
-              <TextLinkButton>
+              <TextLinkButton className={styles.morebutton}>
                 {MORE_INFO}
               </TextLinkButton>
             </div>

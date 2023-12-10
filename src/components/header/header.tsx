@@ -13,20 +13,20 @@ const Header = () => {
         backgroundColor: '#1A1B22',
       }}
     >
-      <div className={styles.headerContainer}>
-        <div className={styles.headerLinks}>
+      <div className={styles.header__container}>
+        <div className={styles.header__links}>
           <NavLink
             to="/profile"
-            className={`${styles.headerMenuLink} ${
-              location.pathname === '/profile' ? styles.headerMenuActive : ''
+            className={`${styles.header__menu_link} ${
+              location.pathname === '/profile' ? styles.header__menu_active : ''
             }`}
           >
             <TextTypography>{SKILLS_PROFILE}</TextTypography>
           </NavLink>
           <NavLink
             to="/map"
-            className={`${styles.headerMenuLink} ${
-              location.pathname === '/map' ? styles.headerMenuActive : ''
+            className={`${styles.header__menu_link} ${
+              location.pathname === '/map' ? styles.header__menu_active : ''
             }`}
           >
             <TextTypography>{MAP}</TextTypography>

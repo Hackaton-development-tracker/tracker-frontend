@@ -23,9 +23,9 @@ const Popup: React.FC<PopupProps> = ({ popupId, children }) => {
   }
 
   return (
-    <div className={styles.popupOverlay}>
-      <div className={styles.popupContent}>
-        <div className={styles.popupClose}>
+    <div className={styles.popup__overlay}>
+      <div className={styles.popup__content}>
+        <div className={styles.popup__close}>
           <CloseButton onClick={() => dispatch(closePopup(popupId))}>
             <img
               src={closeIcon}

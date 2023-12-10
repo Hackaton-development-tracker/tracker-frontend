@@ -25,7 +25,7 @@
     gap: 8px;
   }
 
-  &__menu-link {
+  &__menu_link {
     display: flex;
     position: relative;
     align-items: center;
@@ -43,7 +43,7 @@
     }
   }
 
-  &__menu-active {
+  &__menu_active {
     font-weight: 500;
     opacity: 1;
     &::after {
