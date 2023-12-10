@@ -1,56 +1,56 @@
 import Link from '@mui/material/Link';
 import { useNavigate } from 'react-router-dom';
-import styles from './index.module.scss';
+// import styles from './index.module.scss';
 import Box from '@mui/material/Box';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormGroup from '@mui/material/FormGroup';
-import { useState } from 'react';
-import { LoginButton } from '../../components/buttons';
-import { RadioTap } from '../../components/radio';
-import { CheckboxTap } from '../../components/checkbox';
-import { FormControlLabelTap } from '../../components/label';
-// import QuizComponent from '../../components/quiz';
-// import quizData from '../../components/data/quiz.json';
+// import RadioGroup from '@mui/material/RadioGroup';
+// import FormGroup from '@mui/material/FormGroup';
+// import { useState } from 'react';
+// import { LoginButton } from '../../components/buttons';
+// import { RadioTap } from '../../components/radio';
+// import { CheckboxTap } from '../../components/checkbox';
+// import { FormControlLabelTap } from '../../components/label';
+import QuizComponent from '../../components/quiz';
+import quizData from '../../components/data/quiz.json';
 
 function Step2() {
   const navigate = useNavigate();
-  const [radioValue, setRadioValue] = useState('');
-  const [radioValue2, setRadioValue2] = useState('');
-  const [checkboxValues, setCheckboxValues] = useState({
-    option1: false,
-    option2: false,
-    option3: false,
-  });
-  const [selectedGroups, setSelectedGroups] = useState(0);
-  const totalGroups = 3;
+  // const [radioValue, setRadioValue] = useState('');
+  // const [radioValue2, setRadioValue2] = useState('');
+  // const [checkboxValues, setCheckboxValues] = useState({
+  //   option1: false,
+  //   option2: false,
+  //   option3: false,
+  // });
+  // const [selectedGroups, setSelectedGroups] = useState(0);
+  // const totalGroups = 3;
   
 
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioValue(event.target.value);
-    setSelectedGroups(1);
-  };
-  const handleRadioChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioValue2(event.target.value);
-    setSelectedGroups(1);
-  };
+  // const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setRadioValue(event.target.value);
+  //   setSelectedGroups(1);
+  // };
+  // const handleRadioChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setRadioValue2(event.target.value);
+  //   setSelectedGroups(1);
+  // };
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckboxValues({
-      ...checkboxValues,
-      [event.target.name]: event.target.checked,
-    });
-    const selectedCount =
-      Object.values(checkboxValues).filter((value) => value).length +
-      (event.target.checked ? 1 : -1);
-    setSelectedGroups(selectedCount);
-  };
+  // const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setCheckboxValues({
+  //     ...checkboxValues,
+  //     [event.target.name]: event.target.checked,
+  //   });
+  //   const selectedCount =
+  //     Object.values(checkboxValues).filter((value) => value).length +
+  //     (event.target.checked ? 1 : -1);
+  //   setSelectedGroups(selectedCount);
+  // };
 
-  const isButtonDisabled = !radioValue || !radioValue2 || selectedGroups === 0;
+  // const isButtonDisabled = !radioValue || !radioValue2 || selectedGroups === 0;
 
-  const handleContinueClick = () => {
-    // Переход на страницу /step3
-    navigate('/step3');
-  };
+  // const handleContinueClick = () => {
+  //   // Переход на страницу /step3
+  //   navigate('/step3');
+  // };
 
 
   return (
@@ -66,15 +66,10 @@ function Step2() {
           Назад
         </Link>
       </Box>
-      <Box style={{ marginBottom: '24px' }}>
-        <h3 style={{ margin: '0', fontWeight: '600' }}>Тест для продакт-менеджеров</h3>
-        <p style={{ margin: '5px 0' }}>
-          Ниже представлены 30 вопросов на 10 ключевых навыков
-          продакт-менеджера.
-        </p>
-      </Box>
-      {/* <QuizComponent questions={quizData} /> */}
-      <div className="mediumContentBlock long">
+      {quizData.map((quiz) => (
+        <QuizComponent key={quiz.quiz_id} quiz={quiz} />
+      ))}
+      {/* <div className="mediumContentBlock long">
         <div className={styles.title}>
           <span className={styles.numeration}>1.</span>
           <span className={styles.description}>
@@ -200,7 +195,7 @@ function Step2() {
             {totalGroups}
           </span>
         </Box>
-      </div>
+      </div> */}
     </div>
   );
 }

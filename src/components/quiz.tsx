@@ -1,6 +1,10 @@
 import Box from '@mui/material/Box';
 import React, { useState } from 'react';
 import { LoginButton } from './buttons';
+import RadioGroup from '@mui/material/RadioGroup';
+import { FormControlLabelTap } from './label';
+import { RadioTap } from './radio';
+import styles from './quiz.module.scss';
 
 interface Option {
   id: number;
@@ -26,18 +30,19 @@ interface UserAnswers {
 }
 
 interface QuizComponentProps {
-  quizzes: Quiz[];
+  quiz: Quiz;
 }
 
-const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
+const QuizComponent: React.FC<QuizComponentProps> = ({ quiz }) => {
   const [userAnswers, setUserAnswers] = useState<UserAnswers>({});
+  const totalQuestions = quiz.questions.length;
 
-  const handleRadioChange = (questionId: string, optionId: string) => {
-    setUserAnswers({
-      ...userAnswers,
-      [questionId]: optionId,
-    });
-  };
+  // const handleRadioChange = (questionId: string, optionId: string) => {
+  //   setUserAnswers({
+  //     ...userAnswers,
+  //     [questionId]: optionId,
+  //   });
+  // };
 
   const handleCheckboxChange = (questionId: string, optionId: string) => {
     setUserAnswers({
@@ -47,32 +52,36 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
         : [optionId],
     });
   };
+  const isButtonDisabled = Object.keys(userAnswers).length !== totalQuestions;
 
   const renderOptions = (question: Question) => {
     return question.options.map((option) => {
-      if (question.param == "one") {
+      if (question.param === 'one') {
         return (
-          <div key={option.id}>
-            <input
-              type="radio"
-              id={`{option.id}`}
-              name={`question_${question.id}`}
-              checked={userAnswers[question.id] === `{option.id}`}
-              onChange={() => handleRadioChange(`{question.id}`, `{option.id}`)}
-            />
-            <label htmlFor={`{option.id}`}>{option.text}</label>
-          </div>
+          <FormControlLabelTap
+            key={option.id}
+            id={`option_${option.id}`}
+            name={`question_${question.id}`}
+            checked={userAnswers[question.id] === `${option.id}`}
+            value="option1"
+            control={<RadioTap />}
+            label={option.text}
+          />
         );
-      } else if (question.param == "several") {
+      } else if (question.param === 'several') {
         return (
           <div key={option.id}>
             <input
               type="checkbox"
-              id={`{option.id}`}
-              checked={(userAnswers[question.id] as string[])?.includes(`{option.id}`)}
-              onChange={() => handleCheckboxChange(`{question.id}`, `{option.id}`)}
+              id={`option_${option.id}`}
+              checked={(userAnswers[question.id] as string[])?.includes(
+                `${option.id}`,
+              )}
+              onChange={() =>
+                handleCheckboxChange(`${question.id}`, `${option.id}`)
+              }
             />
-            <label htmlFor={`{option.id}`}>{option.text}</label>
+            <label htmlFor={`option_${option.id}`}>{option.text}</label>
           </div>
         );
       }
@@ -81,30 +90,46 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
   };
 
   const renderQuestions = (questions: Question[]) => {
-    return questions.map((question) => (
-      <div key={question.id}>
-        <p>{question.question}</p>
-        {renderOptions(question)}
-      </div>
-    ));
-  };
-  const renderHeadQuiz = () => {
-    return quizzes.map((item) => (
-      <>
-        <Box style={{ marginBottom: '24px' }}>
-          <h3 style={{ margin: '0', fontWeight: '600' }}>{item.quiz_title}</h3>
-          <p style={{ margin: '5px 0' }}>
-            {item.quiz_description}
-          </p>
-        </Box>
-        {renderQuestions(item.questions)}
-      </>
-    ));
+    return questions.map((question) => {
+      if (question.param === 'one') {
+        return (
+          <div key={question.id} className="mediumContentBlock long">
+            <div className={styles.title}>
+              <span className={styles.numeration}>.</span>
+              <span className={styles.description}>{question.question}</span>
+            </div>
+            <p className={styles.dopdescription}>Выбери 1 вариант ответа:</p>
+            <RadioGroup
+              aria-label="radio-group"
+              name="radio-group"
+              // value={radioValue}
+            >
+              {renderOptions(question)}
+            </RadioGroup>
+          </div>
+        );
+      } else if (question.param === 'several') {
+        return (
+          <div key={question.id} className="mediumContentBlock long">
+            <div className={styles.title}>
+              <span className={styles.numeration}>.</span>
+              <span className={styles.description}>{question.question}</span>
+            </div>
+            <p className={styles.dopdescription}>Выбери несколько вариантов ответа:</p>
+            {renderOptions(question)}
+          </div>
+        );
+      }
+    });
   };
 
   return (
-    <>
-      {renderHeadQuiz()}
+    <div>
+      <Box style={{ marginBottom: '24px' }}>
+        <h3 style={{ margin: '0', fontWeight: '600' }}>{quiz.quiz_title}</h3>
+        <p style={{ margin: '5px 0' }}>{quiz.quiz_description}</p>
+      </Box>
+      {renderQuestions(quiz.questions)}
       <div>
         <Box
           style={{ marginTop: '40px' }}
@@ -113,7 +138,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
           <LoginButton
             variant="contained"
             size="large"
-            // disabled={isButtonDisabled}
+            disabled={isButtonDisabled}
             onClick={() => console.log('Ответы пользователя:', userAnswers)}
           >
             Узнать результат
@@ -121,14 +146,12 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
           <span
             style={{ marginLeft: '16px', fontWeight: '500', fontSize: '16px' }}
           >
-            {/* Ответы: <span className={styles.active}>{selectedGroups}</span>/{totalGroups} */}
+            Ответы: <span>{Object.keys(userAnswers).length}</span>/
+            {totalQuestions}
           </span>
         </Box>
       </div>
-      {/* <button onClick={() => console.log('Ответы пользователя:', userAnswers)}>
-        Проверить ответы
-      </button> */}
-    </>
+    </div>
   );
 };
 
