@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../services/redux/store';
 import { Box, Paper, Collapse, Typography, styled } from '@mui/material';
@@ -14,9 +14,15 @@ import {
 import { SecondaryButton } from './buttons';
 import { SkillRow } from './skillRow/skillRow';
 import SkillPopup from './skillPopup/skillPopup';
-import skillsData from '../utils/backendData/skills.json';
+import skillsData from '../utils/backendTestData/skills.json';
 import Counter from './counter';
-import { ISkill, LevelsGrid, LevelsArrow, shortLevel } from './levelelements';
+import { LevelsGrid, LevelsArrow, shortLevel } from './levelelements';
+import { useAppDispatch, useAppSelector } from '../services/typeHooks';
+import {
+  getSkillsApi,
+  skillsSelect,
+  ISkill,
+} from '../services/redux/slices/skills/skills';
 
 // skillList elements
 const SkillsListContainer = styled(Paper)({
@@ -45,6 +51,8 @@ const HeaderTypography = styled(Typography)({
 
 // renders a list of skills with an expand and collapse buttons
 const SkillsList = () => {
+  const dispatch = useAppDispatch();
+  const token = localStorage.getItem('accessToken') ?? '';
   const [expanded, setExpanded] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<ISkill | null>(null);
   const isSkillPopupOpen = useSelector((state: RootState) => state.popup);
@@ -53,6 +61,13 @@ const SkillsList = () => {
   const handleExpand = () => {
     setExpanded(!expanded);
   };
+
+  useEffect(() => {
+    dispatch(getSkillsApi({ token }));
+  }, []);
+
+  const skills = useAppSelector(skillsSelect);
+  console.log(skills);
 
   const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
   const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
@@ -94,7 +109,7 @@ const SkillsList = () => {
       </SkillsListContainer>
       {isSkillPopupOpen && selectedSkill && (
         <SkillPopup
-          title={selectedSkill.name}
+          title={selectedSkill.skill.title}
           levelsGrid={
             <LevelsGrid
               skill={selectedSkill}
@@ -106,7 +121,7 @@ const SkillsList = () => {
             />
           }
           levelsArrow={<LevelsArrow skill={selectedSkill} level={shortLevel} />}
-          description={selectedSkill.description}
+          description={selectedSkill.skill.description}
           levels_description={selectedSkill.levels_description || {}}
         />
       )}

@@ -7,22 +7,7 @@ import {
   getCurrentLevelColor,
   getNextLevelColor,
 } from '../utils/helpers/getLevelColor';
-
-export interface ISkill {
-  id: number;
-  name: string;
-  current_level: number;
-  current_level_grade: string;
-  target_level: number;
-  target_level_grade: string;
-  next_level?: number;
-  next_level_grade?: string;
-  total_levels: number;
-  description: string;
-  levels_description: {
-    [key: string]: string;
-  };
-};
+import { ISkill } from '../services/redux/slices/skills/skills';
 
 export const shortLevel = LEVEL.toLowerCase().substring(0, 2) + '.';
 
@@ -74,7 +59,6 @@ export const LevelsGrid = ({
                 index + 1,
                 skill.current_level,
                 skill.target_level,
-                skill.next_level,
               )
             : getCurrentLevelColor(index + 1, skill.current_level),
         }}

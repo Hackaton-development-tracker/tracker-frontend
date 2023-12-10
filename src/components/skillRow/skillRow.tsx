@@ -4,7 +4,8 @@ import styles from './skillRow.module.scss';
 import { MORE_INFO } from '../../utils/constants';
 import { TextLinkButton } from '../buttons';
 import { openPopup } from '../../services/redux/slices/popup/popup';
-import { ISkill, LevelsGrid, LevelsArrow, shortLevel } from '../levelelements';
+import { LevelsGrid, LevelsArrow, shortLevel } from '../levelelements';
+import { ISkill } from '../../services/redux/slices/skills/skills';
 
 type SkillProps = {
   setSelectedSkill: (skill: ISkill) => void;
@@ -46,23 +47,23 @@ export const SkillRow: React.FC<SkillProps> = ({
 
   return (
     <div className={styles.skills__container}>
-      {skillsArray.map((skill) => (
+      {skillsArray.map((skillItem) => (
         <div
-          key={skill.id}
+          key={skillItem.id}
           className={styles.skills__row}
-          onClick={() => handleOpenPopup(skill)}
+          onClick={() => handleOpenPopup(skillItem)}
         >
           <SkillBox borderColor={borderColor}>
-            <SkillTypography>{skill.name}</SkillTypography>
+            <SkillTypography>{skillItem.skill.title}</SkillTypography>
             <div className={styles.skills__levels}>
               <div className={styles.skills__levels_container}>
                 <LevelsGrid
-                  skill={skill}
+                  skill={skillItem}
                   nextLevel={
-                    skill.current_level < skill.target_level ? true : false
+                    skillItem.current_level < skillItem.target_level ? true : false
                   }
                 />
-                <LevelsArrow skill={skill} level={shortLevel} />
+                <LevelsArrow skill={skillItem} level={shortLevel} />
               </div>
               <TextLinkButton className={styles.morebutton}>
                 {MORE_INFO}

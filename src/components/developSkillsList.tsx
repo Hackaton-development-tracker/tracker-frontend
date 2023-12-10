@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
 import { Paper, styled } from '@mui/material';
 import vars from '../static/scss/export.module.scss';
-import { ISkill } from './levelelements';
 import { SKILLS_TO_IMPROVE, ACHIEVED_SKILLS } from '../utils/constants';
-
-import skillsData from '../utils/backendData/skills.json';
+import skillsData from '../utils/backendTestData/skills.json';
 import DevelopSkills from './developSkills/developSkills';
+import { useAppDispatch, useAppSelector } from '../services/typeHooks';
+import { getSkillsApi, skillsSelect, ISkill } from '../services/redux/slices/skills/skills';
 
 // skillList elements
 const SkillsListContainer = styled(Paper)({
@@ -18,6 +19,18 @@ const SkillsListContainer = styled(Paper)({
 
 // renders a list of skills with an expand and collapse buttons
 const DevelopSkillsList = () => {
+  const dispatch = useAppDispatch();
+  const token = localStorage.getItem('accessToken') ?? '';
+
+  useEffect(() => {
+    dispatch(
+      getSkillsApi({ token }),
+    );
+  },[]);
+
+  const skills = useAppSelector(skillsSelect);
+  console.log(skills);
+
   const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
   const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 

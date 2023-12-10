@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import vars from '../../static/scss/export.module.scss';
 import Counter from '../counter';
 import styles from './developSkills.module.scss';
-import { ISkill, LevelsGrid } from '../levelelements';
+import { LevelsGrid } from '../levelelements';
 import {
   LEVEL,
   COLLAPSE,
@@ -16,6 +16,7 @@ import { TextExpandButton } from '../buttons';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Tag from '../tag';
+import { ISkill } from '../../services/redux/slices/skills/skills';
 
 type DevelopSkillProps = {
   header: string;
@@ -43,7 +44,6 @@ const HeaderBox = styled(Box)({
   paddingTop: '24px',
 });
 
-
 // renders skills as a box with description, levels description
 export const DevelopSkills: React.FC<DevelopSkillProps> = ({
   header,
@@ -65,35 +65,13 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
   };
 
   // renders level with progress bar and description
-  const LevelBox = ({
-    skill,
-    level,
-    grade,
-  }: {
-    skill: ISkill;
-    level: number;
-    grade: string;
-  }) => (
+  const LevelBox = ({ skill, level }: { skill: ISkill; level: number }) => (
     <div className={styles.level__box}>
       <div className={styles.level__header}>
         <TextTypography>
           {LEVEL} {level}
         </TextTypography>
-        <LevelsGrid
-          skill={skill}
-          nextLevel={
-            level < skill.target_level ||
-            (skill.next_level && level < skill.next_level)
-              ? false
-              : true
-          }
-        />
-        <Tag
-          text={grade}
-          color="#fff"
-          radius="100px"
-          border="1px solid #DDE0E4"
-        />
+        <LevelsGrid skill={skill} nextLevel={level === skill.target_level} />
       </div>
       {Object.keys(skill.levels_description)
         .filter((key) => parseInt(key) === level)
@@ -111,11 +89,11 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
         <TitleTypography>{header}</TitleTypography>
         <Counter number={skillsArray.length} color={counterColor} />
       </HeaderBox>
-      {skillsArray.map((skill) => (
-        <div key={skill.id}>
+      {skillsArray.map((skillItem) => (
+        <div key={skillItem.id}>
           <SkillBox borderColor={borderColor}>
             <div className={styles.skill__header}>
-              <TitleTypography>{skill.name}</TitleTypography>
+              <TitleTypography>{skillItem.skill.title}</TitleTypography>
 
               {/* blue color tag */}
               {skillsToImprove && (
@@ -129,10 +107,10 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
 
             {/* expand and collapse button */}
             <Collapse
-              in={expandedStates[skill.id] || false}
+              in={expandedStates[skillItem.id] || false}
               sx={{ paddingTop: '12px' }}
             >
-              <TextTypography>{skill.description}</TextTypography>
+              <TextTypography>{skillItem.skill.description}</TextTypography>
             </Collapse>
             <TextExpandButton
               sx={{
@@ -140,25 +118,21 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
                 maxWidth: '266px',
                 alignSelf: 'start',
               }}
-              onClick={() => handleExpandClick(skill.id)}
+              onClick={() => handleExpandClick(skillItem.id)}
               startIcon={
-                expandedStates[skill.id] ? (
+                expandedStates[skillItem.id] ? (
                   <ExpandLessIcon />
                 ) : (
                   <ExpandMoreIcon />
                 )
               }
             >
-              {`${expandedStates[skill.id] ? COLLAPSE : SKILL_DESCRIPTION}`}
+              {`${expandedStates[skillItem.id] ? COLLAPSE : SKILL_DESCRIPTION}`}
             </TextExpandButton>
 
             {/* renders left and right level colums with arrow */}
             <div className={styles.skill__info}>
-              <LevelBox
-                skill={skill}
-                level={skill.current_level}
-                grade={skill.current_level_grade}
-              />
+              <LevelBox skill={skillItem} level={skillItem.current_level} />
               <ArrowForwardIosIcon
                 sx={{
                   marginTop: '16px',
@@ -171,15 +145,7 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
                   }`,
                 }}
               />
-              <LevelBox
-                skill={skill}
-                level={skill.next_level ? skill.next_level : skill.target_level}
-                grade={
-                  skill.next_level_grade
-                    ? skill.next_level_grade
-                    : skill.target_level_grade
-                }
-              />
+              <LevelBox skill={skillItem} level={skillItem.target_level} />
             </div>
           </SkillBox>
         </div>
