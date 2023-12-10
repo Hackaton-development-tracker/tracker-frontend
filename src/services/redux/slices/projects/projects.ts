@@ -1,0 +1,49 @@
+// projects.ts
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchProjects } from './projectsAPI';
+
+export interface IProject {
+  id: number;
+  title: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+}
+
+interface IProjects {
+  recommended_projects: IProject[];
+}
+
+export const getProjectsApi = createAsyncThunk(
+  '@@project/project',
+  async (arg: { token: string }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const { token } = arg;
+      const response = await fetchProjects(token);
+      return fulfillWithValue(response);
+    } catch (error: unknown) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+const initialState: IProjects = {
+  recommended_projects: [],
+};
+
+const projectsSlice = createSlice({
+  name: '@@projects',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getProjectsApi.fulfilled, (state, action) => {
+      state.recommended_projects = action.payload.recommended_projects;
+    });
+  },
+});
+
+export const projectsReducer = projectsSlice.reducer;
+
+export const projectsSelect = (state: { projects: IProjects }) => {
+  return state.projects;
+};

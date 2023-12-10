@@ -1,3 +1,4 @@
+// knowledgeAPI.ts
 import { API_BASE_URL } from '../../../../utils/constants';
 
 const checkRes = (res: Response) => {
@@ -18,6 +19,6 @@ const fetchData = (url: string, token: string) => {
   }).then((res) => checkRes(res));
 };
 
-export const fetchSkills = (token: string) => {
-  return fetchData(`${API_BASE_URL}/user_skills/`, token);
+export const fetchKnowledge = (token: string) => {
+  return fetchData(`${API_BASE_URL}/knoweledge/`, token);
 };

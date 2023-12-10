@@ -1,24 +1,29 @@
+import { useEffect } from 'react';
 import styles from './knowledgeBase.module.scss';
-import knowledgeBase from '../../utils/backendData/knowledgeBase.json';
+import knowledgeBase from '../../utils/backendTestData/knowledgeBase.json';
 import { Card } from '../card/card';
 import { KNOWLEDGE_BASE } from '../../utils/constants';
 import { SourceTypography, TitleTypography, TextTypography, GreyTypography } from '../cardelements';
 import vars from '../../static/scss/export.module.scss';
 import Tag from '../tag';
 import { getSourceColor } from '../../utils/helpers/getSourceColor';
-
-interface ISource {
-  id: number;
-  type: string;
-  title: string;
-  author: string;
-  description: string;
-  tags: string[];
-};
+import { IKnowledge, knowledgeSelect, getKnowledgeApi  } from '../../services/redux/slices/knowledge/knowledge';
+import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
 
 // renders knowledge base with sources
 const KnowledgeBase = () => {
-  const sourceTitle = (source: ISource) => (
+  const dispatch = useAppDispatch();
+  const token = localStorage.getItem('accessToken') ?? '';
+
+  useEffect(() => {
+    dispatch(getKnowledgeApi({ token }));
+  }, []);
+
+  const sources = useAppSelector(knowledgeSelect);
+  console.log(sources);
+  //const sourceList = sources.knowledge_base || [];
+
+  const sourceTitle = (source: IKnowledge) => (
     <>
       <div className={styles.source__title}>
         <SourceTypography>{source.title}</SourceTypography>
@@ -32,7 +37,7 @@ const KnowledgeBase = () => {
     </>
   );
 
-  const sourceContent = (source: ISource) => (
+  const sourceContent = (source: IKnowledge) => (
     <div className={styles.source__content}>
       <div className={styles.source__description}>
         <TextTypography>{source.description}</TextTypography>

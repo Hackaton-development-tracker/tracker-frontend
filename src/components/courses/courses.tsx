@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './courses.module.scss';
-import coursesData from '../../utils/backendData/courses.json';
+import coursesData from '../../utils/backendTestData/courses.json';
 import { ProfCard } from '../profCard/profCard';
 import { COURSES, NEXT_START_DATE, MORE_INFO } from '../../utils/constants';
 import { TextTypography, GreyTypography, TitleTypography } from '../cardelements';
@@ -12,19 +13,22 @@ import { SecondaryButton } from '../buttons';
 import thinking from '../../static/assets/images/thinking.svg';
 import economics from '../../static/assets/images/economics.svg';
 import argumentation from '../../static/assets/images/argumentation.svg';
-
-interface ICourse {
-  id: number;
-  title: string;
-  description: string;
-  start_date: string;
-  source: string;
-  completion_time: number;
-  // TODO: image: string;
-};
+import { ICourse, getCoursesApi, coursesSelect } from '../../services/redux/slices/courses/courses';
+import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
 
 // renders recommended mini courses
 const Courses = () => {
+  const dispatch = useAppDispatch();
+  const token = localStorage.getItem('accessToken') ?? '';
+
+  useEffect(() => {
+    dispatch(getCoursesApi({ token }));
+  }, []);
+
+  const courses = useAppSelector(coursesSelect);
+  console.log(courses);
+  //const courseList = sources.recommended_courses || [];
+
   const courseTitle = (course: ICourse) => (  
     <div className={styles.courses__container}>
       <div className={styles.courses__title}>

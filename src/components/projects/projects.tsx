@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './projects.module.scss';
-import projectsData from '../../utils/backendData/projects.json';
+import projectsData from '../../utils/backendTestData/projects.json';
 import { Card } from '../card/card';
 import { PROJECTS, MORE_INFO } from '../../utils/constants';
 import { TitleTypography, TextTypography, GreyTypography } from '../cardelements';
@@ -8,17 +9,22 @@ import { formattedDate } from '../../utils/helpers/formatTime';
 import { SecondaryButton } from '../buttons';
 import hackathon from '../../static/assets/icons/hackathon.svg';
 import alpha from '../../static/assets/icons/alpha.svg';
-
-interface IProject {
-  id: number;
-  title: string;
-  description: string;
-  start_date: string;
-  end_date: string;
-};
+import { IProject, getProjectsApi, projectsSelect } from '../../services/redux/slices/projects/projects';
+import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
 
 // renders projects from Workshop
 const Projects = () => {
+  const dispatch = useAppDispatch();
+  const token = localStorage.getItem('accessToken') ?? '';
+
+  useEffect(() => {
+    dispatch(getProjectsApi({ token }));
+  }, []);
+
+  const projects = useAppSelector(projectsSelect);
+  console.log(projects);
+  //const sourceList = sources.recommended_projects || [];
+
   const projectTitle = (project: IProject) => (
     <div className={styles.project__title_container}>
       <img

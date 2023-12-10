@@ -14,11 +14,11 @@ export interface ISkill {
   levels_description: {
     [key: string]: string;
   };
-};
+}
 
 interface ISkills {
-  skillsToImprove: ISkill[]; 
-  achievedSkills: ISkill[]; 
+  skillsToImprove: ISkill[];
+  achievedSkills: ISkill[];
 }
 
 export const getSkillsApi = createAsyncThunk(
@@ -53,8 +53,6 @@ const skillsSlice = createSlice({
 
 export const skillsReducer = skillsSlice.reducer;
 
-export const skillsSelect = (state: {
-  skills: ISkills;
-}) => {
+export const skillsSelect = (state: { skills: ISkills }) => {
   return state.skills;
 };
