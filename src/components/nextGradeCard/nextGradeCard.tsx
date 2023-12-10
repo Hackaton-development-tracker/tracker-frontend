@@ -20,9 +20,10 @@ import {
 import ProgressBar from '../progressBar';
 import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
-import userData from '../../utils/backendData/user.json';
+import userData from '../../utils/backendTestData/user.json';
 
-const { next_test_date, grade_next } = userData;
+const nextGradeTitle = userData.next_grade?.title
+const nextTestDate = userData.next_test_date;
 
 // renders main grade card with next grade
 export function NextGradeCard() {
@@ -43,7 +44,7 @@ export function NextGradeCard() {
             color: vars.colorBlueMain,
           }}
         >
-          {grade_next}
+          {nextGradeTitle}
         </GradeTypography>
         <TextTypography
           sx={{
@@ -76,7 +77,7 @@ export function NextGradeCard() {
             {TEST_RETAKE_DAYS}
           </SmallTextTypography>
           <CountdownTimer
-            nextTestDate={next_test_date}
+            nextTestDate={nextTestDate}
             timeRemaining={timeRemaining}
             setTimeRemaining={setTimeRemaining}
           />
@@ -113,7 +114,7 @@ export function ShortNextGradeCard() {
             color: vars.colorBlueMain,
           }}
         >
-          {grade_next}
+          {nextGradeTitle}
         </GradeTypography>
         <TextTypography
           sx={{

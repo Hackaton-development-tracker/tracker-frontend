@@ -15,13 +15,16 @@ import {
 } from '../cardelements';
 import { SecondaryButton } from '../buttons';
 import { formattedDate } from '../../utils/helpers/formatTime';
-import userData from '../../utils/backendData/user.json';
+import userData from '../../utils/backendTestData/user.json';
 
-const { title, test_date, grade_current } = userData;
+const specializationTitle = userData.specializations[0].title;
+const gradeTitle = userData.grades[0].title;
+const testDate = userData.test_date;
+const nextTestDate = userData.next_test_date;
 
 //  renders main card with current grade
 export function CurrentGradeCard() {
-  const formattedTestDate = formattedDate(test_date);
+  const formattedTestDate = formattedDate(testDate);
 
   console.log(styles);
 
@@ -33,7 +36,7 @@ export function CurrentGradeCard() {
           paddingTop: '8px',
         }}
       >
-        {title}
+        {specializationTitle}
       </ProfessionTypography>
     </div>
   );
@@ -44,7 +47,7 @@ export function CurrentGradeCard() {
         <SmallTextTypography>
           {USER_CURRENT_LEVEL} {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}
         </SmallTextTypography>
-        <GradeTypography>{grade_current}</GradeTypography>
+        <GradeTypography>{gradeTitle}</GradeTypography>
       </div>
       <Link to="/map">
         <SecondaryButton>{OPEN_MAP}</SecondaryButton>
@@ -63,11 +66,11 @@ export function CurrentGradeCard() {
 
 //  renders short card with current grade
 export function ShortCurrentGradeCard() {
-  const formattedTestDate = formattedDate(test_date);
+  const formattedTestDate = formattedDate(nextTestDate);
 
   const currentTitle = (
     <div className={styles.current__content}>
-      <GradeTypography>{grade_current}</GradeTypography>
+      <GradeTypography>{gradeTitle}</GradeTypography>
       <SmallTextTypography>
         {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}
       </SmallTextTypography>
@@ -76,7 +79,7 @@ export function ShortCurrentGradeCard() {
 
   const currentContent = (
     <ProfessionTypography sx={{ fontSize: '16px', lineHeight: '20px' }}>
-      {title}
+      {specializationTitle}
     </ProfessionTypography>
   );
 
