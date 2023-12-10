@@ -68,6 +68,8 @@ const SkillsList = () => {
 
   const skills = useAppSelector(skillsSelect);
   console.log(skills);
+  // const skillsToImprove = skills.skillsToImprove || [];
+  // const achievedSkills = skills.achievedSkills || [];
 
   const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
   const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];

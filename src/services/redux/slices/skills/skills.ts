@@ -17,7 +17,8 @@ export interface ISkill {
 };
 
 interface ISkills {
-  skills: ISkill[];
+  skillsToImprove: ISkill[]; 
+  achievedSkills: ISkill[]; 
 }
 
 export const getSkillsApi = createAsyncThunk(
@@ -34,7 +35,8 @@ export const getSkillsApi = createAsyncThunk(
 );
 
 const initialState: ISkills = {
-  skills: [],
+  skillsToImprove: [],
+  achievedSkills: [],
 };
 
 const skillsSlice = createSlice({
@@ -43,7 +45,8 @@ const skillsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getSkillsApi.fulfilled, (state, action) => {
-      state.skills= action.payload;
+      state.skillsToImprove = action.payload.skillsToImprove;
+      state.achievedSkills = action.payload.achievedSkills;
     });
   },
 });
@@ -53,6 +56,5 @@ export const skillsReducer = skillsSlice.reducer;
 export const skillsSelect = (state: {
   skills: ISkills;
 }) => {
-  const categoriesData = state.skills;
-  return categoriesData ? categoriesData : [];
+  return state.skills;
 };
