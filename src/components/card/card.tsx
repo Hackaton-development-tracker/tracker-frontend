@@ -1,21 +1,7 @@
-import { styled } from '@mui/material/styles';
-import { Paper, Typography } from '@mui/material';
 import styles from './card.module.scss';
+import { CardPaper } from '../cardelements';
 
-export const CardPaper = styled(Paper)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-});
-
-export const CardTypography = styled(Typography)({
-  fontFamily: 'YS Text Regular',
-  fontSize: '14px',
-  lineHeight: '20px',
-  letterSpacing: 0,
-});
-
-interface CardProps {
+type CardProps = {
   title: React.ReactNode;
   content: React.ReactNode;
   classname?: string;

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Typography, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styles from './currentGradeCard.module.scss';
 import {
@@ -9,33 +8,18 @@ import {
   OPEN_MAP,
 } from '../../utils/constants';
 import { Card } from '../card/card';
+import {
+  SmallTextTypography,
+  GradeTypography,
+  ProfessionTypography,
+} from '../cardelements';
 import { SecondaryButton } from '../buttons';
 import { formattedDate } from '../../utils/helpers/formatTime';
 import userData from '../../utils/backendData/user.json';
 
-// grade cards fonts
-const SmallTextTypography = styled(Typography)({
-  fontFamily: 'YS Text Regular',
-  fontSize: '13px',
-  lineHeight: '16px',
-  letterSpacing: 0,
-});
-
-const ProfessionTypography = styled(Typography)({
-  fontFamily: 'YS Text Medium',
-  fontSize: '18px',
-  lineHeight: '24px',
-});
-
-const GradeTypography = styled(Typography)({
-  fontSize: '24px',
-  lineHeight: '32px',
-  letterSpacing: 0,
-});
-
 const { title, test_date, grade_current } = userData;
 
-//  renders two cards, first shows information about the user's current level, second shows progress towards the next level
+//  renders main card with current grade
 export function CurrentGradeCard() {
   const formattedTestDate = formattedDate(test_date);
 
@@ -75,6 +59,7 @@ export function CurrentGradeCard() {
   );
 }
 
+//  renders short card with current grade
 export function ShortCurrentGradeCard() {
   const formattedTestDate = formattedDate(test_date);
 

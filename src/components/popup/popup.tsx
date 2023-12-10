@@ -11,6 +11,7 @@ type PopupProps = {
   children: React.ReactNode;
 };
 
+// renders base poopup
 const Popup: React.FC<PopupProps> = ({ popupId, children }) => {
   const dispatch = useDispatch();
   const popups = useSelector((state: RootState) => state.popup.popups);

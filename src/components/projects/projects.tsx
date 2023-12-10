@@ -1,17 +1,15 @@
-import { Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import styles from './projects.module.scss';
 import projectsData from '../../utils/backendData/projects.json';
 import { Card } from '../card/card';
 import { PROJECTS, MORE_INFO } from '../../utils/constants';
-import vars from '../../static/scss/export.module.scss';
+import { TitleTypography, TextTypography, GreyTypography } from '../cardelements';
 import { formattedDate } from '../../utils/helpers/formatTime';
 import { SecondaryButton } from '../buttons';
 import hackathon from '../../static/assets/icons/hackathon.svg';
 import alpha from '../../static/assets/icons/alpha.svg';
 
-type Project = {
+interface IProject {
   id: number;
   title: string;
   description: string;
@@ -19,48 +17,26 @@ type Project = {
   end_date: string;
 };
 
-const ProjectTitleTypography = styled(Typography)({
-  fontFamily: ['YS Display Medium'],
-  fontSize: '20px',
-  lineHeight: '24px',
-  letterSpacing: 0,
-});
-
-const ProjectTextTypography = styled(Typography)({
-  fontFamily: ['YS Text Regular'],
-  fontSize: '14px',
-  lineHeight: '20px',
-  letterSpacing: 0,
-});
-
-const ProjectGreyTypography = styled(Typography)({
-  fontFamily: ['YS Text Regular'],
-  fontSize: '13px',
-  lineHeight: '16px',
-  letterSpacing: 0,
-  color: `${vars.colorBlack500}`,
-});
-
 const Projects = () => {
-  const projectTitle = (project: Project) => (
+  const projectTitle = (project: IProject) => (
     <div className={styles.projectTitleContainer}>
       <img
         src={project.title === 'Хакатон+' ? hackathon : alpha}
         alt={project.title}
       />
-      <ProjectTitleTypography>{project.title}</ProjectTitleTypography>
+      <TitleTypography>{project.title}</TitleTypography>
     </div>
   );
 
-  const projectContent = (project: Project) => (
+  const projectContent = (project: IProject) => (
     <div className={styles.projectContent}>
-      <ProjectTextTypography>{project.description}</ProjectTextTypography>
+      <TextTypography>{project.description}</TextTypography>
       <div className={styles.projectInfo}>
-        <ProjectGreyTypography>
+        <GreyTypography>
           {formattedDate(project.start_date) +
             ' - ' +
             formattedDate(project.end_date)}
-        </ProjectGreyTypography>
+        </GreyTypography>
         <Link to="/workshop">
           <SecondaryButton>{MORE_INFO}</SecondaryButton>
         </Link>
@@ -70,7 +46,7 @@ const Projects = () => {
 
   return (
     <div>
-      <ProjectTitleTypography>{PROJECTS}</ProjectTitleTypography>
+      <TitleTypography>{PROJECTS}</TitleTypography>
       <div className={styles.projectContainer}>
         {projectsData[0].recommended_projects.map((project) => (
           <Card

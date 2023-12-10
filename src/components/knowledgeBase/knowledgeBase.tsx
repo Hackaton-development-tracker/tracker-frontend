@@ -1,14 +1,13 @@
-import { Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import styles from './knowledgeBase.module.scss';
 import knowledgeBase from '../../utils/backendData/knowledgeBase.json';
 import { Card } from '../card/card';
 import { KNOWLEDGE_BASE } from '../../utils/constants';
+import { SourceTypography, TitleTypography, TextTypography, GreyTypography } from '../cardelements';
 import vars from '../../static/scss/export.module.scss';
 import Tag from '../tag';
 import { getSourceColor } from '../../utils/helpers/getSourceColor';
 
-type Source = {
+interface ISource {
   id: number;
   type: string;
   title: string;
@@ -17,42 +16,13 @@ type Source = {
   tags: string[];
 };
 
-const SourceTitleTypography = styled(Typography)({
-  fontFamily: ['YS Display Medium'],
-  fontSize: '20px',
-  lineHeight: '24px',
-  letterSpacing: 0,
-});
-
-const SourceTypography = styled(Typography)({
-  fontFamily: ['YS Display Medium'],
-  fontSize: '16px',
-  lineHeight: '20px',
-  letterSpacing: 0,
-  maxWidth: '200px'
-});
-
-const SourceTextTypography = styled(Typography)({
-  fontFamily: ['YS Text Regular'],
-  fontSize: '14px',
-  lineHeight: '20px',
-  letterSpacing: 0,
-});
-
-const SourceGreyTypography = styled(Typography)({
-  fontFamily: ['YS Text Regular'],
-  fontSize: '13px',
-  lineHeight: '16px',
-  letterSpacing: 0,
-  color: `${vars.colorBlack500}`,
-});
-
+// renders knowledge base with sources
 const KnowledgeBase = () => {
-  const sourceTitle = (source: Source) => (
+  const sourceTitle = (source: ISource) => (
     <>
       <div className={styles.sourceTitle}>
         <SourceTypography>{source.title}</SourceTypography>
-        <SourceGreyTypography>{source.author}</SourceGreyTypography>
+        <GreyTypography>{source.author}</GreyTypography>
       </div>
       <Tag
         text={source.type}
@@ -62,10 +32,10 @@ const KnowledgeBase = () => {
     </>
   );
 
-  const sourceContent = (source: Source) => (
+  const sourceContent = (source: ISource) => (
     <div className={styles.sourceContent}>
       <div className={styles.sourceDescription}>
-        <SourceTextTypography>{source.description}</SourceTextTypography>
+        <TextTypography>{source.description}</TextTypography>
       </div>
       <div className={styles.sourceTags}>
         {source.tags.map((tag) => {
@@ -79,7 +49,7 @@ const KnowledgeBase = () => {
 
   return (
     <div>
-      <SourceTitleTypography>{KNOWLEDGE_BASE}</SourceTitleTypography>
+      <TitleTypography>{KNOWLEDGE_BASE}</TitleTypography>
       <div className={styles.sourceContainer}>
         {knowledgeBase[0].knowledge_base.map((source) => (
           <Card

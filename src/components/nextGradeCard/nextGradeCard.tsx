@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography, styled } from '@mui/material';
 import styles from './nextGradeCard.module.scss';
 import vars from '../../static/scss/export.module.scss';
 import {
@@ -11,44 +10,21 @@ import {
   TEST_RETAKE_DAYS,
   ROUTE_STEP1,
 } from '../../utils/constants';
-import { CardTypography, Card } from '../card/card';
+import { Card } from '../card/card';
+import {
+  TextTypography,
+  SmallTextTypography,
+  GradeTypography,
+  PercentTypography,
+} from '../cardelements';
 import ProgressBar from '../progressBar';
 import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
 import userData from '../../utils/backendData/user.json';
 
-// grade cards fonts
-const CountdownTypography = styled(Typography)({
-  fontFamily: 'YS Text Regular',
-  fontSize: '13px',
-  lineHeight: '16px',
-  letterSpacing: 0,
-});
-
-const SmallTextTypography = styled(Typography)({
-  fontFamily: 'YS Text Regular',
-  fontSize: '13px',
-  lineHeight: '16px',
-  letterSpacing: 0,
-});
-
-const GradeTypography = styled(Typography)({
-  fontSize: '24px',
-  lineHeight: '32px',
-  letterSpacing: 0,
-});
-
-const PercentTypography = styled(Typography)({
-  fontFamily: 'YS Text Medium',
-  fontSize: '16px',
-  lineHeight: '20px',
-  color: vars.colorBlueMain,
-  letterSpacing: 0,
-});
-
 const { next_test_date, grade_next } = userData;
 
-//  renders two cards, first shows information about the user's current level, second shows progress towards the next level
+// renders main grade card with next grade
 export function NextGradeCard() {
   const navigate = useNavigate();
   const [progressValue, setProgressValue] = useState(0);
@@ -69,14 +45,14 @@ export function NextGradeCard() {
         >
           {grade_next}
         </GradeTypography>
-        <CardTypography
+        <TextTypography
           sx={{
             paddingRight: '4px',
             paddingLeft: '8px',
           }}
         >
           {USER_NEXT_LEVEL_ACHIEVED}
-        </CardTypography>
+        </TextTypography>
         <PercentTypography>{progressValue}&#37;</PercentTypography>
       </div>
     </div>
@@ -92,13 +68,13 @@ export function NextGradeCard() {
       </div>
       <div className={styles.countdown}>
         <div style={{ display: 'flex' }}>
-          <CountdownTypography
+          <SmallTextTypography
             sx={{
               paddingRight: '4px',
             }}
           >
             {TEST_RETAKE_DAYS}
-          </CountdownTypography>
+          </SmallTextTypography>
           <CountdownTimer
             nextTestDate={next_test_date}
             timeRemaining={timeRemaining}
@@ -125,6 +101,7 @@ export function NextGradeCard() {
   );
 }
 
+// renders short card with next grade
 export function ShortNextGradeCard() {
   const [progressValue, setProgressValue] = useState(0);
 
@@ -138,14 +115,14 @@ export function ShortNextGradeCard() {
         >
           {grade_next}
         </GradeTypography>
-        <CardTypography
+        <TextTypography
           sx={{
             paddingRight: '4px',
             paddingLeft: '8px',
           }}
         >
           {USER_NEXT_LEVEL_ACHIEVED}
-        </CardTypography>
+        </TextTypography>
         <PercentTypography>{progressValue}&#37;</PercentTypography>
       </div>
     </div>

@@ -1,11 +1,9 @@
-import { Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import styles from './courses.module.scss';
 import coursesData from '../../utils/backendData/courses.json';
 import { ProfCard } from '../profCard/profCard';
 import { COURSES, NEXT_START_DATE, MORE_INFO } from '../../utils/constants';
-import vars from '../../static/scss/export.module.scss';
+import { TextTypography, GreyTypography, TitleTypography } from '../cardelements';
 import {
   hoursToDaysOrMonths,
   formattedDate,
@@ -15,7 +13,7 @@ import thinking from '../../static/assets/images/thinking.svg';
 import economics from '../../static/assets/images/economics.svg';
 import argumentation from '../../static/assets/images/argumentation.svg';
 
-type Course = {
+interface ICourse {
   id: number;
   title: string;
   description: string;
@@ -25,50 +23,28 @@ type Course = {
   // TODO: image: string;
 };
 
-const CourseTitleTypography = styled(Typography)({
-  fontFamily: ['YS Display Medium'],
-  fontSize: '20px',
-  lineHeight: '24px',
-  letterSpacing: 0,
-});
-
-const CourseTextTypography = styled(Typography)({
-  fontFamily: ['YS Text Regular'],
-  fontSize: '14px',
-  lineHeight: '20px',
-  letterSpacing: 0,
-});
-
-const CourseGreyTypography = styled(Typography)({
-  fontFamily: ['YS Text Regular'],
-  fontSize: '13px',
-  lineHeight: '16px',
-  letterSpacing: 0,
-  color: `${vars.colorBlack500}`,
-});
-
 // renders recommended mini courses
 const Courses = () => {
-  const courseTitle = (course: Course) => (  
+  const courseTitle = (course: ICourse) => (  
     <div className={styles.coursesContainer}>
       <div className={styles.coursesTitle}>
-        <CourseTitleTypography>{course.title}</CourseTitleTypography>
+        <TitleTypography>{course.title}</TitleTypography>
       </div>
-      <CourseGreyTypography>
+      <GreyTypography>
         {hoursToDaysOrMonths(course.completion_time)}
-      </CourseGreyTypography>
+      </GreyTypography>
     </div>
   );
 
-  const courseContent = (course: Course) => (
+  const courseContent = (course: ICourse) => (
     <div className={styles.coursesContent}>
-      <CourseTextTypography>{course.description}</CourseTextTypography>
+      <TextTypography>{course.description}</TextTypography>
       <div className={styles.coursesInfo}>
         <div className={styles.courseDate}>
-          <CourseGreyTypography>{NEXT_START_DATE}</CourseGreyTypography>
-          <CourseTextTypography>
+          <GreyTypography>{NEXT_START_DATE}</GreyTypography>
+          <TextTypography>
             {formattedDate(course.start_date)}
-          </CourseTextTypography>
+          </TextTypography>
         </div>
         <Link to={course.source} target="_blank">
           <SecondaryButton>{MORE_INFO}</SecondaryButton>
@@ -93,7 +69,7 @@ const Courses = () => {
 
   return (
     <div>
-      <CourseTitleTypography>{COURSES}</CourseTitleTypography>
+      <TitleTypography>{COURSES}</TitleTypography>
       <div className={styles.courses}>
         {coursesData[0].recommended_courses.map((course) => (
           <ProfCard
