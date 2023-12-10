@@ -3,7 +3,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Grid, Typography } from '@mui/material';
 import vars from '../static/scss/export.module.scss';
 import { LEVEL } from '../utils/constants';
-import { getLevelColor } from '../utils/helpers/getLevelColor';
+import {
+  getCurrentLevelColor,
+  getNextLevelColor,
+} from '../utils/helpers/getLevelColor';
 
 export type TSkill = {
   id: number;
@@ -46,24 +49,33 @@ export const ArrowForwardIcon = styled(ArrowForwardIosIcon)({
 });
 
 export const LevelText = styled(Typography)({
-    display: 'flex',
-    alignItems: 'center',
-    fontFamily: 'YS Text Regular',
-    fontSize: '14px',
-    lineHeight: '20px'
-})
+  display: 'flex',
+  alignItems: 'center',
+  fontFamily: 'YS Text Regular',
+  fontSize: '14px',
+  lineHeight: '20px',
+});
 
-export const LevelsGrid = ({ skill }: { skill: TSkill }) => (
+export const LevelsGrid = ({
+  skill,
+  nextLevel,
+}: {
+  skill: TSkill;
+  nextLevel?: boolean;
+}) => (
   <LevelsContainer>
     {Array.from({ length: skill.total_levels }).map((_, index) => (
       <LevelGrid
         key={index}
         sx={{
-          backgroundColor: getLevelColor(
-            index + 1,
-            skill.current_level,
-            skill.target_level,
-          ),
+          backgroundColor: nextLevel
+            ? getNextLevelColor(
+                index + 1,
+                skill.current_level,
+                skill.target_level,
+                skill.next_level,
+              )
+            : getCurrentLevelColor(index + 1, skill.current_level),
         }}
       />
     ))}

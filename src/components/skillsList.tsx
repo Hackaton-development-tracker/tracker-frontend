@@ -95,7 +95,16 @@ const SkillsList = () => {
       {isSkillPopupOpen && selectedSkill && (
         <SkillPopup
           title={selectedSkill.name}
-          levelsGrid={<LevelsGrid skill={selectedSkill} />}
+          levelsGrid={
+            <LevelsGrid
+              skill={selectedSkill}
+              nextLevel={
+                selectedSkill.current_level < selectedSkill.target_level
+                  ? true
+                  : false
+              }
+            />
+          }
           levelsArrow={<LevelsArrow skill={selectedSkill} level={shortLevel} />}
           description={selectedSkill.description}
           levels_description={selectedSkill.levels_description || {}}

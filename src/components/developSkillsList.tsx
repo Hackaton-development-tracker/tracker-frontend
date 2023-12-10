@@ -4,7 +4,7 @@ import { TSkill } from './levelelements';
 import { SKILLS_TO_IMPROVE, ACHIEVED_SKILLS } from '../utils/constants';
 
 import skillsData from '../utils/backendData/skills.json';
-import DevelopSkillList from './developSkills/developSkills';
+import DevelopSkills from './developSkills/developSkills';
 
 // skillList elements
 const SkillsListContainer = styled(Paper)({
@@ -18,22 +18,19 @@ const SkillsListContainer = styled(Paper)({
 
 // renders a list of skills with an expand and collapse buttons
 const DevelopSkillsList = () => {
-  const skillNumber = 1;
   const skillsToImprove: TSkill[] = skillsData[0].skillsToImprove || [];
   const achievedSkills: TSkill[] = skillsData[1].achievedSkills || [];
 
   return (
     <SkillsListContainer elevation={0}>
-      <DevelopSkillList
-        skillNumber={skillNumber}
+      <DevelopSkills
         header={SKILLS_TO_IMPROVE}
         skillsToImprove
         counterColor={vars.colorBlueMain}
         skillsArray={skillsToImprove}
         borderColor={vars.colorBlueMain}
       />
-      <DevelopSkillList
-        skillNumber={skillNumber}
+      <DevelopSkills
         header={ACHIEVED_SKILLS}
         counterColor={vars.colorGreen}
         skillsArray={achievedSkills}

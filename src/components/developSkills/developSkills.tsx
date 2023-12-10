@@ -17,7 +17,6 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Tag from '../tag';
 
 type SkillProps = {
-  skillNumber: number;
   header: string;
   skillsToImprove?: boolean;
   counterColor: string;
@@ -57,12 +56,18 @@ const LevelTypography = styled(Typography)({
   letterSpacing: 0,
 });
 
+const TextTypography = styled(Typography)({
+  fontFamily: 'YS Text Regular',
+  fontSize: '14px',
+  lineHeight: '20px',
+  letterSpacing: 0,
+});
+
 type ExpandedStates = {
   [key: number]: boolean;
 };
 
 export const DevelopSkills: React.FC<SkillProps> = ({
-  skillNumber,
   header,
   skillsToImprove,
   counterColor,
@@ -79,19 +84,34 @@ export const DevelopSkills: React.FC<SkillProps> = ({
   };
 
   // renders level with progress bar and description
-  const LevelBox = ({ skill, level, grade }: { skill: TSkill; level: number, grade: string }) => (
+  const LevelBox = ({
+    skill,
+    level,
+    grade,
+  }: {
+    skill: TSkill;
+    level: number;
+    grade: string;
+  }) => (
     <div className={styles.levelBox}>
       <div className={styles.levelHeader}>
         <LevelTypography>
           {LEVEL} {level}
         </LevelTypography>
-        <LevelsGrid skill={skill} />
-        <Tag text={grade} color="#fff" radius="100px" border='1px solid #DDE0E4' />
+        <LevelsGrid skill={skill} nextLevel={(level < skill.target_level || (skill.next_level && level < skill.next_level)) ? false : true}/>
+        <Tag
+          text={grade}
+          color="#fff"
+          radius="100px"
+          border="1px solid #DDE0E4"
+        />
       </div>
       {Object.keys(skill.levels_description)
         .filter((key) => parseInt(key) === level)
         .map((key) => (
-          <ListItem key={key}>{skill.levels_description[key]}</ListItem>
+          <ListItem key={key}>
+            <TextTypography>{skill.levels_description[key]}</TextTypography>
+          </ListItem>
         ))}
     </div>
   );
@@ -106,7 +126,7 @@ export const DevelopSkills: React.FC<SkillProps> = ({
         <div key={skill.id}>
           <SkillBox borderColor={borderColor}>
             <div className={styles.skillHeader}>
-              <HeaderTypography>{`${skillNumber++}.`} {skill.name}</HeaderTypography>
+              <HeaderTypography>{skill.name}</HeaderTypography>
               {skillsToImprove && (
                 <Tag
                   text={SKILLS_TO_IMPROVE}
@@ -120,7 +140,7 @@ export const DevelopSkills: React.FC<SkillProps> = ({
               in={expandedStates[skill.id] || false}
               sx={{ paddingTop: '12px' }}
             >
-              {skill.description}
+              <TextTypography>{skill.description}</TextTypography>
             </Collapse>
             <TextExpandButton
               sx={{
@@ -141,7 +161,11 @@ export const DevelopSkills: React.FC<SkillProps> = ({
             </TextExpandButton>
 
             <div className={styles.skillInfo}>
-              <LevelBox skill={skill} level={skill.current_level} grade={skill.current_level_grade}/>
+              <LevelBox
+                skill={skill}
+                level={skill.current_level}
+                grade={skill.current_level_grade}
+              />
               <ArrowForwardIosIcon
                 sx={{
                   marginTop: '16px',
@@ -157,7 +181,11 @@ export const DevelopSkills: React.FC<SkillProps> = ({
               <LevelBox
                 skill={skill}
                 level={skill.next_level ? skill.next_level : skill.target_level}
-                grade={skill.next_level_grade ? skill.next_level_grade : skill.target_level_grade}
+                grade={
+                  skill.next_level_grade
+                    ? skill.next_level_grade
+                    : skill.target_level_grade
+                }
               />
             </div>
           </SkillBox>

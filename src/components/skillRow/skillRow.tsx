@@ -57,7 +57,7 @@ export const SkillRow: React.FC<SkillProps> = ({
             <SkillTypography>{skill.name}</SkillTypography>
             <div className={styles.skillsLevels}>
               <div className={styles.skillsLevelsContainer}>
-                <LevelsGrid skill={skill} />
+                <LevelsGrid skill={skill} nextLevel={(skill.current_level < skill.target_level)? true : false}/>
                 <LevelsArrow skill={skill} level={shortLevel} />
               </div>
               <TextLinkButton>
