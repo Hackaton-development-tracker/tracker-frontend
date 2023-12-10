@@ -55,3 +55,4 @@ export const COURSES = "Рекомендуемые мини курсы";
 export const NEXT_START_DATE = "Ближайший старт";
 export const PROJECTS = "Проекты Мастерской";
 export const KNOWLEDGE_BASE = "База знаний";
+export const SKILL_DESCRIPTION = "Описание навыка";

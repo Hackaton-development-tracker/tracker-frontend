@@ -5,9 +5,10 @@ type TagProps = {
   text: string;
   color: string;
   radius?: string;
+  border?: string;
 };
 
-const Tag: React.FC<TagProps> = ({ text, color, radius }) => {
+const Tag: React.FC<TagProps> = ({ text, color, radius, border }) => {
   return (
     <Chip
       label={<span>{text}</span>}
@@ -15,6 +16,7 @@ const Tag: React.FC<TagProps> = ({ text, color, radius }) => {
         borderRadius: radius,
         backgroundColor: color,
         maxHeight: '24px',
+        border: border,
       }}
     />
   );

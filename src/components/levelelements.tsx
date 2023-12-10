@@ -9,7 +9,11 @@ export type TSkill = {
   id: number;
   name: string;
   current_level: number;
+  current_level_grade: string;
   target_level: number;
+  target_level_grade: string;
+  next_level?: number;
+  next_level_grade?: string;
   total_levels: number;
   description: string;
   levels_description: {

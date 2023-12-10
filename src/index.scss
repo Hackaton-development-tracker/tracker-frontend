@@ -75,3 +75,14 @@ body {
   width: 100%;
   min-height: 166px;
 }
+
+.shortgradecard {
+  height: min-content;
+  gap: 32px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #dde0e4;
+  min-width: 296px;
+  max-width: 592px;
+  width: 100%;
+}

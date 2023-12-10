@@ -1,20 +1,16 @@
-import { Box } from '@mui/material';
+import styles from '../developmentMap/developmentMap.module.scss';
+import { ShortCurrentGradeCard } from '../../components/currentGradeCard/currentGradeCard';
+import { ShortNextGradeCard } from '../../components/nextGradeCard/nextGradeCard';
+import DevelopSkillsList from '../../components/developSkillsList';
 
 function DevelopmentMap() {
   return (
-    <div className="layout">
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '55px 48px',
-          justifyContent: 'center',
-          width: '100%',
-          gap: '48px',
-        }}
-      >
-       
-      </Box>
+    <div className={styles.map}>
+      <div className={styles.gradecards}>
+        <ShortCurrentGradeCard />
+        <ShortNextGradeCard />
+      </div>
+      <DevelopSkillsList />
     </div>
   );
 }
