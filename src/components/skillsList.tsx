@@ -14,7 +14,7 @@ import {
 import { SecondaryButton } from './buttons';
 import { SkillRow } from './skillRow/skillRow';
 import SkillPopup from './skillPopup/skillPopup';
-import skillsData from '../utils/backendTestData/skills.json';
+// import skillsData from '../utils/backendTestData/skills.json';
 import Counter from './counter';
 import { LevelsGrid, LevelsArrow, shortLevel } from './levelelements';
 import { useAppDispatch, useAppSelector } from '../services/typeHooks';
@@ -69,11 +69,13 @@ const SkillsList = () => {
 
   const skills = useAppSelector(skillsSelect);
   console.log(skills);
-  // const skillsToImprove = skills.skillsToImprove || [];
-  // const achievedSkills = skills.achievedSkills || [];
+// data from server
+const skillsToImprove = skills.skillsToImprove || [];
+const achievedSkills = skills.achievedSkills || [];
 
-  const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
-  const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
+// data from utils/backendTestData
+// const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
+// const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 
   return (
     <Box>

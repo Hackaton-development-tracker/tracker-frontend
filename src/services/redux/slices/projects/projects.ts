@@ -4,14 +4,15 @@ import { fetchProjects } from './projectsAPI';
 interface ISpecialization {
   id: number;
 }
+
 export interface IProject {
   id: number;
   title: string;
   description: string;
   start_date: string;
   end_date: string;
-  external_resources: number; 
-  specializations: ISpecialization[];  
+  external_resources: number;
+  specializations?: ISpecialization[];  
 }
 
 interface IProjects {
@@ -24,7 +25,11 @@ export const getProjectsApi = createAsyncThunk(
     try {
       const { token } = arg;
       const response = await fetchProjects(token);
-      return fulfillWithValue(response);
+
+      // Check if the response is an array or a single object
+      const projects = Array.isArray(response) ? response : [response];
+
+      return fulfillWithValue({ recommended_projects: projects });
     } catch (error: unknown) {
       return rejectWithValue(error);
     }
@@ -45,7 +50,6 @@ const projectsSlice = createSlice({
     });    
   },
 });
-
 
 export const projectsReducer = projectsSlice.reducer;
 
