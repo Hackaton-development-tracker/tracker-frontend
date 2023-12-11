@@ -18,7 +18,7 @@ git clone git@github.com:Hackaton-development-tracker/tracker-frontend.git
 ```
 - перейти в директорию проекта, установить зависимости: 
 ```
-npm ci
+npm i
 ```
 - запустить сборку:
 ```
