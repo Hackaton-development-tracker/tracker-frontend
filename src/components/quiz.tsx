@@ -41,6 +41,9 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
 
   let questionNumber = 0;
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const handleRadioChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     questionId: string,
@@ -153,8 +156,6 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
   };
 
   const handleQuizSubmit = () => {
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
     const access = localStorage.getItem('accessToken') ?? '';
 
     const quizResultsPayload = {
@@ -162,12 +163,12 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
       answers: Object.entries(userAnswers).map(([id_question, id_answer]) => ({
         id_question: Number(id_question),
         id_answer: Array.isArray(id_answer)
-          ? id_answer.map((id) => ({ id: Number(id) })) // Explicitly cast id to number
-          : [{ id: Number(id_answer) }], // Explicitly cast id to number
+          ? id_answer.map((id) => ({ id: Number(id) }))
+          : [{ id: Number(id_answer) }],
       })),
     };
 
-    dispatch(submitQuizResults( {access, quizResultsPayload}))
+    dispatch(submitQuizResults({ access, quizResultsPayload }))
       .then(() => {
         navigate(ROUTE_STEP3);
       })

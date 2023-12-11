@@ -45,7 +45,7 @@ const initialState: QuizResults = {
     next_grade: '',
     skills_current: 0,
     skills_max: 0,
-  },
+  }
 };
 
 const quizResultsSlice = createSlice({
