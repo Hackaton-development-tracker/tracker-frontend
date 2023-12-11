@@ -1,10 +1,10 @@
 export const API_MAIN_URL = 'http://localhost:8000/api';
 export const API_BASE_URL = API_MAIN_URL + '/v1';
-export const REGISTER_URL = `${API_MAIN_URL}/v1/users/`;
-export const LOGIN_URL = `${API_MAIN_URL}/v1/auth/token/login/`;
+export const REGISTER_URL = `${API_BASE_URL}/users/`;
+export const LOGIN_URL = `${API_BASE_URL}/auth/token/login/`;
 // export const TOKEN_URL = `${API_MAIN_URL}/auth/jwt/refresh/`;
-export const LOGOUT_URL = `${API_MAIN_URL}/v1/auth/token/logout/`;
-export const GET_USER_URL = `${API_MAIN_URL}/v1/users/me/`;
+export const LOGOUT_URL = `${API_BASE_URL}/auth/token/logout/`;
+export const GET_USER_URL = `${API_BASE_URL}/users/me/`;
 
 export const TITLE = 'Карьерный трекер';
 export const ENTER_TO_SYSTEM = 'Войти в аккаунт';

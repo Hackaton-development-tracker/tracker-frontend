@@ -11,6 +11,8 @@ import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { LoginButton } from '../../components/buttons';
 import { getSpecializationApi, specializationSelect } from '../../services/redux/slices/specialization/specialization';
+import { updateSpecialization } from '../../services/redux/slices/auth/auth';
+import { ROUTE_STEP2 } from '../../utils/constants';
 // import chooseSpecsData from '../../components/data/choose_specs.json';
 
 interface SelectSmallProps {
@@ -18,7 +20,7 @@ interface SelectSmallProps {
 }
 
 function SelectSmall({ onSelectChange }: SelectSmallProps) {
-  
+  const dispatch = useAppDispatch();
   const specs = useAppSelector(specializationSelect);
   const [spec, setSpec] = React.useState('');
   
@@ -26,6 +28,7 @@ function SelectSmall({ onSelectChange }: SelectSmallProps) {
   const handleChange = (event: SelectChangeEvent) => {
     setSpec(event.target.value);
     onSelectChange(event.target.value);
+    dispatch(updateSpecialization({ id_speciality: event.target.value as unknown as number }));
   };
 
   return (
@@ -66,7 +69,7 @@ function Step1() {
 
   const handleButtonClick = () => {
     if (!isButtonDisabled) {
-      navigate('/step2');
+      navigate(ROUTE_STEP2);
     }
   };
 
