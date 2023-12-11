@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import React, { useState } from 'react';
-import { LoginButton } from './buttons';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormGroup from '@mui/material/FormGroup';
 import CheckboxTap from './checkbox';
@@ -14,6 +13,7 @@ import { getSpecId } from '../services/redux/slices/auth/auth';
 import { submitQuizResults } from '../services/redux/slices/quiz/quizRezults';
 import { ROUTE_STEP3 } from '../utils/constants';
 import { useNavigate } from 'react-router-dom';
+import { PrimaryButton } from './buttons';
 
 interface UserAnswers {
   [questionId: string]: string | string[];
