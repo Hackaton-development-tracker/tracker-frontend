@@ -66,5 +66,5 @@ docker ps
 - Елена Зотова [github](https://github.com/e-zotova)
 
 ## Скриншоты
-[Скриншот с моковыми данными](./src/static/assets/images/screenshot1.png)
-[Скриншот с данными с сервера](./src/static/assets/images/screenshot2.png)
+![Скриншот с моковыми данными](./src/static/assets/images/screenshot1.png)
+![Скриншот с данными с сервера](./src/static/assets/images/screenshot2.png)
