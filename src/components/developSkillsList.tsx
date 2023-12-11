@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { Paper, styled } from '@mui/material';
 import vars from '../static/scss/export.module.scss';
 import { SKILLS_TO_IMPROVE, ACHIEVED_SKILLS } from '../utils/constants';
-import skillsData from '../utils/backendTestData/skills.json';
+// import skillsData from '../utils/backendTestData/skills.json';
 import DevelopSkills from './developSkills/developSkills';
 import { useAppDispatch, useAppSelector } from '../services/typeHooks';
-import { getSkillsApi, skillsSelect, ISkill } from '../services/redux/slices/skills/skills';
+import { getSkillsApi, skillsSelect } from '../services/redux/slices/skills/skills';
 
 // skillList elements
 const SkillsListContainer = styled(Paper)({
@@ -30,11 +30,11 @@ const DevelopSkillsList = () => {
 
   const skills = useAppSelector(skillsSelect);
   console.log(skills);
-  // const skillsToImprove = skills.skillsToImprove || [];
-  // const achievedSkills = skills.achievedSkills || [];
+  const skillsToImprove = skills.skillsToImprove || [];
+  const achievedSkills = skills.achievedSkills || [];
   
-  const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
-  const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
+  // const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
+  // const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 
   return (
     <SkillsListContainer elevation={0}>
