@@ -11,6 +11,7 @@ import { Question } from '../services/redux/slices/quiz/quiz';
 import { useAppDispatch, useAppSelector } from '../services/typeHooks';
 import { specializationSelect } from '../services/redux/slices/specialization/specialization';
 import { getSpecId } from '../services/redux/slices/auth/auth';
+import { submitQuizResults } from '../services/redux/slices/quiz/quizRezults';
 import { ROUTE_STEP3 } from '../utils/constants';
 import { useNavigate } from 'react-router-dom';
 
@@ -154,17 +155,19 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
   const handleQuizSubmit = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const access = localStorage.getItem('accessToken') ?? '';
+
     const quizResultsPayload = {
       specialization_id: idspec,
       answers: Object.entries(userAnswers).map(([id_question, id_answer]) => ({
         id_question: Number(id_question),
         id_answer: Array.isArray(id_answer)
-          ? id_answer.map((id) => ({ id }))
-          : [{ id: id_answer }],
+          ? id_answer.map((id) => ({ id: Number(id) })) // Explicitly cast id to number
+          : [{ id: Number(id_answer) }], // Explicitly cast id to number
       })),
     };
 
-    dispatch(submitQuizResults(quizResultsPayload))
+    dispatch(submitQuizResults( {access, quizResultsPayload}))
       .then(() => {
         navigate(ROUTE_STEP3);
       })
