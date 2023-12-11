@@ -54,7 +54,7 @@ export function NextGradeCard() {
         >
           {USER_NEXT_LEVEL_ACHIEVED}
         </TextTypography>
-        <PercentTypography>{progressValue}&#37;</PercentTypography>
+        <PercentTypography>{Math.trunc(progressValue)}&#37;</PercentTypography>
       </div>
     </div>
   );
@@ -124,7 +124,7 @@ export function ShortNextGradeCard() {
         >
           {USER_NEXT_LEVEL_ACHIEVED}
         </TextTypography>
-        <PercentTypography>{progressValue}&#37;</PercentTypography>
+        <PercentTypography>{Math.trunc(progressValue)}&#37;</PercentTypography>
       </div>
     </div>
   );
