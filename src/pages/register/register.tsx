@@ -14,7 +14,7 @@ import {
   LoginInput,
   SuccessLabel,
 } from '../../components/formelements';
-import { LoginButton } from '../../components/buttons';
+import { PrimaryButton } from '../../components/buttons';
 import {
   ENTER,
   REGISTRATION,
@@ -230,14 +230,14 @@ const RegisterPage = () => {
               )}
             </div>
           </FormControl>
-          <LoginButton
+          <PrimaryButton
             fullWidth
             type="submit"
             variant="contained"
             sx={{ mb: 2 }}
           >
             {REGISTRATION}
-          </LoginButton>
+          </PrimaryButton>
           <Snackbar
             open={open}
             autoHideDuration={5000}

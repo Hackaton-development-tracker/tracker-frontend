@@ -1,0 +1,39 @@
+.skillsPopup {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  &__description {
+    margin: 0;
+    padding-top: 18px;
+    padding-bottom: 24px;
+  }
+  
+  &__expand {
+    max-height: 366px;
+    overflow: auto;
+  }
+  
+  &__level {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    padding-top: 18px;
+  }
+  
+  &__level_block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  &__level_title {
+    margin: 0;
+    padding-bottom: 4px;
+  }
+}
+
+

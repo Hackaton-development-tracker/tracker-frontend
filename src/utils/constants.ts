@@ -26,7 +26,36 @@ export const ROUTE_STEP3 = '/step3';
 export const ROUTE_REGISTER = '/register';
 export const ROUTE_FORGOT_PASS = '/forgot-password';
 export const ROUTE_RESET_PASS = '/reset-password';
-export const ROUTE_TECH_SUPPORT = '/404';
+export const ROUTE_NOT_FOUND = '/404';
+export const ROUTE_STEP1 = '/step1';
+export const ROUTE_PROFILE = '/profile';
+export const ROUTE_DEVELOPMENT_MAP = '/map';
 
 export const ACCESS_TOKEN = 'accessToken';
 export const REFRESH_TOKEN = 'refreshToken';
+
+export const SKILLS_PROFILE = 'Профиль навыков';
+export const MAP = 'Карта развития';
+
+export const USER_TITLE = 'Специальность';
+export const USER_CURRENT_LEVEL = 'Текущий грейд';
+export const USER_CURRENT_LEVEL_ACHIEVED = 'на';
+export const OPEN_MAP = 'Открыть карту развития';
+export const USER_NEXT_LEVEL = 'Следующий грейд';
+export const USER_NEXT_LEVEL_ACHIEVED = 'достигнут на';
+export const TEST_RETAKE_DAYS = 'Тест станет доступен через: ';
+export const RETAKE_TEST = 'Пройти тест';
+
+export const SKILLS_TO_IMPROVE = 'Рекомендуем улучшить';
+export const MORE_INFO = 'Подробнее';
+export const EXPAND_ACHIEVED_SKILLS = 'Показать достигнутые навыки';
+export const ACHIEVED_SKILLS = 'Достигнутые навыки';
+export const COLLAPSE = 'Свернуть';
+export const LEVEL = 'Уровень';
+export const EXPAND_LEVELS = 'Показать уровни навыка';
+
+export const COURSES = "Рекомендуемые мини курсы";
+export const NEXT_START_DATE = "Ближайший старт";
+export const PROJECTS = "Проекты Мастерской";
+export const KNOWLEDGE_BASE = "База знаний";
+export const SKILL_DESCRIPTION = "Описание навыка";

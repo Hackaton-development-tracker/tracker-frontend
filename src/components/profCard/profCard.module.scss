@@ -1,0 +1,54 @@
+.profcard {
+  box-sizing: border-box;
+  min-width: 236px;
+  max-width: 389px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &__imagecontainer {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* Ensure the overlay doesn't overflow */
+  }
+  
+  &__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F9FAFB; 
+    transition: height 0.3s ease, opacity 0.3s ease;
+    z-index: 1; 
+  }
+  
+  &__image {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  &:hover &__overlay {
+    height: 0;
+    opacity: 0;
+  }
+
+}
+
+.cardtext {
+  padding: 16px;
+  gap: 16px;
+  min-height: 236px;
+  justify-content: space-between;
+}

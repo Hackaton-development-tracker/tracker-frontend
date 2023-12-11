@@ -1,0 +1,12 @@
+.current {
+  &__title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__content {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+}

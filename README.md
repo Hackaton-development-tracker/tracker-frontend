@@ -1,41 +1,66 @@
-# FrontEnd React + TypeScript + Vite
+# Yandex Praktikum Hackathon 2023
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Проект для образовательной платформы Яндекс Практикум.
 
-Currently, two official plugins are available:
+Этот проект представляет собой фронтенд для MVP Трекера развития. Этот проект добавляет новый функционал к сервису Карьерный трекер. Можно узнать свой текущий уровень навыков и грейд, посмотреть список навыков необходимых для развития, ознакомится с рекомендациями курсов, проектами Мастерской и ресурсами Базы знаний.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Пользователям доступна возможность выбора специальности и прохождение теста, чтобы узнать текущий уровень навыков, а также ознакомиться с рекомендациями, чтобы в дальнейшем повысить свой уровень компетенций.
+
+Кроме того, на основе выбранной специальности и результатах пройденного теста формируются рекомендации на курсы яндекс практикума, проекты мастерской и ресурсы базы знаний.
+
+Для доступа к функционалу требуется пройти бесплатную регистрацию.
 
 
+## Инструкция по запуску ##
+- клонировать репозиторий
+```
+git clone git@github.com:Hackaton-development-tracker/tracker-frontend.git
+```
+- перейти в директорию проекта, установить зависимости: 
+```
+npm i
+```
+- запустить сборку:
+```
+npm run build
+```
+- запустить проект: 
+```
+npm run dev
+```
 
-## How to use Docker
-
-### In the terminal navigate to your project directory, then execute
+## Как использовать Docker ##
+- из папки с проектом выполнить команду:
 ```
 docker build -t [your docker image name] .
 ```
-To check your Docker Image, execute
+- чтобы проверить доступные образы, выполнить
 ```
 docker images
 ```
-It will show the list of images available on your system
-
-### Run the Docker Container
+- запустить контейнер
 ```
 docker run -d --rm -p 5173:5173 --name [name of the container] [your docker image name]
 ```
-Flag used in the command
--d - To run the container in the background (Detach Mode )
---rm - To delete the container, when you stop the container
--p - Port Mapping between container and outside world.
-5173:5173 - [Port access from Browser]: [Port exposed from the container]
-
-To check whether your docker container is running or not, execute
+- Используемые флаги:
+```
+-d - Запустить контейнер в фоновом режиме (режим отсоединения).
+--rm - Удалить контейнер при его остановке.
+-p - Отображение портов между контейнером и внешним миром.
+```
+- чтобы проверить, работает ли  контейнер Docker, выполнить команду:
 ```
 docker ps
 ```
-It will show the list of containers running on your system
 
-### Open the App in the Browser
-Open the Browser and access http://localhost:[Port] as per the configuration we did so far it should be http://localhost:5173
+## Используемые технологии ##
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://ru.reactjs.org/)
+- [React Router](https://reactrouter.com/en/main)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Material-UI](https://material-ui.com/)
+- [React Hook Form](https://www.react-hook-form.com/)
+
+## Команда фронтенд-разработчиков
+- Андрей Симонов [github](https://github.com/2web)
+- Елена Зотова [github](https://github.com/e-zotova)

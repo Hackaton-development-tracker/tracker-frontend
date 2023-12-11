@@ -1,51 +1,17 @@
 import { Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import { LoginButton } from '../../components/buttons';
+import { PrimaryButton } from '../../components/buttons';
 import { COME_BACK, NOT_FOUND } from '../../utils/constants';
 import serverError404 from '../../static/assets/images/serverError404.png';
+import styles from './notfound404.module.scss';
 
 function NotFound404() {
   return (
     <div className="layout">
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          height: '100vh',
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '120px 144px',
-            maxWidth: '1280px',
-            minWidth: '992px',
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'start',
-              alignItems: 'start',
-              width: '286px',
-              gap: '48px',
-            }}
-          >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'start',
-                alignItems: 'start',
-                gap: '12px',
-              }}
-            >
+      <div className={styles.notfound}>
+        <div className={styles.notfoundcontainer}>
+          <div className={styles.notfoundcontent}>
+            <div className={styles.notfoundtitle}>
               <Typography
                 variant="h1"
                 component="h1"
@@ -74,9 +40,9 @@ function NotFound404() {
               >
                 {NOT_FOUND}
               </Typography>
-            </Box>
+            </div>
             <Link to={'/'}>
-              <LoginButton
+              <PrimaryButton
                 type="button"
                 variant="contained"
                 sx={{
@@ -87,9 +53,9 @@ function NotFound404() {
                 }}
               >
                 {COME_BACK}
-              </LoginButton>
+              </PrimaryButton>
             </Link>
-          </Box>
+          </div>
           <Box
             sx={{
               '& img': {
@@ -101,8 +67,8 @@ function NotFound404() {
           >
             <img src={serverError404} alt="Ошибка сервера 404"></img>
           </Box>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </div>
   );
 }

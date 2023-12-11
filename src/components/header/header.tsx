@@ -1,26 +1,39 @@
+import { Toolbar } from '@mui/material';
+import { SKILLS_PROFILE, MAP } from '../../utils/constants';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './header.module.scss';
-// import { RootState } from '../../services/redux/store';
-// import { useNavigate } from 'react-router-dom';
-// import { EXIT, ROUTE_LOGIN } from '../../utils/constants';
-// import { logoutUser } from '../../services/redux/slices/auth/auth';
-// import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
-
+import { TextTypography } from '../cardelements';
 
 const Header = () => {
-  // const isLoggedIn = useAppSelector(
-  //   (state: RootState) => state.user.isLoggedIn,
-  // );
-  // const mail = useAppSelector((state: RootState) => state.user.user?.email);
-  // const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
-  // const access = localStorage.getItem('accessToken') ?? '';
-  // const refresh = localStorage.getItem('refreshToken') ?? '';
+  const location = useLocation();
 
   return (
-    <div className={styles.header}>
-      <div>
+    <Toolbar
+      sx={{
+        backgroundColor: '#1A1B22',
+      }}
+    >
+      <div className={styles.header__container}>
+        <div className={styles.header__links}>
+          <NavLink
+            to="/profile"
+            className={`${styles.header__menu_link} ${
+              location.pathname === '/profile' ? styles.header__menu_active : ''
+            }`}
+          >
+            <TextTypography>{SKILLS_PROFILE}</TextTypography>
+          </NavLink>
+          <NavLink
+            to="/map"
+            className={`${styles.header__menu_link} ${
+              location.pathname === '/map' ? styles.header__menu_active : ''
+            }`}
+          >
+            <TextTypography>{MAP}</TextTypography>
+          </NavLink>
+        </div>
       </div>
-    </div>
+    </Toolbar>
   );
 };
 

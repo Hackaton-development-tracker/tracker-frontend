@@ -1,0 +1,28 @@
+.next {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 90px;
+  }
+  
+  &__title {
+    display: flex;
+    align-items: baseline;
+  }
+  
+  &__content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 16px;
+  }
+  
+}
+
+.countdown {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

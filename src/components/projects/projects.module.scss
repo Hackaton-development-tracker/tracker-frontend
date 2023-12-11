@@ -1,0 +1,45 @@
+.project {
+  &__container {
+    display: flex;
+    gap: 16px;
+    padding-top: 24px;
+    max-height: 448px;
+  }
+
+  &__card {
+    border: 1px solid #dde0e4;
+    padding: 16px;
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__title_container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  &__title {
+    display: flex;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 48px;
+    padding-top: 24px;
+  }
+
+  &__info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
