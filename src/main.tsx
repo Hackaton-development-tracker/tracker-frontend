@@ -24,7 +24,7 @@ import NotFound404 from './pages/notfound404/notfound404';
 import RegisterPage from './pages/register/register';
 import DevelopmentMap from './pages/developmentMap/developmentMap';
 import Loader from './components/loader';
-import { logoutUser } from './services/redux/slices/auth/auth';
+import { getProfileUser, logoutUser } from './services/redux/slices/auth/auth';
 import SkillsProfile from './pages/skillsProfile/skillsProfile';
 
 const RequireAuth = ({
@@ -51,12 +51,11 @@ const App = () => {
     (state: RootState) => state.user.isLoggedIn,
   );
   const access = localStorage.getItem('accessToken') ?? '';
-  const refresh = localStorage.getItem('refreshToken') ?? '';
   useEffect(() => {
     if (access.length !== 0) {
-      // dispatch(getProfileUser({ access }));
+      dispatch(getProfileUser({ access }));
     } else {
-      dispatch(logoutUser({ access, refresh }));
+      dispatch(logoutUser({ access }));
     }
   }, [dispatch]);
 

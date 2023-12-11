@@ -20,13 +20,11 @@ import {
 import ProgressBar from '../progressBar';
 import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
-import userData from '../../utils/backendTestData/user.json';
-
-const nextGradeTitle = userData.next_grade?.title
-const nextTestDate = userData.next_test_date;
+// import userData from '../../utils/backendTestData/user.json';
+import { IUser } from '../../services/redux/slices/auth/auth';
 
 // renders main grade card with next grade
-export function NextGradeCard() {
+export function NextGradeCard({ user }: { user: IUser }) {
   const navigate = useNavigate();
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
@@ -44,7 +42,7 @@ export function NextGradeCard() {
             color: vars.colorBlueMain,
           }}
         >
-          {nextGradeTitle}
+          {user.next_grade.title}
         </GradeTypography>
         <TextTypography
           sx={{
@@ -69,18 +67,22 @@ export function NextGradeCard() {
       </div>
       <div className={styles.countdown}>
         <div style={{ display: 'flex' }}>
-          <SmallTextTypography
-            sx={{
-              paddingRight: '4px',
-            }}
-          >
-            {TEST_RETAKE_DAYS}
-          </SmallTextTypography>
-          <CountdownTimer
-            nextTestDate={nextTestDate}
-            timeRemaining={timeRemaining}
-            setTimeRemaining={setTimeRemaining}
-          />
+          {timeRemaining && (
+            <>
+              <SmallTextTypography
+                sx={{
+                  paddingRight: '4px',
+                }}
+              >
+                {TEST_RETAKE_DAYS}
+              </SmallTextTypography>
+              <CountdownTimer
+                nextTestDate={user.next_test_date}
+                timeRemaining={timeRemaining}
+                setTimeRemaining={setTimeRemaining}
+              />
+            </>
+          )}
         </div>
         <PrimaryButton
           onClick={handleTestRetake}
@@ -103,7 +105,7 @@ export function NextGradeCard() {
 }
 
 // renders short card with next grade
-export function ShortNextGradeCard() {
+export function ShortNextGradeCard({ user }: { user: IUser }) {
   const [progressValue, setProgressValue] = useState(0);
 
   const nextTitle = (
@@ -114,7 +116,7 @@ export function ShortNextGradeCard() {
             color: vars.colorBlueMain,
           }}
         >
-          {nextGradeTitle}
+          {user.next_grade.title}
         </GradeTypography>
         <TextTypography
           sx={{
