@@ -166,11 +166,9 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
 
     dispatch(submitQuizResults(quizResultsPayload))
       .then(() => {
-        // Redirect to Step 3 after receiving the results
         navigate(ROUTE_STEP3);
       })
       .catch((error: unknown) => {
-        // Handle error, e.g., show an alert
         console.error('Failed to submit quiz results:', error);
       });
   };
