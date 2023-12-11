@@ -197,14 +197,14 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
           style={{ marginTop: '40px' }}
           sx={{ '& button': { m: 0, minWidth: 250, textTransform: 'none' } }}
         >
-          <LoginButton
+          <PrimaryButton
             variant="contained"
             size="large"
             disabled={isButtonDisabled}
             onClick={handleQuizSubmit}
           >
             Узнать результат
-          </LoginButton>
+          </PrimaryButton>
           <span
             style={{ marginLeft: '16px', fontWeight: '500', fontSize: '16px' }}
           >

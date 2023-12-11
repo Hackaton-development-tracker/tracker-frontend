@@ -27,7 +27,7 @@ import {
   ErrorMessage,
   LoginInput,
 } from '../../components/formelements';
-import { LoginButton } from '../../components/buttons';
+import { PrimaryButton } from '../../components/buttons';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -155,14 +155,14 @@ const LoginPage = () => {
               )}
             </div>
           </FormControl>
-          <LoginButton
+          <PrimaryButton
             fullWidth
             type="submit"
             variant="contained"
             sx={{ mb: 2 }}
           >
             {ENTER}
-          </LoginButton>
+          </PrimaryButton>
         </form>
       </div>
       <p className="auth-text">

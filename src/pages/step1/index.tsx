@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
 import FormControl from '@mui/material/FormControl';
@@ -7,13 +6,12 @@ import InputLabel from '@mui/material/InputLabel';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import React, { useEffect } from 'react';
-// import Button from '@mui/material/Button';
+
 import { Box } from '@mui/material';
-import { LoginButton } from '../../components/buttons';
+import { PrimaryButton } from '../../components/buttons';
 import { getSpecializationApi, specializationSelect } from '../../services/redux/slices/specialization/specialization';
 import { updateSpecialization } from '../../services/redux/slices/auth/auth';
 import { ROUTE_STEP2 } from '../../utils/constants';
-// import chooseSpecsData from '../../components/data/choose_specs.json';
 
 interface SelectSmallProps {
   onSelectChange: (value: string) => void;
@@ -74,7 +72,7 @@ function Step1() {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className={styles.mediumContentBlock}>
         <div className={styles.pictureRight}>
           <h3>Добро пожаловать в трекер развития!</h3>
@@ -123,14 +121,14 @@ function Step1() {
         <Box
           sx={{ '& button': { m: 0, minWidth: 250, textTransform: 'none' } }}
         >
-          <LoginButton
+          <PrimaryButton
             variant="contained"
             size="large"
             disabled={isButtonDisabled}
             onClick={handleButtonClick}
           >
             Начать тест
-          </LoginButton>
+          </PrimaryButton>
         </Box>
       </div>
     </div>

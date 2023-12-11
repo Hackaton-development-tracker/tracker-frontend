@@ -1,9 +1,8 @@
 import Link from '@mui/material/Link';
 import { useNavigate } from 'react-router-dom';
-// import styles from './index.module.scss';
 import Box from '@mui/material/Box';
 import QuizComponent from '../../components/quiz';
-// import quizData from '../../components/data/quiz.json';
+
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
 import { getSpecId } from '../../services/redux/slices/auth/auth';
@@ -27,7 +26,7 @@ function Step2() {
   }
 
   return (
-    <div>
+    <div className="container">
       <Box style={{ marginBottom: '24px' }}>
         <Link
           className="link--back"

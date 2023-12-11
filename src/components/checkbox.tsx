@@ -1,5 +1,5 @@
 import { Checkbox, styled } from '@mui/material';
-import vars from '@/static/scss/export.module.scss';
+import vars from '../static/scss/export.module.scss';
 
 const CustomCheckbox = styled(Checkbox)(() => ({
   '&.MuiCheckbox-root': {

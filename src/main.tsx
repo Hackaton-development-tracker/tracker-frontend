@@ -11,19 +11,24 @@ import {
   ROUTE_LOGIN,
   ROUTE_LOGOUT,
   ROUTE_REGISTER,
+  ROUTE_PROFILE,
+  ROUTE_DEVELOPMENT_MAP,
   ROUTE_STEP1,
   ROUTE_STEP2,
   ROUTE_STEP3,
 } from './utils/constants';
-import LoginPage from './pages/login/login';
-import NotFound404 from './pages/notfound404/notfound404';
-import RegisterPage from './pages/register/register';
 import Step1 from './pages/step1';
 import Step2 from './pages/step2';
 import Step3 from './pages/step3';
+import LoginPage from './pages/login/login';
+import NotFound404 from './pages/notfound404/notfound404';
+import RegisterPage from './pages/register/register';
+import DevelopmentMap from './pages/developmentMap/developmentMap';
 import Loader from './components/loader';
 import { getProfileUser, logoutUser } from './services/redux/slices/auth/auth';
 import LogoutPage from './pages/logout/logout';
+import { logoutUser } from './services/redux/slices/auth/auth';
+import SkillsProfile from './pages/skillsProfile/skillsProfile';
 
 const RequireAuth = ({
   children: children,
@@ -118,6 +123,9 @@ const App = () => {
             </RequireAuth>
           }
         ></Route>
+        <Route path={ROUTE_HOME} element={<Navigate to={ROUTE_PROFILE} />} />
+        <Route path={ROUTE_PROFILE} element={<SkillsProfile />} />
+        <Route path={ROUTE_DEVELOPMENT_MAP} element={<DevelopmentMap />} />
       </Route>
       <Route
         path={ROUTE_LOGIN}

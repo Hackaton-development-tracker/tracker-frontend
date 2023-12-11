@@ -1,0 +1,15 @@
+.profile {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1296px;
+  gap: 80px;
+}
+
+.gradecards {
+  display: flex;
+  gap: 16px;
+}

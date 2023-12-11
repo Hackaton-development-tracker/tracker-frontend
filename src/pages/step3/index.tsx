@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 import { Box } from '@mui/material';
-import { LoginButton } from '../../components/buttons';
+
+import { PrimaryButton } from '../../components/buttons';
 import { useAppSelector } from '../../services/typeHooks';
 import { selectQuizResults } from '../../services/redux/slices/quiz/quizRezults';
 
@@ -15,7 +16,7 @@ function Step3() {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className={styles.mediumContentBlock}>
         <div className={styles.pictureRight2}>
           <p style={{ marginBottom: '8px' }}>
@@ -56,13 +57,13 @@ function Step3() {
           <Box
             sx={{ '& button': { m: 0, minWidth: 250, textTransform: 'none' } }}
           >
-            <LoginButton
+            <PrimaryButton
               variant="contained"
               size="large"
               onClick={handleButtonClick}
             >
               Открыть профиль навыков
-            </LoginButton>
+            </PrimaryButton>
           </Box>
         </div>
       </div>

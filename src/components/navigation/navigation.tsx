@@ -21,7 +21,6 @@ import {
 
 const MainMenu: React.FC = () => {
   const location = useLocation();
-  // const token = localStorage.getItem('accessToken') ?? '';
 
   return (
     <div className="open">
@@ -125,7 +124,6 @@ const Profile: React.FC = () => {
 
 const Navigation: FC = () => {
   return (
-    <div style={{ display: 'flex' }}>
       <div className="menu">
         <div className="sticky">
           <Profile />
@@ -133,7 +131,6 @@ const Navigation: FC = () => {
         </div>
         <SettingsMenu />
       </div>
-    </div>
   );
 };
 

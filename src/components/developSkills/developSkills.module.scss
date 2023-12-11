@@ -1,0 +1,35 @@
+.skill {
+  &__info {
+    display: grid;
+    grid-template-columns: 1fr 24pt 1fr;
+    grid-template-rows: 1fr;
+    gap: 24px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.level {
+  &__box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
