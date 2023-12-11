@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import React, { useState } from 'react';
-import { LoginButton } from './buttons';
+import { PrimaryButton } from './buttons';
 
 interface Option {
   id: number;
@@ -110,14 +110,14 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ quizzes }) => {
           style={{ marginTop: '40px' }}
           sx={{ '& button': { m: 0, minWidth: 250, textTransform: 'none' } }}
         >
-          <LoginButton
+          <PrimaryButton
             variant="contained"
             size="large"
             // disabled={isButtonDisabled}
             onClick={() => console.log('Ответы пользователя:', userAnswers)}
           >
             Узнать результат
-          </LoginButton>
+          </PrimaryButton>
           <span
             style={{ marginLeft: '16px', fontWeight: '500', fontSize: '16px' }}
           >

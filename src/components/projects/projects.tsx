@@ -22,6 +22,7 @@ const Projects = () => {
     dispatch(getProjectsApi({ token }));
   }, [dispatch]);
 
+  // data from utils/backendTestData
   //const sourceList = sources.recommended_projects || [];
 
   const projectTitle = (project: IProject) => (

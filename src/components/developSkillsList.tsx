@@ -5,7 +5,7 @@ import { SKILLS_TO_IMPROVE, ACHIEVED_SKILLS } from '../utils/constants';
 // import skillsData from '../utils/backendTestData/skills.json';
 import DevelopSkills from './developSkills/developSkills';
 import { useAppDispatch, useAppSelector } from '../services/typeHooks';
-import { getSkillsApi, skillsSelect} from '../services/redux/slices/skills/skills';
+import { getSkillsApi, skillsSelect } from '../services/redux/slices/skills/skills';
 
 // skillList elements
 const SkillsListContainer = styled(Paper)({
@@ -30,9 +30,11 @@ const DevelopSkillsList = () => {
 
   const skills = useAppSelector(skillsSelect);
   console.log(skills);
+  // data from server
   const skillsToImprove = skills.skillsToImprove || [];
   const achievedSkills = skills.achievedSkills || [];
   
+  // data from utils/backendTestData
   // const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
   // const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 
