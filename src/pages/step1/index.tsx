@@ -1,26 +1,32 @@
-// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
 import FormControl from '@mui/material/FormControl';
 import styles from './index.module.scss';
 import InputLabel from '@mui/material/InputLabel';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import React from 'react';
-// import Button from '@mui/material/Button';
+import React, { useEffect } from 'react';
+
 import { Box } from '@mui/material';
 import { PrimaryButton } from '../../components/buttons';
-import chooseSpecsData from '../../components/data/choose_specs.json';
+import { getSpecializationApi, specializationSelect } from '../../services/redux/slices/specialization/specialization';
+import { updateSpecialization } from '../../services/redux/slices/auth/auth';
+import { ROUTE_STEP2 } from '../../utils/constants';
 
 interface SelectSmallProps {
   onSelectChange: (value: string) => void;
 }
 
 function SelectSmall({ onSelectChange }: SelectSmallProps) {
+  const dispatch = useAppDispatch();
+  const specs = useAppSelector(specializationSelect);
   const [spec, setSpec] = React.useState('');
-
+  
+  
   const handleChange = (event: SelectChangeEvent) => {
     setSpec(event.target.value);
     onSelectChange(event.target.value);
+    dispatch(updateSpecialization({ id_speciality: event.target.value as unknown as number }));
   };
 
   return (
@@ -33,22 +39,27 @@ function SelectSmall({ onSelectChange }: SelectSmallProps) {
         label=""
         onChange={handleChange}
       >
-        {
-          chooseSpecsData.map((item) => (
+        {'specializations' in specs &&
+          specs.specializations.map((item) => (
             <MenuItem key={item.id} value={item.id}>
               {item.title}
             </MenuItem>
-          ))
-        }
+          ))}
       </Select>
     </FormControl>
   );
 }
 
 function Step1() {
+  const dispatch = useAppDispatch();
   const [selectedSpec, setSelectedSpec] = React.useState('');
+  const token = localStorage.getItem('accessToken') ?? '';
   const navigate = useNavigate();
-
+  useEffect(() => {
+    dispatch(
+      getSpecializationApi({ token }),
+    );
+  },[]);
   const handleSelectChange = (value: string) => {
     setSelectedSpec(value);
   };
@@ -56,7 +67,7 @@ function Step1() {
 
   const handleButtonClick = () => {
     if (!isButtonDisabled) {
-      navigate('/step2');
+      navigate(ROUTE_STEP2);
     }
   };
 

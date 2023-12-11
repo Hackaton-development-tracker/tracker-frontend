@@ -2,13 +2,15 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login, logout, getuser, register } from './authAPI';
 
 export interface IUser {
+  id: number;
   email: string;
-  refreshToken: string;
-  accessToken: string;
 }
 
 interface IAuthState {
-  user: IUser | null;
+  user: IUser;
+  id_speciality: number;
+  title_speciality: string;
+  accessToken: string;
   isLoading: boolean;
   isLoggedIn: boolean;
   error: string | null;
@@ -32,11 +34,11 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   '@@auth/logout',
   async (
-    payload: { access: string; refresh: string },
+    payload: { access: string },
     { fulfillWithValue, rejectWithValue },
   ) => {
     try {
-      const response = await logout(payload.access, payload.refresh);
+      const response = await logout(payload.access);
       return fulfillWithValue(response);
     } catch (error: unknown) {
       return rejectWithValue({ error: 'Failed to logout' }); // Возвращаем объект с ошибкой
@@ -75,8 +77,21 @@ export const registerUser = createAsyncThunk(
   },
 );
 
+export const updateSpecialization = createAsyncThunk(
+  '@@auth/updateSpecialization',
+  async (payload: { id_speciality: number }, { fulfillWithValue }) => {
+    return fulfillWithValue(payload);
+  }
+);
+
 const initialState: IAuthState = {
-  user: null,
+  user: {
+    id: 0,
+    email: '',
+  } as IUser,
+  id_speciality: 0,
+  title_speciality: '',
+  accessToken: '',
   isLoading: true,
   isLoggedIn: false,
   error: null,
@@ -93,15 +108,19 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        localStorage.setItem('accessToken', action.payload.access);
-        localStorage.setItem('refreshToken', action.payload.refresh);
+        localStorage.setItem('accessToken', action.payload.auth_token);
+        // localStorage.setItem('refreshToken', action.payload.refresh);
         state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload;
+        state.accessToken = action.payload.auth_token;
+        state.id_speciality = 0;
+        state.title_speciality = '';
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = false;
+        // state.user = null;
         state.error = action.error.message as string;
       })
       .addCase(logoutUser.pending, (state) => {
@@ -110,15 +129,22 @@ const authSlice = createSlice({
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        // localStorage.removeItem('refreshToken');
         state.isLoading = false;
         state.isLoggedIn = false;
+        state.user = {
+          id: 0,
+          email: '',
+          id_speciality: 0,
+          title_speciality: '',
+          accessToken: '',
+        } as IUser;
         console.log(action);
         // state.user = action.payload;
       })
       .addCase(logoutUser.rejected, (state, action) => {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        // localStorage.removeItem('refreshToken');
         state.isLoading = false;
         state.isLoggedIn = false;
         state.error = action.error.message as string;
@@ -146,18 +172,22 @@ const authSlice = createSlice({
       .addCase(getProfileUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
+      }).addCase(updateSpecialization.fulfilled, (state, action) => {
+        state.id_speciality = action.payload.id_speciality;
+        // Optionally, you can update the title_speciality here if needed
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
 
-export const selectUser = (state: { auth: IAuthState }) => state.auth.user;
-export const selectLoggedIn = (state: { auth: IAuthState }) =>
-  state.auth.isLoggedIn;
-export const selectLoading = (state: { auth: IAuthState }) =>
-  state.auth.isLoading;
-export const selectError = (state: { auth: IAuthState }) => state.auth.error;
+export const selectUser = (state: { user: IAuthState }) => state.user;
+export const selectLoggedIn = (state: { isLoggedIn: IAuthState }) =>
+  state.isLoggedIn;
+export const selectLoading = (state: { isLoading: IAuthState }) =>
+  state.isLoading;
+export const selectError = (state: { error: IAuthState }) => state.error;
 
-export const getToken = (state: { auth: IAuthState }) =>
-  state.auth.user?.accessToken;
+// export const getToken = (state: { user: IAuthState }) => state.user.accessToken;
+
+export const getSpecId = (state: { user: IAuthState }) => state.user.id_speciality;

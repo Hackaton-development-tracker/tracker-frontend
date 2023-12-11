@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from './services/typeHooks';
 import {
   ROUTE_HOME,
   ROUTE_LOGIN,
+  ROUTE_LOGOUT,
   ROUTE_REGISTER,
   ROUTE_PROFILE,
   ROUTE_DEVELOPMENT_MAP,
@@ -24,6 +25,8 @@ import NotFound404 from './pages/notfound404/notfound404';
 import RegisterPage from './pages/register/register';
 import DevelopmentMap from './pages/developmentMap/developmentMap';
 import Loader from './components/loader';
+import { getProfileUser, logoutUser } from './services/redux/slices/auth/auth';
+import LogoutPage from './pages/logout/logout';
 import { logoutUser } from './services/redux/slices/auth/auth';
 import SkillsProfile from './pages/skillsProfile/skillsProfile';
 
@@ -41,7 +44,7 @@ const RequireAuth = ({
   if (isLoading === false)
     if (onlyAuth === true)
       return isLoggedIn === true ? children : <Navigate to={ROUTE_LOGIN} />;
-    else return isLoggedIn === false ? children : <Navigate to={ROUTE_HOME} />;
+    else return isLoggedIn === false ? children : <Navigate to={ROUTE_STEP1} />;
 };
 
 const App = () => {
@@ -51,12 +54,11 @@ const App = () => {
     (state: RootState) => state.user.isLoggedIn,
   );
   const access = localStorage.getItem('accessToken') ?? '';
-  const refresh = localStorage.getItem('refreshToken') ?? '';
   useEffect(() => {
     if (access.length !== 0) {
-      // dispatch(getProfileUser({ access }));
+      dispatch(getProfileUser({ access }));
     } else {
-      dispatch(logoutUser({ access, refresh }));
+      dispatch(logoutUser({ access }));
     }
   }, [dispatch]);
 
@@ -105,6 +107,20 @@ const App = () => {
             <section className="page">
               <Step3 />
             </section>
+          }
+        ></Route>
+        <Route
+          path={ROUTE_LOGOUT}
+          element={
+            <RequireAuth
+              onlyAuth={true}
+              isLoggedIn={isLoggedIn}
+              isLoading={isLoading}
+            >
+              <section className="auth-page">
+                <LogoutPage />
+              </section>
+            </RequireAuth>
           }
         ></Route>
         <Route path={ROUTE_HOME} element={<Navigate to={ROUTE_PROFILE} />} />
