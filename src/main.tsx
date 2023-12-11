@@ -27,7 +27,6 @@ import DevelopmentMap from './pages/developmentMap/developmentMap';
 import Loader from './components/loader';
 import { getProfileUser, logoutUser } from './services/redux/slices/auth/auth';
 import LogoutPage from './pages/logout/logout';
-import { logoutUser } from './services/redux/slices/auth/auth';
 import SkillsProfile from './pages/skillsProfile/skillsProfile';
 
 const RequireAuth = ({
