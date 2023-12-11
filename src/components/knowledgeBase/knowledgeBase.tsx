@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
 import styles from './knowledgeBase.module.scss';
-import knowledgeBase from '../../utils/backendTestData/knowledgeBase.json';
 import { Card } from '../card/card';
 import { KNOWLEDGE_BASE } from '../../utils/constants';
 import { SourceTypography, TitleTypography, TextTypography, GreyTypography } from '../cardelements';
-import vars from '../../static/scss/export.module.scss';
-import Tag from '../tag';
-import { getSourceColor } from '../../utils/helpers/getSourceColor';
+// import vars from '../../static/scss/export.module.scss';
+// import Tag from '../tag';
 import { IKnowledge, knowledgeSelect, getKnowledgeApi  } from '../../services/redux/slices/knowledge/knowledge';
 import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
 
-// renders knowledge base with sources
 const KnowledgeBase = () => {
   const dispatch = useAppDispatch();
   const token = localStorage.getItem('accessToken') ?? '';
@@ -21,19 +18,15 @@ const KnowledgeBase = () => {
 
   const sources = useAppSelector(knowledgeSelect);
   console.log(sources);
-  //const sourceList = sources.knowledge_base || [];
+  const sourceList = sources.knowledge_base || [];
 
   const sourceTitle = (source: IKnowledge) => (
     <>
       <div className={styles.source__title}>
-        <SourceTypography>{source.title}</SourceTypography>
+        <SourceTypography>{source.theme}</SourceTypography>
         <GreyTypography>{source.author}</GreyTypography>
       </div>
-      <Tag
-        text={source.type}
-        color={getSourceColor(source.type)}
-        radius="100px"
-      />
+
     </>
   );
 
@@ -42,13 +35,6 @@ const KnowledgeBase = () => {
       <div className={styles.source__description}>
         <TextTypography>{source.description}</TextTypography>
       </div>
-      <div className={styles.sourceTags}>
-        {source.tags.map((tag) => {
-          return (
-            <Tag key={tag} text={tag} color={vars.colorGrey} radius="6px" />
-          );
-        })}
-      </div>
     </div>
   );
 
@@ -56,7 +42,7 @@ const KnowledgeBase = () => {
     <div>
       <TitleTypography>{KNOWLEDGE_BASE}</TitleTypography>
       <div className={styles.source__container}>
-        {knowledgeBase[0].knowledge_base.map((source) => (
+        {sourceList.map((source) => (
           <Card
             key={source.id}
             title={sourceTitle(source)}

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './courses.module.scss';
-import coursesData from '../../utils/backendTestData/courses.json';
+// import coursesData from '../../utils/backendTestData/courses.json';
 import { ProfCard } from '../profCard/profCard';
 import { COURSES, NEXT_START_DATE, MORE_INFO } from '../../utils/constants';
 import { TextTypography, GreyTypography, TitleTypography } from '../cardelements';
 import {
-  hoursToDaysOrMonths,
+  // hoursToDaysOrMonths,
   formattedDate,
 } from '../../utils/helpers/formatTime';
 import { SecondaryButton } from '../buttons';
@@ -27,16 +27,15 @@ const Courses = () => {
 
   const courses = useAppSelector(coursesSelect);
   console.log(courses);
-  //const courseList = sources.recommended_courses || [];
+  // const courseList = courses.recommended_courses || [];
+
+  const testLink = "https://practicum.yandex.ru/thinking"
 
   const courseTitle = (course: ICourse) => (  
     <div className={styles.courses__container}>
       <div className={styles.courses__title}>
         <TitleTypography>{course.title}</TitleTypography>
       </div>
-      <GreyTypography>
-        {hoursToDaysOrMonths(course.completion_time)}
-      </GreyTypography>
     </div>
   );
 
@@ -50,7 +49,7 @@ const Courses = () => {
             {formattedDate(course.start_date)}
           </TextTypography>
         </div>
-        <Link to={course.source} target="_blank">
+        <Link to={testLink} target="_blank">
           <SecondaryButton className="button">{MORE_INFO}</SecondaryButton>
         </Link>
       </div>
@@ -75,12 +74,12 @@ const Courses = () => {
     <div>
       <TitleTypography>{COURSES}</TitleTypography>
       <div className={styles.courses}>
-        {coursesData[0].recommended_courses.map((course) => (
+        {courses.recommended_courses.map((course) => (
           <ProfCard
             key={course.id}
             image={getImage(course.id)}
-            title={courseTitle(course)}
-            content={courseContent(course)}
+            title={() => courseTitle(course)}
+            content={() => courseContent(course)}
           />
         ))}
       </div>

@@ -4,11 +4,10 @@ import { fetchKnowledge } from './knowledgeAPI';
 
 export interface IKnowledge {
   id: number;
-  type: string;
-  title: string;
-  author: string;
+  theme: string; 
   description: string;
-  tags: string[];
+  author: string;
+  skills: number[]; 
 }
 
 interface IKnowledgeBase {
@@ -38,7 +37,7 @@ const knowledgeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getKnowledgeApi.fulfilled, (state, action) => {
-      state.knowledge_base = action.payload.knowledge_base;
+      state.knowledge_base = action.payload;
     });
   },
 });

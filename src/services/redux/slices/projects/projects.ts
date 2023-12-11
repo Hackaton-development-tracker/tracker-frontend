@@ -1,13 +1,17 @@
-// projects.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchProjects } from './projectsAPI';
 
+interface ISpecialization {
+  id: number;
+}
 export interface IProject {
   id: number;
   title: string;
   description: string;
   start_date: string;
   end_date: string;
+  external_resources: number; 
+  specializations: ISpecialization[];  
 }
 
 interface IProjects {
@@ -38,9 +42,10 @@ const projectsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getProjectsApi.fulfilled, (state, action) => {
       state.recommended_projects = action.payload.recommended_projects;
-    });
+    });    
   },
 });
+
 
 export const projectsReducer = projectsSlice.reducer;
 

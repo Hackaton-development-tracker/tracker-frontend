@@ -3,7 +3,7 @@ import { CurrentGradeCard } from '../../components/currentGradeCard/currentGrade
 import { NextGradeCard } from '../../components/nextGradeCard/nextGradeCard';
 import SkillsList from '../../components/skillsList';
 import Courses from '../../components/courses/courses';
-import Projects from '../../components/projects/projects';
+// import Projects from '../../components/projects/projects';
 import KnowledgeBase from '../../components/knowledgeBase/knowledgeBase';
 
 function SkillsProfile() {
@@ -15,7 +15,7 @@ function SkillsProfile() {
       </div>
       <SkillsList />
       <Courses />
-      <Projects />
+      {/* <Projects /> */}
       <KnowledgeBase />
     </div>
   );

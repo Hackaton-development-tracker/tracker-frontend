@@ -5,6 +5,7 @@ const checkRes = (res: Response) => {
   if (res.ok) {
     return res.json();
   } else {
+    console.log(res);
     return Promise.reject(res);
   }
 };

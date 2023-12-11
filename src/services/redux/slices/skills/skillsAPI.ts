@@ -18,6 +18,11 @@ const fetchData = (url: string, token: string) => {
   }).then((res) => checkRes(res));
 };
 
-export const fetchSkills = (token: string) => {
-  return fetchData(`${API_BASE_URL}/user_skills/`, token);
+export const fetchSkills = (
+  token: string,
+) => {
+  return fetchData(
+    `${API_BASE_URL}/user_skills/`,
+    token,
+  );
 };

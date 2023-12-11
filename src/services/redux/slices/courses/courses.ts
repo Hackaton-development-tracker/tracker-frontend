@@ -7,11 +7,11 @@ export interface ICourse {
   title: string;
   description: string;
   start_date: string;
-  source: string;
-  completion_time: number;
+  end_date?: string;
+  resource?: string;
+  // completion_time: number;
   // image: string;
 }
-
 interface ICourses {
   recommended_courses: ICourse[];
 }
@@ -39,7 +39,7 @@ const coursesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCoursesApi.fulfilled, (state, action) => {
-      state.recommended_courses = action.payload.recommended_courses;
+      state.recommended_courses = action.payload;
     });
   },
 });

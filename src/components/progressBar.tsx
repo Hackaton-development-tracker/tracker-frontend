@@ -3,8 +3,8 @@ import { styled } from '@mui/material/styles';
 import { Box, LinearProgress } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../services/typeHooks';
 import vars from '../static/scss/export.module.scss';
-import skillsData from '../utils/backendTestData/skills.json';
-import { getSkillsApi, skillsSelect, ISkill } from '../services/redux/slices/skills/skills';
+// import skillsData from '../utils/backendTestData/skills.json';
+import { getSkillsApi, skillsSelect } from '../services/redux/slices/skills/skills';
 
 // progressBar elements
 const ProgressBarContainer = styled(Box)({
@@ -56,11 +56,11 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
   const skills = useAppSelector(skillsSelect);
   console.log(skills);
-  // const skillsToImprove = skills.skillsToImprove || [];
-  // const achievedSkills = skills.achievedSkills || [];
+  const skillsToImprove = skills.skillsToImprove || [];
+  const achievedSkills = skills.achievedSkills || [];
 
-  const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
-  const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
+  // const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
+  // const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 
   // calculate total number of skills
   const totalSkillsNumber = achievedSkills.length + skillsToImprove.length;

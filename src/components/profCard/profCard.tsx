@@ -3,8 +3,8 @@ import { Card } from '../card/card';
 
 type CardProps = {
   image: string;
-  title: React.ReactNode;
-  content: React.ReactNode;
+  title: () => React.ReactNode;
+  content: () => React.ReactNode;
 }
 
 // renders card for courses with image
@@ -15,7 +15,7 @@ export const ProfCard: React.FC<CardProps> = ({ image, title, content }) => {
         <img src={image} alt="image" className={styles.profcard__image} />
         <div className={styles.profcard__overlay}></div>
       </div>
-      <Card title={title} content={content} classname={styles.cardtext} />
+      <Card title={title()} content={content()} classname={styles.cardtext} />
     </article>
   );
 };
