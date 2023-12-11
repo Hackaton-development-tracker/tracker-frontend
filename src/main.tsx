@@ -12,7 +12,13 @@ import {
   ROUTE_REGISTER,
   ROUTE_PROFILE,
   ROUTE_DEVELOPMENT_MAP,
+  ROUTE_STEP1,
+  ROUTE_STEP2,
+  ROUTE_STEP3,
 } from './utils/constants';
+import Step1 from './pages/step1';
+import Step2 from './pages/step2';
+import Step3 from './pages/step3';
 import LoginPage from './pages/login/login';
 import NotFound404 from './pages/notfound404/notfound404';
 import RegisterPage from './pages/register/register';
@@ -67,7 +73,7 @@ const App = () => {
         path={ROUTE_HOME}
         element={
           <RequireAuth
-            onlyAuth={false}
+            onlyAuth={true}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
           >
@@ -77,6 +83,30 @@ const App = () => {
           </RequireAuth>
         }
       >
+        <Route
+          path={ROUTE_STEP1}
+          element={
+            <section className="page">
+              <Step1 />
+            </section>
+          }
+        ></Route>
+        <Route
+          path={ROUTE_STEP2}
+          element={
+            <section className="page">
+              <Step2 />
+            </section>
+          }
+        ></Route>
+        <Route
+          path={ROUTE_STEP3}
+          element={
+            <section className="page">
+              <Step3 />
+            </section>
+          }
+        ></Route>
         <Route path={ROUTE_HOME} element={<Navigate to={ROUTE_PROFILE} />} />
         <Route path={ROUTE_PROFILE} element={<SkillsProfile />} />
         <Route path={ROUTE_DEVELOPMENT_MAP} element={<DevelopmentMap />} />

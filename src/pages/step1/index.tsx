@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import React from 'react';
 // import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
-import { LoginButton } from '../../components/buttons';
+import { PrimaryButton } from '../../components/buttons';
 import chooseSpecsData from '../../components/data/choose_specs.json';
 
 interface SelectSmallProps {
@@ -61,7 +61,7 @@ function Step1() {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className={styles.mediumContentBlock}>
         <div className={styles.pictureRight}>
           <h3>Добро пожаловать в трекер развития!</h3>
@@ -110,14 +110,14 @@ function Step1() {
         <Box
           sx={{ '& button': { m: 0, minWidth: 250, textTransform: 'none' } }}
         >
-          <LoginButton
+          <PrimaryButton
             variant="contained"
             size="large"
             disabled={isButtonDisabled}
             onClick={handleButtonClick}
           >
             Начать тест
-          </LoginButton>
+          </PrimaryButton>
         </Box>
       </div>
     </div>

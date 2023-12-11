@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormGroup from '@mui/material/FormGroup';
 import { useState } from 'react';
-import { LoginButton } from '../../components/buttons';
+import { PrimaryButton } from '../../components/buttons';
 import { RadioTap } from '../../components/radio';
 import { CheckboxTap } from '../../components/checkbox';
 import { FormControlLabelTap } from '../../components/label';
@@ -54,7 +54,7 @@ function Step2() {
 
 
   return (
-    <div>
+    <div className="container">
       <Box style={{ marginBottom: '24px' }}>
         <Link
           className="link--back"
@@ -185,14 +185,14 @@ function Step2() {
           style={{ marginTop: '40px' }}
           sx={{ '& button': { m: 0, minWidth: 250, textTransform: 'none' } }}
         >
-          <LoginButton
+          <PrimaryButton
             variant="contained"
             size="large"
             disabled={isButtonDisabled}
             onClick={handleContinueClick}
           >
             Узнать результат
-          </LoginButton>
+          </PrimaryButton>
           <span
             style={{ marginLeft: '16px', fontWeight: '500', fontSize: '16px' }}
           >
