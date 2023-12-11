@@ -1,8 +1,8 @@
 @import '../../static/scss/vars.scss';
 
 .header {
-  background-color: #001e64;
-  height: 90px;
+  background-color: $color-black-900;
+  height: 56px;
   display: flex;
   justify-content: space-between;
   align-items: center;

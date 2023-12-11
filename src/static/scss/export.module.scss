@@ -12,4 +12,9 @@
     colorBlueBg: $color-blue-bg;
     colorRed: $color-red;
     colorGreen: $color-green;
+}@import "vars";
+
+:export {
+    colorBlueMain: $color-blue-main;
+    colorBlack300: $color-black-300;
 }

@@ -1,0 +1,37 @@
+.maincontainer{
+    display: flex;
+}
+
+.content{
+    width: calc(100% - 40px);
+    padding: 24px 48px 24px 48px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+
+    p{
+        margin: 10px 0;
+    }
+
+    h3{
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 0 0 16px 0;
+    }
+    ol{
+        padding: 0 16px;
+        margin: 0 0;
+        li{
+            margin: 0 0 4px 0;
+        }
+    }
+}
+
+.contentinner{
+    margin: 0 auto;
+    max-width: 720px;
+    min-width: 400px;
+}

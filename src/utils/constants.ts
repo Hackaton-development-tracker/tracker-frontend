@@ -20,6 +20,9 @@ export const NOT_FOUND = 'Страница не найдена';
 
 export const ROUTE_HOME = '/';
 export const ROUTE_LOGIN = '/login';
+export const ROUTE_STEP1 = '/step1';
+export const ROUTE_STEP2 = '/step2';
+export const ROUTE_STEP3 = '/step3';
 export const ROUTE_REGISTER = '/register';
 export const ROUTE_FORGOT_PASS = '/forgot-password';
 export const ROUTE_RESET_PASS = '/reset-password';

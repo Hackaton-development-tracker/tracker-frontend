@@ -5,9 +5,11 @@ import { Box } from '@mui/material';
 import Header from '../../components/header/header';
 import Navigation from '../../components/navigation/navigation';
 
+import styles from './layout.module.scss';
+
 export const Layout: FC = () => {
   return (
-    <div className="layout">
+    <div>
       <Header />
       <Box
         sx={{
