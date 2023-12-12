@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../services/redux/store';
 import { Box, Paper, Collapse, Typography, styled } from '@mui/material';
@@ -17,12 +17,8 @@ import SkillPopup from './skillPopup/skillPopup';
 // import skillsData from '../utils/backendTestData/skills.json';
 import Counter from './counter';
 import { LevelsGrid, LevelsArrow, shortLevel } from './levelelements';
-import { useAppDispatch, useAppSelector } from '../services/typeHooks';
-import {
-  getSkillsApi,
-  skillsSelect,
-  ISkill,
-} from '../services/redux/slices/skills/skills';
+import { useAppSelector } from '../services/typeHooks';
+import { skillsSelect, ISkill } from '../services/redux/slices/skills/skills';
 
 // skillList elements
 const SkillsListContainer = styled(Paper)({
@@ -51,9 +47,6 @@ const HeaderTypography = styled(Typography)({
 
 // renders a list of skills with an expand and collapse buttons
 const SkillsList = () => {
-  const dispatch = useAppDispatch();
-  const token = localStorage.getItem('accessToken') ?? '';
-
   const [expanded, setExpanded] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<ISkill | null>(null);
   const isSkillPopupOpen = useSelector((state: RootState) => state.popup);
@@ -63,18 +56,14 @@ const SkillsList = () => {
     setExpanded(!expanded);
   };
 
-  useEffect(() => {
-    dispatch(getSkillsApi({ token }));
-  }, []);
-
   const skills = useAppSelector(skillsSelect);
-// data from server
-const skillsToImprove = skills.skillsToImprove || [];
-const achievedSkills = skills.achievedSkills || [];
+  // data from server
+  const skillsToImprove = skills.skillsToImprove || [];
+  const achievedSkills = skills.achievedSkills || [];
 
-// data from utils/backendTestData
-// const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
-// const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
+  // data from utils/backendTestData
+  // const skillsToImprove: ISkill[] = skillsData[0].skillsToImprove || [];
+  // const achievedSkills: ISkill[] = skillsData[1].achievedSkills || [];
 
   return (
     <Box>

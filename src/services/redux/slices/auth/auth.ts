@@ -48,11 +48,11 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   '@@auth/logout',
   async (
-    payload: { access: string },
+    payload: { token: string },
     { fulfillWithValue, rejectWithValue },
   ) => {
     try {
-      const response = await logout(payload.access);
+      const response = await logout(payload.token);
       return fulfillWithValue(response);
     } catch (error: unknown) {
       return rejectWithValue({ error: 'Failed to logout' }); // Возвращаем объект с ошибкой
@@ -63,11 +63,11 @@ export const logoutUser = createAsyncThunk(
 export const getProfileUser = createAsyncThunk(
   '@@auth/getUser',
   async (
-    payload: { access: string },
+    payload: { token: string },
     { fulfillWithValue, rejectWithValue },
   ) => {
     try {
-      const response = await getuser(payload.access);
+      const response = await getuser(payload.token);
       return fulfillWithValue(response);
     } catch (error: unknown) {
       return rejectWithValue({ error: 'Failed to get user' }); // Возвращаем объект с ошибкой

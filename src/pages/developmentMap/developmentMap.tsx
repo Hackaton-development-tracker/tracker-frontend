@@ -4,6 +4,7 @@ import { ShortCurrentGradeCard } from '../../components/currentGradeCard/current
 import { ShortNextGradeCard } from '../../components/nextGradeCard/nextGradeCard';
 import DevelopSkillsList from '../../components/developSkillsList';
 import { selectUser } from '../../services/redux/slices/auth/auth';
+// import skillsData from '../utils/backendTestData/skills.json';
 
 function DevelopmentMap() {
   const { user } = useSelector(selectUser);

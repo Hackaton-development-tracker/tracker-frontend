@@ -21,8 +21,6 @@ import { IUser } from '../../services/redux/slices/auth/auth';
 //  renders main card with current grade
 export function CurrentGradeCard({ user }: { user: IUser }) {
   const formattedTestDate = formattedDate(user.test_date);
-  console.log(styles.currentTitle);
-
   const currentTitle = (
     <div className={styles.currentTitle}>
       <SmallTextTypography> {USER_TITLE}</SmallTextTypography>

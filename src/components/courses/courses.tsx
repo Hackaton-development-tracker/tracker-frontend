@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './courses.module.scss';
 // import coursesData from '../../utils/backendTestData/courses.json';
@@ -13,18 +12,11 @@ import { SecondaryButton } from '../buttons';
 import thinking from '../../static/assets/images/thinking.svg';
 import economics from '../../static/assets/images/economics.svg';
 import argumentation from '../../static/assets/images/argumentation.svg';
-import { ICourse, getCoursesApi, coursesSelect } from '../../services/redux/slices/courses/courses';
-import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
+import { ICourse, coursesSelect } from '../../services/redux/slices/courses/courses';
+import { useAppSelector } from '../../services/typeHooks';
 
 // renders recommended mini courses
 const Courses = () => {
-  const dispatch = useAppDispatch();
-  const token = localStorage.getItem('accessToken') ?? '';
-
-  useEffect(() => {
-    dispatch(getCoursesApi({ token }));
-  }, []);
-
   const courses = useAppSelector(coursesSelect);
   // data from utils/backendTestData
   // const courseList = courses.recommended_courses || [];

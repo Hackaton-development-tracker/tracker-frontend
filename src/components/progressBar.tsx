@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, LinearProgress } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../services/typeHooks';
+import { useAppSelector } from '../services/typeHooks';
 import vars from '../static/scss/export.module.scss';
 // import skillsData from '../utils/backendTestData/skills.json';
-import { getSkillsApi, skillsSelect } from '../services/redux/slices/skills/skills';
+import { skillsSelect } from '../services/redux/slices/skills/skills';
 
 // progressBar elements
 const ProgressBarContainer = styled(Box)({
@@ -45,14 +45,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   setProgressValue,
 }) => {
   const [remainingValue, setRemainingValue] = useState(0);
-  const dispatch = useAppDispatch();
-  const token = localStorage.getItem('accessToken') ?? '';
-
-  useEffect(() => {
-    dispatch(
-      getSkillsApi({ token }),
-    );
-  },[]);
 
   const skills = useAppSelector(skillsSelect);
   // data from server
