@@ -68,7 +68,6 @@ const SkillsList = () => {
   }, []);
 
   const skills = useAppSelector(skillsSelect);
-  console.log(skills);
 // data from server
 const skillsToImprove = skills.skillsToImprove || [];
 const achievedSkills = skills.achievedSkills || [];

@@ -32,6 +32,7 @@ export function NextGradeCard({ user }: { user: IUser }) {
   const handleTestRetake = () => {
     navigate(ROUTE_STEP1);
   };
+  console.log(timeRemaining);
 
   const nextTitle = (
     <div>
@@ -67,22 +68,18 @@ export function NextGradeCard({ user }: { user: IUser }) {
       </div>
       <div className={styles.countdown}>
         <div style={{ display: 'flex' }}>
-          {timeRemaining && (
-            <>
-              <SmallTextTypography
-                sx={{
-                  paddingRight: '4px',
-                }}
-              >
-                {TEST_RETAKE_DAYS}
-              </SmallTextTypography>
-              <CountdownTimer
-                nextTestDate={user.next_test_date}
-                timeRemaining={timeRemaining}
-                setTimeRemaining={setTimeRemaining}
-              />
-            </>
-          )}
+          <SmallTextTypography
+            sx={{
+              paddingRight: '4px',
+            }}
+          >
+            {TEST_RETAKE_DAYS}
+          </SmallTextTypography>
+          <CountdownTimer
+            nextTestDate={user.next_test_date}
+            timeRemaining={timeRemaining}
+            setTimeRemaining={setTimeRemaining}
+          />
         </div>
         <PrimaryButton
           onClick={handleTestRetake}

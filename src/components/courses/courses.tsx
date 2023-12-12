@@ -26,7 +26,6 @@ const Courses = () => {
   }, []);
 
   const courses = useAppSelector(coursesSelect);
-  console.log(courses);
   // data from utils/backendTestData
   // const courseList = courses.recommended_courses || [];
 

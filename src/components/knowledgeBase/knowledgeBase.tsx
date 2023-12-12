@@ -17,7 +17,6 @@ const KnowledgeBase = () => {
   }, []);
 
   const sources = useAppSelector(knowledgeSelect);
-  console.log(sources);
   const sourceList = sources.knowledge_base || [];
 
   const sourceTitle = (source: IKnowledge) => (
