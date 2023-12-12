@@ -1,9 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login, logout, getuser, register } from './authAPI';
+import { ISpecialization } from '../specialization/specialization';
+
+interface IGrade {
+  title: string;
+}
 
 export interface IUser {
   id: number;
   email: string;
+  specializations: ISpecialization[];
+  grades: IGrade[];
+  next_grade: IGrade;
+  test_date: string;
+  next_test_date: string;
 }
 
 interface IAuthState {
@@ -138,6 +148,13 @@ const authSlice = createSlice({
           id_speciality: 0,
           title_speciality: '',
           accessToken: '',
+          specializations: [],
+          grades: [],
+          next_grade: {
+            title: '',
+          } as IGrade,
+          test_date: '',
+          next_test_date: '',
         } as IUser;
         console.log(action);
         // state.user = action.payload;

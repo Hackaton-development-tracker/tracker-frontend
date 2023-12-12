@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './currentGradeCard.module.scss';
 import {
   USER_TITLE,
@@ -15,28 +15,23 @@ import {
 } from '../cardelements';
 import { SecondaryButton } from '../buttons';
 import { formattedDate } from '../../utils/helpers/formatTime';
-import userData from '../../utils/backendTestData/user.json';
-
-const specializationTitle = userData.specializations[0].title;
-const gradeTitle = userData.grades[0].title;
-const testDate = userData.test_date;
-const nextTestDate = userData.next_test_date;
+import { selectUser } from '../../services/redux/slices/auth/auth';
+// import userData from '../../utils/backendTestData/user.json';
 
 //  renders main card with current grade
 export function CurrentGradeCard() {
-  const formattedTestDate = formattedDate(testDate);
+  const { user } = useSelector(selectUser);
 
-  console.log(styles);
-
+  const formattedTestDate = formattedDate(user.test_date);
   const currentTitle = (
-    <div className={styles.current__title}>
+    <div className={styles.currentTitle}>
       <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
       <ProfessionTypography
         sx={{
           paddingTop: '8px',
         }}
       >
-        {specializationTitle}
+        {user.specializations[0].title}
       </ProfessionTypography>
     </div>
   );
@@ -45,9 +40,9 @@ export function CurrentGradeCard() {
     <>
       <div>
         <SmallTextTypography>
-          {USER_CURRENT_LEVEL} {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}
+          {USER_CURRENT_LEVEL} {user.test_date && USER_CURRENT_LEVEL_ACHIEVED + " " + formattedTestDate }
         </SmallTextTypography>
-        <GradeTypography>{gradeTitle}</GradeTypography>
+        <GradeTypography>{user.grades[0].title}</GradeTypography>
       </div>
       <Link to="/map">
         <SecondaryButton>{OPEN_MAP}</SecondaryButton>
@@ -66,11 +61,13 @@ export function CurrentGradeCard() {
 
 //  renders short card with current grade
 export function ShortCurrentGradeCard() {
-  const formattedTestDate = formattedDate(nextTestDate);
+  const { user } = useSelector(selectUser);
+
+  const formattedTestDate = formattedDate(user.test_date);
 
   const currentTitle = (
-    <div className={styles.current__content}>
-      <GradeTypography>{gradeTitle}</GradeTypography>
+    <div className={styles.currentContent}>
+      <GradeTypography>{user.grades[0].title}</GradeTypography>
       <SmallTextTypography>
         {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}
       </SmallTextTypography>
@@ -79,7 +76,7 @@ export function ShortCurrentGradeCard() {
 
   const currentContent = (
     <ProfessionTypography sx={{ fontSize: '16px', lineHeight: '20px' }}>
-      {specializationTitle}
+      {user.specializations[0].title}
     </ProfessionTypography>
   );
 

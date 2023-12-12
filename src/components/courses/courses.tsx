@@ -1,10 +1,15 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './courses.module.scss';
 // import coursesData from '../../utils/backendTestData/courses.json';
+// data from utils/backendTestData
+// const courseList = courses.recommended_courses || [];
 import { ProfCard } from '../profCard/profCard';
 import { COURSES, NEXT_START_DATE, MORE_INFO } from '../../utils/constants';
-import { TextTypography, GreyTypography, TitleTypography } from '../cardelements';
+import {
+  TextTypography,
+  GreyTypography,
+  TitleTypography,
+} from '../cardelements';
 import {
   // hoursToDaysOrMonths,
   formattedDate,
@@ -13,42 +18,33 @@ import { SecondaryButton } from '../buttons';
 import thinking from '../../static/assets/images/thinking.svg';
 import economics from '../../static/assets/images/economics.svg';
 import argumentation from '../../static/assets/images/argumentation.svg';
-import { ICourse, getCoursesApi, coursesSelect } from '../../services/redux/slices/courses/courses';
-import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
+import {
+  ICourse,
+  coursesSelect,
+} from '../../services/redux/slices/courses/courses';
+import { useAppSelector } from '../../services/typeHooks';
 
 // renders recommended mini courses
 const Courses = () => {
-  const dispatch = useAppDispatch();
-  const token = localStorage.getItem('accessToken') ?? '';
-
-  useEffect(() => {
-    dispatch(getCoursesApi({ token }));
-  }, []);
-
   const courses = useAppSelector(coursesSelect);
-  console.log(courses);
-  // data from utils/backendTestData
-  // const courseList = courses.recommended_courses || [];
+  // TODO: update after backend fix
+  const testLink = 'https://practicum.yandex.ru/thinking';
 
-  const testLink = "https://practicum.yandex.ru/thinking"
-
-  const courseTitle = (course: ICourse) => (  
-    <div className={styles.courses__container}>
-      <div className={styles.courses__title}>
+  const courseTitle = (course: ICourse) => (
+    <div className={styles.coursesContainer}>
+      <div className={styles.coursesTitle}>
         <TitleTypography>{course.title}</TitleTypography>
       </div>
     </div>
   );
 
   const courseContent = (course: ICourse) => (
-    <div className={styles.courses__content}>
+    <div className={styles.coursesContent}>
       <TextTypography>{course.description}</TextTypography>
-      <div className={styles.courses__info}>
-        <div className={styles.courses__date}>
+      <div className={styles.coursesInfo}>
+        <div className={styles.coursesDate}>
           <GreyTypography>{NEXT_START_DATE}</GreyTypography>
-          <TextTypography>
-            {formattedDate(course.start_date)}
-          </TextTypography>
+          <TextTypography>{formattedDate(course.start_date)}</TextTypography>
         </div>
         <Link to={testLink} target="_blank">
           <SecondaryButton className="button">{MORE_INFO}</SecondaryButton>

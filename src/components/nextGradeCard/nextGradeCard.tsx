@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './nextGradeCard.module.scss';
 import vars from '../../static/scss/export.module.scss';
 import {
@@ -20,13 +21,13 @@ import {
 import ProgressBar from '../progressBar';
 import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
-import userData from '../../utils/backendTestData/user.json';
-
-const nextGradeTitle = userData.next_grade?.title
-const nextTestDate = userData.next_test_date;
+import { selectUser } from '../../services/redux/slices/auth/auth';
+// import userData from '../../utils/backendTestData/user.json';
 
 // renders main grade card with next grade
 export function NextGradeCard() {
+  const { user } = useSelector(selectUser);
+
   const navigate = useNavigate();
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
@@ -38,13 +39,13 @@ export function NextGradeCard() {
   const nextTitle = (
     <div>
       <SmallTextTypography>{USER_NEXT_LEVEL}</SmallTextTypography>
-      <div className={styles.next__title}>
+      <div className={styles.nextTitle}>
         <GradeTypography
           sx={{
             color: vars.colorBlueMain,
           }}
         >
-          {nextGradeTitle}
+          {user.next_grade.title}
         </GradeTypography>
         <TextTypography
           sx={{
@@ -60,8 +61,8 @@ export function NextGradeCard() {
   );
 
   const nextContent = (
-    <div className={styles.next__container}>
-      <div className={styles.next__content}>
+    <div className={styles.nextContainer}>
+      <div className={styles.nextContent}>
         <ProgressBar
           progressValue={progressValue}
           setProgressValue={setProgressValue}
@@ -69,15 +70,17 @@ export function NextGradeCard() {
       </div>
       <div className={styles.countdown}>
         <div style={{ display: 'flex' }}>
-          <SmallTextTypography
-            sx={{
-              paddingRight: '4px',
-            }}
-          >
-            {TEST_RETAKE_DAYS}
-          </SmallTextTypography>
+          {timeRemaining !== null && timeRemaining > 0 && (
+            <SmallTextTypography
+              sx={{
+                paddingRight: '4px',
+              }}
+            >
+              {TEST_RETAKE_DAYS}
+            </SmallTextTypography>
+          )}
           <CountdownTimer
-            nextTestDate={nextTestDate}
+            nextTestDate={user.next_test_date}
             timeRemaining={timeRemaining}
             setTimeRemaining={setTimeRemaining}
           />
@@ -104,17 +107,19 @@ export function NextGradeCard() {
 
 // renders short card with next grade
 export function ShortNextGradeCard() {
+  const { user } = useSelector(selectUser);
+
   const [progressValue, setProgressValue] = useState(0);
 
   const nextTitle = (
     <div>
-      <div className={styles.next__title}>
+      <div className={styles.nextTitle}>
         <GradeTypography
           sx={{
             color: vars.colorBlueMain,
           }}
         >
-          {nextGradeTitle}
+          {user.next_grade.title}
         </GradeTypography>
         <TextTypography
           sx={{
@@ -130,7 +135,7 @@ export function ShortNextGradeCard() {
   );
 
   const nextContent = (
-    <div className={styles.next__content}>
+    <div className={styles.nextContent}>
       <ProgressBar
         progressValue={progressValue}
         setProgressValue={setProgressValue}

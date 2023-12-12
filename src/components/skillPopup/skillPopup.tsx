@@ -53,25 +53,25 @@ const SkillPopup: React.FC<SkillPopupProps> = ({
   };
   return (
     <Popup popupId="skillPopup">
-      <div className={styles.skillsPopup__content}>
-        <TitleTypography className={styles.skillsPopup__level_title}>
+      <div className={styles.skillsPopupContent}>
+        <TitleTypography className={styles.skillsPopupLevelTitle}>
           {title}
         </TitleTypography>
-        <div className={styles.skillsPopup__level}>
+        <div className={styles.skillsPopupLevel}>
           <div>{levelsGrid}</div>
           <div>{levelsArrow}</div>
         </div>
-        <TextTypography className={styles.skillsPopup__description}>
+        <TextTypography className={styles.skillsPopupDescription}>
           {description}
         </TextTypography>
 
         {/* expanded levels description */}
-        <div className={styles.skillsPopup__expand}>
+        <div className={styles.skillsPopupExpand}>
           <Collapse in={expanded}>
-            <div className={styles.skillsPopup__level_block}>
+            <div className={styles.skillsPopupLevelBlock}>
               {Object.keys(levels_description).map((key) => (
                 <div key={key}>
-                  <LevelTypography className={styles.skillsPopup__level_title}>
+                  <LevelTypography className={styles.skillsPopupLevelTitle}>
                     {LEVEL} {key}
                   </LevelTypography>
                   <TextTypography>{levels_description[key]}</TextTypography>
