@@ -8,6 +8,7 @@ import Projects from '../../components/projects/projects';
 import KnowledgeBase from '../../components/knowledgeBase/knowledgeBase';
 import { useAppDispatch } from '../../services/typeHooks';
 import { getProfileUser } from '../../services/redux/slices/auth/auth';
+import { getSkillsApi } from '../../services/redux/slices/skills/skills';
 
 function SkillsProfile() {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ function SkillsProfile() {
 
   useEffect(() => {
     dispatch(getProfileUser({ access }));
+    dispatch(getSkillsApi({ access }));
   }, []);
 
   return (

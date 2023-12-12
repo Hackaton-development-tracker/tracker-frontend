@@ -23,10 +23,10 @@ interface ISkills {
 
 export const getSkillsApi = createAsyncThunk(
   '@@skill/skill',
-  async (arg: { token: string }, { fulfillWithValue, rejectWithValue }) => {
+  async (arg: { access: string }, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const { token } = arg;
-      const response = await fetchSkills(token);
+      const { access } = arg;
+      const response = await fetchSkills(access);
       return fulfillWithValue(response);
     } catch (error: unknown) {
       return rejectWithValue(error);
