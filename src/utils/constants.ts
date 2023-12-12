@@ -34,7 +34,9 @@ export const ROUTE_FORGOT_PASS = '/forgot-password';
 export const ROUTE_RESET_PASS = '/reset-password';
 export const ROUTE_NOT_FOUND = '/404';
 export const ROUTE_PROFILE = '/profile';
+export const ROUTE_PROFILE_MESSAGE = 'Профиль навыков';
 export const ROUTE_DEVELOPMENT_MAP = '/map';
+export const ROUTE_DEVELOPMENT_MAP_MESSAGE = 'Карта развития';
 
 export const ACCESS_TOKEN = 'accessToken';
 

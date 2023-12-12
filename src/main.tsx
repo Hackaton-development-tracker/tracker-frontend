@@ -1,5 +1,11 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import { Layout } from './pages/layout/layout';
@@ -28,6 +34,10 @@ import Loader from './components/loader';
 import { getProfileUser, logoutUser } from './services/redux/slices/auth/auth';
 import LogoutPage from './pages/logout/logout';
 import SkillsProfile from './pages/skillsProfile/skillsProfile';
+import { getSkillsApi } from './services/redux/slices/skills/skills';
+import { getCoursesApi } from './services/redux/slices/courses/courses';
+import { getKnowledgeApi } from './services/redux/slices/knowledge/knowledge';
+import { getProjectsApi } from './services/redux/slices/projects/projects';
 
 const RequireAuth = ({
   children: children,
@@ -43,24 +53,50 @@ const RequireAuth = ({
   if (isLoading === false)
     if (onlyAuth === true)
       return isLoggedIn === true ? children : <Navigate to={ROUTE_LOGIN} />;
-    else return isLoggedIn === false ? children : <Navigate to={ROUTE_STEP1} />;
+    else
+      return isLoggedIn === false ? children : <Navigate to={ROUTE_PROFILE} />;
 };
 
 const App = () => {
+  const location = useLocation();
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state: RootState) => state.user.user);
   const isLoading = useAppSelector((state: RootState) => state.user.isLoading);
   const isLoggedIn = useAppSelector(
     (state: RootState) => state.user.isLoggedIn,
   );
   const access = localStorage.getItem('accessToken') ?? '';
+
   useEffect(() => {
     if (access.length !== 0) {
       dispatch(getProfileUser({ access }));
+      dispatch(getSkillsApi({ token: access }));
+      dispatch(getCoursesApi({ token: access }));
+      dispatch(getKnowledgeApi({ token: access }));
+      dispatch(getProjectsApi({ token: access }));
     } else {
       dispatch(logoutUser({ access }));
     }
   }, [dispatch]);
 
+  if (
+    !isLoading &&
+    (location.pathname == ROUTE_PROFILE ||
+      location.pathname == ROUTE_DEVELOPMENT_MAP) &&
+    user.test_date == null
+  ) {
+    return <Navigate to={ROUTE_STEP1} />;
+  }
+  if (
+    !isLoading &&
+    (location.pathname === ROUTE_STEP1 ||
+      location.pathname === ROUTE_STEP2 ||
+      location.pathname === ROUTE_STEP3) &&
+    user.next_test_date !== null &&
+    new Date(user.next_test_date) > new Date()
+  ) {
+    return <Navigate to={ROUTE_PROFILE} />;
+  }
   if (isLoading) {
     return (
       <section className={isLoggedIn ? 'page' : 'auth-page'}>

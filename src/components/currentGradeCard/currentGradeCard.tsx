@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import styles from './currentGradeCard.module.scss';
 import {
   USER_TITLE,
   USER_CURRENT_LEVEL,
   USER_CURRENT_LEVEL_ACHIEVED,
   OPEN_MAP,
+  ROUTE_DEVELOPMENT_MAP,
 } from '../../utils/constants';
 import { Card } from '../card/card';
 import {
@@ -16,11 +16,11 @@ import {
 import { SecondaryButton } from '../buttons';
 import { formattedDate } from '../../utils/helpers/formatTime';
 import { selectUser } from '../../services/redux/slices/auth/auth';
-// import userData from '../../utils/backendTestData/user.json';
+import { useAppSelector } from '../../services/typeHooks';
 
 //  renders main card with current grade
 export function CurrentGradeCard() {
-  const { user } = useSelector(selectUser);
+  const { user } = useAppSelector(selectUser);
 
   const formattedTestDate = formattedDate(user.test_date);
   const currentTitle = (
@@ -31,7 +31,7 @@ export function CurrentGradeCard() {
           paddingTop: '8px',
         }}
       >
-        {user.specializations[0].title}
+        {user.specializations[0] && user.specializations[0].title}
       </ProfessionTypography>
     </div>
   );
@@ -40,11 +40,13 @@ export function CurrentGradeCard() {
     <>
       <div>
         <SmallTextTypography>
-          {USER_CURRENT_LEVEL} {user.test_date && USER_CURRENT_LEVEL_ACHIEVED + " " + formattedTestDate }
+          {USER_CURRENT_LEVEL}{' '}
+          {user.test_date &&
+            USER_CURRENT_LEVEL_ACHIEVED + ' ' + formattedTestDate}
         </SmallTextTypography>
         <GradeTypography>{user.grades[0].title}</GradeTypography>
       </div>
-      <Link to="/map">
+      <Link to={ROUTE_DEVELOPMENT_MAP}>
         <SecondaryButton>{OPEN_MAP}</SecondaryButton>
       </Link>
     </>
@@ -61,7 +63,7 @@ export function CurrentGradeCard() {
 
 //  renders short card with current grade
 export function ShortCurrentGradeCard() {
-  const { user } = useSelector(selectUser);
+  const { user } = useAppSelector(selectUser);
 
   const formattedTestDate = formattedDate(user.test_date);
 
@@ -76,7 +78,7 @@ export function ShortCurrentGradeCard() {
 
   const currentContent = (
     <ProfessionTypography sx={{ fontSize: '16px', lineHeight: '20px' }}>
-      {user.specializations[0].title}
+      {user.specializations[0] && user.specializations[0].title}
     </ProfessionTypography>
   );
 

@@ -16,7 +16,7 @@
     {
         "id": 3,
         "name": "Трекер развития",
-        "url": "/step1",
+        "url": "/profile",
         "icon": "grow_up",
         "active": true
     },

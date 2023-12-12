@@ -14,7 +14,7 @@ import {
   REGISTRATION,
   NO_ACCOUNT,
   TITLE,
-  ROUTE_STEP1,
+  ROUTE_PROFILE,
 } from '../../utils/constants';
 import {
   getProfileUser,
@@ -28,6 +28,10 @@ import {
   LoginInput,
 } from '../../components/formelements';
 import { PrimaryButton } from '../../components/buttons';
+import { getSkillsApi } from '../../services/redux/slices/skills/skills';
+import { getCoursesApi } from '../../services/redux/slices/courses/courses';
+import { getKnowledgeApi } from '../../services/redux/slices/knowledge/knowledge';
+import { getProjectsApi } from '../../services/redux/slices/projects/projects';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -66,7 +70,11 @@ const LoginPage = () => {
         // После успешного входа, пользователь будет перенаправлен на главную страницу
         const access = localStorage.getItem('accessToken') ?? '';
         dispatch(getProfileUser({ access }));
-        navigate(ROUTE_STEP1);
+        dispatch(getSkillsApi({ token: access }));
+        dispatch(getCoursesApi({ token: access }));
+        dispatch(getKnowledgeApi({ token: access }));
+        dispatch(getProjectsApi({ token: access }));
+        navigate(ROUTE_PROFILE);
       } else {
         // Если вход не успешный, устанавливаем состояние ошибки
         setError(
