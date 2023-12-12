@@ -3,16 +3,29 @@ import styles from './index.module.scss';
 import { Box } from '@mui/material';
 
 import { PrimaryButton } from '../../components/buttons';
-import { useAppSelector } from '../../services/typeHooks';
+import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
 import { selectQuizResults } from '../../services/redux/slices/quiz/quizRezults';
+import { getProfileUser } from '../../services/redux/slices/auth/auth';
+import { getSkillsApi } from '../../services/redux/slices/skills/skills';
+import { getCoursesApi } from '../../services/redux/slices/courses/courses';
+import { getKnowledgeApi } from '../../services/redux/slices/knowledge/knowledge';
+import { getProjectsApi } from '../../services/redux/slices/projects/projects';
+import { ROUTE_PROFILE } from '../../utils/constants';
 
 function Step3() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const quizResults = useAppSelector(selectQuizResults);
 
   const handleButtonClick = () => {
-    navigate('/profile');
+    const access = localStorage.getItem('accessToken') ?? '';
+    dispatch(getProfileUser({ access }));
+    dispatch(getSkillsApi({ token: access }));
+    dispatch(getCoursesApi({ token: access }));
+    dispatch(getKnowledgeApi({ token: access }));
+    dispatch(getProjectsApi({ token: access }));
+    navigate(ROUTE_PROFILE);
   };
 
   return (
