@@ -23,7 +23,7 @@ const Courses = () => {
 
   useEffect(() => {
     dispatch(getCoursesApi({ token }));
-  }, [dispatch, token]);
+  }, []);
 
   const courses = useAppSelector(coursesSelect);
 

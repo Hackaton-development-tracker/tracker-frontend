@@ -20,7 +20,8 @@ const Projects = () => {
 
   useEffect(() => {
     dispatch(getProjectsApi({ token }));
-  }, [dispatch, token]);
+  }, []);
+  
   // data from utils/backendTestData
   //const sourceList = sources.recommended_projects || [];
 

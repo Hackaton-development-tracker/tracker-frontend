@@ -14,7 +14,7 @@ const KnowledgeBase = () => {
 
   useEffect(() => {
     dispatch(getKnowledgeApi({ token }));
-  }, [dispatch, token]);
+  }, []);
 
   const sources = useAppSelector(knowledgeSelect);
   const sourceList = sources.knowledge_base || [];

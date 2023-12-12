@@ -15,7 +15,7 @@ function SkillsProfile() {
 
   useEffect(() => {
     dispatch(getProfileUser({ access }));
-  }, [dispatch, access]);
+  }, []);
 
   return (
     <div className={styles.profile}>
