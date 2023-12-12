@@ -9,7 +9,7 @@
     {
         "id": 2,
         "name": "Мастерская",
-        "url": "/master",
+        "url": "/workshop",
         "icon": "study",
         "active": false
     },
