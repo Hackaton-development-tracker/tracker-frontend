@@ -67,13 +67,15 @@ export function NextGradeCard({ user }: { user: IUser }) {
       </div>
       <div className={styles.countdown}>
         <div style={{ display: 'flex' }}>
-          <SmallTextTypography
-            sx={{
-              paddingRight: '4px',
-            }}
-          >
-            {TEST_RETAKE_DAYS}
-          </SmallTextTypography>
+          {timeRemaining !== null && timeRemaining > 0 && (
+            <SmallTextTypography
+              sx={{
+                paddingRight: '4px',
+              }}
+            >
+              {TEST_RETAKE_DAYS}
+            </SmallTextTypography>
+          )}
           <CountdownTimer
             nextTestDate={user.next_test_date}
             timeRemaining={timeRemaining}
