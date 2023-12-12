@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './projects.module.scss';
 // import projectsData from '../../utils/backendTestData/projects.json';
+  // data from utils/backendTestData
+  //const sourceList = sources.recommended_projects || [];
 import { Card } from '../card/card';
 import { PROJECTS, MORE_INFO } from '../../utils/constants';
 import { TitleTypography, TextTypography, GreyTypography } from '../cardelements';
@@ -9,18 +10,12 @@ import { formattedDate } from '../../utils/helpers/formatTime';
 import { SecondaryButton } from '../buttons';
 import hackathon from '../../static/assets/icons/hackathon.svg';
 import alpha from '../../static/assets/icons/alpha.svg';
-import { IProject, getProjectsApi, projectsSelect } from '../../services/redux/slices/projects/projects';
-import { useAppDispatch, useAppSelector } from '../../services/typeHooks';
+import { IProject, projectsSelect } from '../../services/redux/slices/projects/projects';
+import { useAppSelector } from '../../services/typeHooks';
 
 // renders projects from Workshop
 const Projects = () => {
-  const dispatch = useAppDispatch();
   const projects = useAppSelector(projectsSelect);
-  const token = localStorage.getItem('accessToken') ?? '';
-
-  useEffect(() => {
-    dispatch(getProjectsApi({ token }));
-  }, []);
   
   // data from utils/backendTestData
   //const sourceList = sources.recommended_projects || [];

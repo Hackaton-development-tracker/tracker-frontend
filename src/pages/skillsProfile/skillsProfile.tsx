@@ -7,16 +7,20 @@ import Courses from '../../components/courses/courses';
 import Projects from '../../components/projects/projects';
 import KnowledgeBase from '../../components/knowledgeBase/knowledgeBase';
 import { useAppDispatch } from '../../services/typeHooks';
-import { getProfileUser } from '../../services/redux/slices/auth/auth';
 import { getSkillsApi } from '../../services/redux/slices/skills/skills';
+import { getKnowledgeApi } from '../../services/redux/slices/knowledge/knowledge';
+import { getProjectsApi } from '../../services/redux/slices/projects/projects';
+import { getCoursesApi } from '../../services/redux/slices/courses/courses';
 
 function SkillsProfile() {
   const dispatch = useAppDispatch();
-  const access = localStorage.getItem('accessToken') ?? '';
+  const token = localStorage.getItem('accessToken') ?? '';
 
   useEffect(() => {
-    dispatch(getProfileUser({ access }));
-    dispatch(getSkillsApi({ access }));
+    dispatch(getSkillsApi({ token }));
+    dispatch(getCoursesApi({ token }));
+    dispatch(getKnowledgeApi({ token }));
+    dispatch(getProjectsApi({ token }));
   }, []);
 
   return (

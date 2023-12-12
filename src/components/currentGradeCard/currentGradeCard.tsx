@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './currentGradeCard.module.scss';
