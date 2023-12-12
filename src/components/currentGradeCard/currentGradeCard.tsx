@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './currentGradeCard.module.scss';
 import {
   USER_TITLE,
@@ -15,11 +16,13 @@ import {
 } from '../cardelements';
 import { SecondaryButton } from '../buttons';
 import { formattedDate } from '../../utils/helpers/formatTime';
-import { IUser } from '../../services/redux/slices/auth/auth';
+import { selectUser } from '../../services/redux/slices/auth/auth';
 // import userData from '../../utils/backendTestData/user.json';
 
 //  renders main card with current grade
-export function CurrentGradeCard({ user }: { user: IUser }) {
+export function CurrentGradeCard() {
+  const { user } = useSelector(selectUser);
+
   const formattedTestDate = formattedDate(user.test_date);
   const currentTitle = (
     <div className={styles.currentTitle}>
@@ -58,7 +61,8 @@ export function CurrentGradeCard({ user }: { user: IUser }) {
 }
 
 //  renders short card with current grade
-export function ShortCurrentGradeCard({ user }: { user: IUser }) {
+export function ShortCurrentGradeCard() {
+  const { user } = useSelector(selectUser);
 
   const formattedTestDate = formattedDate(user.test_date);
 

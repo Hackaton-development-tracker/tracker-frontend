@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login, logout, getuser, register } from './authAPI';
+import { ISpecialization } from '../specialization/specialization';
 
 interface IGrade {
   title: string;
@@ -13,11 +14,6 @@ export interface IUser {
   next_grade: IGrade;
   test_date: string;
   next_test_date: string;
-}
-
-interface ISpecialization {
-  id: number;
-  title: string;
 }
 
 interface IAuthState {
@@ -48,11 +44,11 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   '@@auth/logout',
   async (
-    payload: { token: string },
+    payload: { access: string },
     { fulfillWithValue, rejectWithValue },
   ) => {
     try {
-      const response = await logout(payload.token);
+      const response = await logout(payload.access);
       return fulfillWithValue(response);
     } catch (error: unknown) {
       return rejectWithValue({ error: 'Failed to logout' }); // Возвращаем объект с ошибкой
@@ -63,11 +59,11 @@ export const logoutUser = createAsyncThunk(
 export const getProfileUser = createAsyncThunk(
   '@@auth/getUser',
   async (
-    payload: { token: string },
+    payload: { access: string },
     { fulfillWithValue, rejectWithValue },
   ) => {
     try {
-      const response = await getuser(payload.token);
+      const response = await getuser(payload.access);
       return fulfillWithValue(response);
     } catch (error: unknown) {
       return rejectWithValue({ error: 'Failed to get user' }); // Возвращаем объект с ошибкой

@@ -28,10 +28,6 @@ import Loader from './components/loader';
 import { getProfileUser, logoutUser } from './services/redux/slices/auth/auth';
 import LogoutPage from './pages/logout/logout';
 import SkillsProfile from './pages/skillsProfile/skillsProfile';
-import { getSkillsApi } from './services/redux/slices/skills/skills';
-import { getCoursesApi } from './services/redux/slices/courses/courses';
-import { getProjectsApi } from './services/redux/slices/projects/projects';
-import { getKnowledgeApi } from './services/redux/slices/knowledge/knowledge';
 
 const RequireAuth = ({
   children: children,
@@ -56,16 +52,12 @@ const App = () => {
   const isLoggedIn = useAppSelector(
     (state: RootState) => state.user.isLoggedIn,
   );
-  const token = localStorage.getItem('accessToken') ?? '';
+  const access = localStorage.getItem('accessToken') ?? '';
   useEffect(() => {
-    if (token.length !== 0) {
-      dispatch(getProfileUser({ token }));
-      dispatch(getSkillsApi({ token }));
-      dispatch(getCoursesApi({ token }));
-      dispatch(getProjectsApi({ token }));
-      dispatch(getKnowledgeApi({ token }));
+    if (access.length !== 0) {
+      dispatch(getProfileUser({ access }));
     } else {
-      dispatch(logoutUser({ token }));
+      dispatch(logoutUser({ access }));
     }
   }, [dispatch]);
 

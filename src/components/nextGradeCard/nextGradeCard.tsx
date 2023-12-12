@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './nextGradeCard.module.scss';
 import vars from '../../static/scss/export.module.scss';
 import {
@@ -20,11 +21,13 @@ import {
 import ProgressBar from '../progressBar';
 import { PrimaryButton } from '../buttons';
 import CountdownTimer from '../countdownTimer';
+import { selectUser } from '../../services/redux/slices/auth/auth';
 // import userData from '../../utils/backendTestData/user.json';
-import { IUser } from '../../services/redux/slices/auth/auth';
 
 // renders main grade card with next grade
-export function NextGradeCard({ user }: { user: IUser }) {
+export function NextGradeCard() {
+  const { user } = useSelector(selectUser);
+
   const navigate = useNavigate();
   const [progressValue, setProgressValue] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
@@ -103,7 +106,9 @@ export function NextGradeCard({ user }: { user: IUser }) {
 }
 
 // renders short card with next grade
-export function ShortNextGradeCard({ user }: { user: IUser }) {
+export function ShortNextGradeCard() {
+  const { user } = useSelector(selectUser);
+
   const [progressValue, setProgressValue] = useState(0);
 
   const nextTitle = (

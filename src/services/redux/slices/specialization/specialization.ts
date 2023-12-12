@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchSpecialization } from './specializationAPI';
 
-interface ISpecialization {
+export interface ISpecialization {
   id: number;
   title: string;
 }
