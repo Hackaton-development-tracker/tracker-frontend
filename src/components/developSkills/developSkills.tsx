@@ -66,8 +66,8 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
 
   // renders level with progress bar and description
   const LevelBox = ({ skill, level }: { skill: ISkill; level: number }) => (
-    <div className={styles.level__box}>
-      <div className={styles.level__header}>
+    <div className={styles.levelBox}>
+      <div className={styles.levelHeader}>
         <TextTypography>
           {LEVEL} {level}
         </TextTypography>
@@ -84,7 +84,7 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
   );
 
   return (
-    <div className={styles.skill__list}>
+    <div className={styles.skillList}>
       <HeaderBox>
         <TitleTypography>{header}</TitleTypography>
         <Counter number={skillsArray.length} color={counterColor} />
@@ -92,7 +92,7 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
       {skillsArray.map((skillItem) => (
         <div key={skillItem.id}>
           <SkillBox borderColor={borderColor}>
-            <div className={styles.skill__header}>
+            <div className={styles.skillHeader}>
               <TitleTypography>{skillItem.skill.title}</TitleTypography>
 
               {/* blue color tag */}
@@ -131,7 +131,7 @@ export const DevelopSkills: React.FC<DevelopSkillProps> = ({
             </TextExpandButton>
 
             {/* renders left and right level colums with arrow */}
-            <div className={styles.skill__info}>
+            <div className={styles.skillInfo}>
               <LevelBox skill={skillItem} level={skillItem.current_level} />
               <ArrowForwardIosIcon
                 sx={{

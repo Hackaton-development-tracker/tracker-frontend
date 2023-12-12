@@ -26,7 +26,7 @@ const Projects = () => {
   //const sourceList = sources.recommended_projects || [];
 
   const projectTitle = (project: IProject) => (
-    <div className={styles.project__title_container}>
+    <div className={styles.projectTitleContainer}>
       <img
         src={project.title === 'Хакатон+' ? hackathon : alpha}
         alt={project.title}
@@ -36,15 +36,15 @@ const Projects = () => {
   );
 
   const projectContent = (project: IProject) => (
-    <div className={styles.project__content}>
+    <div className={styles.projectContent}>
       <TextTypography>{project.description}</TextTypography>
-      <div className={styles.project__info}>
+      <div className={styles.projectInfo}>
         <GreyTypography>
           {formattedDate(project.start_date) +
             ' - ' +
             formattedDate(project.end_date)}
         </GreyTypography>
-        <Link to="/">
+        <Link to="/workshop">
           <SecondaryButton>{MORE_INFO}</SecondaryButton>
         </Link>
       </div>
@@ -54,13 +54,13 @@ const Projects = () => {
   return (
     <div>
       <TitleTypography>{PROJECTS}</TitleTypography>
-      <div className={styles.project__container}>
+      <div className={styles.projectContainer}>
         {projects.recommended_projects.map((project) => (
           <Card
             key={project.id}
             title={projectTitle(project)}
             content={projectContent(project)}
-            classname={styles.project__card}
+            classname={styles.projectCard}
           />
         ))}
       </div>

@@ -21,7 +21,7 @@ const KnowledgeBase = () => {
 
   const sourceTitle = (source: IKnowledge) => (
     <>
-      <div className={styles.source__title}>
+      <div className={styles.sourceTitle}>
         <SourceTypography>{source.theme}</SourceTypography>
         <GreyTypography>{source.author}</GreyTypography>
       </div>
@@ -30,8 +30,8 @@ const KnowledgeBase = () => {
   );
 
   const sourceContent = (source: IKnowledge) => (
-    <div className={styles.source__content}>
-      <div className={styles.source__description}>
+    <div className={styles.sourceContent}>
+      <div className={styles.sourceDescription}>
         <TextTypography>{source.description}</TextTypography>
       </div>
     </div>
@@ -40,13 +40,13 @@ const KnowledgeBase = () => {
   return (
     <div>
       <TitleTypography>{KNOWLEDGE_BASE}</TitleTypography>
-      <div className={styles.source__container}>
+      <div className={styles.sourceContainer}>
         {sourceList.map((source) => (
           <Card
             key={source.id}
             title={sourceTitle(source)}
             content={sourceContent(source)}
-            classname={styles.source__card}
+            classname={styles.sourceCard}
           />
         ))}
       </div>

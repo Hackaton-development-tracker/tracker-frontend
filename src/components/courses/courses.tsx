@@ -32,18 +32,18 @@ const Courses = () => {
   const testLink = "https://practicum.yandex.ru/thinking"
 
   const courseTitle = (course: ICourse) => (  
-    <div className={styles.courses__container}>
-      <div className={styles.courses__title}>
+    <div className={styles.coursesContainer}>
+      <div className={styles.coursesTitle}>
         <TitleTypography>{course.title}</TitleTypography>
       </div>
     </div>
   );
 
   const courseContent = (course: ICourse) => (
-    <div className={styles.courses__content}>
+    <div className={styles.coursesContent}>
       <TextTypography>{course.description}</TextTypography>
-      <div className={styles.courses__info}>
-        <div className={styles.courses__date}>
+      <div className={styles.coursesInfo}>
+        <div className={styles.coursesDate}>
           <GreyTypography>{NEXT_START_DATE}</GreyTypography>
           <TextTypography>
             {formattedDate(course.start_date)}

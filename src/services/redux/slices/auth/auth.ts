@@ -196,7 +196,7 @@ const authSlice = createSlice({
       }).addCase(updateSpecialization.fulfilled, (state, action) => {
         state.id_speciality = action.payload.id_speciality;
         // Optionally, you can update the title_speciality here if needed
-      })
+      });
   },
 });
 

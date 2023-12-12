@@ -21,9 +21,10 @@ import { IUser } from '../../services/redux/slices/auth/auth';
 //  renders main card with current grade
 export function CurrentGradeCard({ user }: { user: IUser }) {
   const formattedTestDate = formattedDate(user.test_date);
+  console.log(styles.currentTitle);
 
   const currentTitle = (
-    <div className={styles.current__title}>
+    <div className={styles.currentTitle}>
       <SmallTextTypography> {USER_TITLE}</SmallTextTypography>
       <ProfessionTypography
         sx={{
@@ -64,7 +65,7 @@ export function ShortCurrentGradeCard({ user }: { user: IUser }) {
   const formattedTestDate = formattedDate(user.test_date);
 
   const currentTitle = (
-    <div className={styles.current__content}>
+    <div className={styles.currentContent}>
       <GradeTypography>{user.grades[0].title}</GradeTypography>
       <SmallTextTypography>
         {USER_CURRENT_LEVEL_ACHIEVED} {formattedTestDate}
@@ -74,7 +75,7 @@ export function ShortCurrentGradeCard({ user }: { user: IUser }) {
 
   const currentContent = (
     <ProfessionTypography sx={{ fontSize: '16px', lineHeight: '20px' }}>
-      {user.next_grade.title}
+      {user.specializations[0].title}
     </ProfessionTypography>
   );
 
