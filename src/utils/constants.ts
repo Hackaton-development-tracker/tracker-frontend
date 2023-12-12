@@ -1,11 +1,10 @@
 export const API_MAIN_URL = 'http://localhost:8000/api';
 export const API_BASE_URL = API_MAIN_URL + '/v1';
-export const REGISTER_URL = `${API_MAIN_URL}/v1/users/`;
-export const LOGIN_URL = `${API_MAIN_URL}/v1/auth/token/login/`;
+export const REGISTER_URL = `${API_BASE_URL}/users/`;
+export const LOGIN_URL = `${API_BASE_URL}/auth/token/login/`;
 // export const TOKEN_URL = `${API_MAIN_URL}/auth/jwt/refresh/`;
-export const LOGOUT_URL = `${API_MAIN_URL}/v1/auth/token/logout/`;
-export const GET_USER_URL = `${API_MAIN_URL}/v1/users/me/`;
-
+export const LOGOUT_URL = `${API_BASE_URL}/auth/token/logout/`;
+export const GET_USER_URL = `${API_BASE_URL}/users/me/`;
 
 export const TITLE = 'Карьерный трекер';
 export const ENTER_TO_SYSTEM = 'Войти в аккаунт';
@@ -21,9 +20,15 @@ export const NOT_FOUND = 'Страница не найдена';
 
 export const ROUTE_HOME = '/';
 export const ROUTE_LOGIN = '/login';
+export const ROUTE_LOGOUT = '/logout';
 export const ROUTE_STEP1 = '/step1';
+export const ROUTE_STEP1_MESSAGE = 'Выбери специальность';
 export const ROUTE_STEP2 = '/step2';
+export const ROUTE_STEP2_MESSAGE = 'Тест';
 export const ROUTE_STEP3 = '/step3';
+export const ROUTE_STEP3_MESSAGE = 'Результат';
+export const ROUTE_TRACKER = '/tracker';
+export const ROUTE_TRACKER_MESSAGE = 'Трэкер';
 export const ROUTE_REGISTER = '/register';
 export const ROUTE_FORGOT_PASS = '/forgot-password';
 export const ROUTE_RESET_PASS = '/reset-password';
@@ -32,7 +37,6 @@ export const ROUTE_PROFILE = '/profile';
 export const ROUTE_DEVELOPMENT_MAP = '/map';
 
 export const ACCESS_TOKEN = 'accessToken';
-export const REFRESH_TOKEN = 'refreshToken';
 
 export const SKILLS_PROFILE = 'Профиль навыков';
 export const MAP = 'Карта развития';

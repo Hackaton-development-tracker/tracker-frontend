@@ -32,7 +32,6 @@ export function NextGradeCard({ user }: { user: IUser }) {
   const handleTestRetake = () => {
     navigate(ROUTE_STEP1);
   };
-  console.log(timeRemaining);
 
   const nextTitle = (
     <div>

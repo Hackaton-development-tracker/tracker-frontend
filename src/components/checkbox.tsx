@@ -1,7 +1,7 @@
 import { Checkbox, styled } from '@mui/material';
 import vars from '../static/scss/export.module.scss';
 
-export const CheckboxTap = styled(Checkbox)(() => ({
+const CustomCheckbox = styled(Checkbox)(() => ({
   '&.MuiCheckbox-root': {
     padding: '4px',
     color: vars.colorBlack300,
@@ -19,3 +19,15 @@ export const CheckboxTap = styled(Checkbox)(() => ({
     // },
   },
 }));
+
+interface CheckboxTapProps {
+  checked: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+}
+
+const CheckboxTap : React.FC<CheckboxTapProps> = ({ checked, onChange, name }) => {
+  return <CustomCheckbox checked={checked} onChange={onChange} name={name} />;
+};
+
+export default CheckboxTap;
