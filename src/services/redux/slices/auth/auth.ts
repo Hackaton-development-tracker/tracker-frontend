@@ -123,10 +123,13 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         localStorage.setItem('accessToken', action.payload.auth_token);
-        localStorage.setItem('refreshToken', action.payload.refresh);
+        // localStorage.setItem('refreshToken', action.payload.refresh);
         state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload;
+        state.accessToken = action.payload.auth_token;
+        state.id_speciality = 0;
+        state.title_speciality = '';
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -162,7 +165,7 @@ const authSlice = createSlice({
       })
       .addCase(logoutUser.rejected, (state, action) => {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        // localStorage.removeItem('refreshToken');
         state.isLoading = false;
         state.isLoggedIn = false;
         state.error = action.error.message as string;
@@ -190,6 +193,9 @@ const authSlice = createSlice({
       .addCase(getProfileUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
+      }).addCase(updateSpecialization.fulfilled, (state, action) => {
+        state.id_speciality = action.payload.id_speciality;
+        // Optionally, you can update the title_speciality here if needed
       })
   },
 });
@@ -197,11 +203,11 @@ const authSlice = createSlice({
 export const authReducer = authSlice.reducer;
 
 export const selectUser = (state: { user: IAuthState }) => state.user;
-export const selectLoggedIn = (state: { auth: IAuthState }) =>
-  state.auth.isLoggedIn;
-export const selectLoading = (state: { auth: IAuthState }) =>
-  state.auth.isLoading;
-export const selectError = (state: { auth: IAuthState }) => state.auth.error;
+export const selectLoggedIn = (state: { isLoggedIn: IAuthState }) =>
+  state.isLoggedIn;
+export const selectLoading = (state: { isLoading: IAuthState }) =>
+  state.isLoading;
+export const selectError = (state: { error: IAuthState }) => state.error;
 
 // export const getToken = (state: { user: IAuthState }) => state.user.accessToken;
 
