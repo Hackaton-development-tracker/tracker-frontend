@@ -26,7 +26,7 @@ export function formattedDate(date: string): string {
 
 export function hoursToDaysOrMonths(hours: number): string {
   const hoursInDay = 1.75;
-  const days = hours / hoursInDay;
+  const days = Math.round(hours / hoursInDay);
   const averageDaysInMonth = 30;
 
   const months = hours / (hoursInDay * averageDaysInMonth);
