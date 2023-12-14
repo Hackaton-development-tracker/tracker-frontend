@@ -10,7 +10,7 @@ interface ISpecialization {
 
 export interface IProject {
   id: number;
-  image: string;
+  file: string;
   title: string;
   description: string;
   start_date: string;

@@ -13,8 +13,8 @@ export interface ICourse {
   start_date: string;
   end_date?: string;
   resource: IResource;
-  // completion_time: number;
-  image: string;
+  completion_time: number;
+  file: string;
 }
 interface ICourses {
   recommended_courses: ICourse[];

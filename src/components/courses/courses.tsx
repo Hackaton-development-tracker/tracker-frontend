@@ -11,7 +11,7 @@ import {
   TitleTypography,
 } from '../cardelements';
 import {
-  // hoursToDaysOrMonths,
+  hoursToDaysOrMonths,
   formattedDate,
 } from '../../utils/helpers/formatTime';
 import { SecondaryButton } from '../buttons';
@@ -29,6 +29,9 @@ const Courses = () => {
       <div className={styles.coursesTitle}>
         <TitleTypography>{course.title}</TitleTypography>
       </div>
+      <GreyTypography>
+        {hoursToDaysOrMonths(course.completion_time)}
+      </GreyTypography>
     </div>
   );
 
@@ -54,7 +57,7 @@ const Courses = () => {
         {courses.recommended_courses.map((course) => (
           <ProfCard
             key={course.id}
-            image={course.image}
+            image={course.file}
             title={() => courseTitle(course)}
             content={() => courseContent(course)}
           />

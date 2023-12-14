@@ -27,7 +27,7 @@ const Projects = () => {
 
   const projectTitle = (project: IProject) => (
     <div className={styles.projectTitleContainer}>
-      <img src={project.image} alt={project.title} className={styles.projectImg} />
+      <img src={project.file} alt={project.title} className={styles.projectImg} />
       <TitleTypography>{project.title}</TitleTypography>
     </div>
   );
