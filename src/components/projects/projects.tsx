@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './projects.module.scss';
 // import projectsData from '../../utils/backendTestData/projects.json';
-// data from utils/backendTestData
-//const sourceList = sources.recommended_projects || [];
 import { Card } from '../card/card';
 import { PROJECTS, MORE_INFO } from '../../utils/constants';
 import {
@@ -20,14 +18,15 @@ import { useAppSelector } from '../../services/typeHooks';
 
 // renders projects from Workshop
 const Projects = () => {
-  const projects = useAppSelector(projectsSelect);
-
-  // data from utils/backendTestData
-  //const sourceList = sources.recommended_projects || [];
+  const projects = useAppSelector(projectsSelect).recommended_projects;
 
   const projectTitle = (project: IProject) => (
     <div className={styles.projectTitleContainer}>
-      <img src={project.file} alt={project.title} className={styles.projectImg} />
+      <img
+        src={project.file}
+        alt={project.title}
+        className={styles.projectImg}
+      />
       <TitleTypography>{project.title}</TitleTypography>
     </div>
   );
@@ -49,19 +48,21 @@ const Projects = () => {
   );
 
   return (
-    <div>
-      <TitleTypography>{PROJECTS}</TitleTypography>
-      <div className={styles.projectContainer}>
-        {projects.recommended_projects.map((project) => (
-          <Card
-            key={project.id}
-            title={projectTitle(project)}
-            content={projectContent(project)}
-            classname={styles.projectCard}
-          />
-        ))}
+    projects.length > 0 && (
+      <div>
+        <TitleTypography>{PROJECTS}</TitleTypography>
+        <div className={styles.projectContainer}>
+          {projects.map((project) => (
+            <Card
+              key={project.id}
+              title={projectTitle(project)}
+              content={projectContent(project)}
+              classname={styles.projectCard}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 };
 

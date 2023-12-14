@@ -1,10 +1,18 @@
 import styles from './knowledgeBase.module.scss';
 import { Card } from '../card/card';
 import { KNOWLEDGE_BASE } from '../../utils/constants';
-import { SourceTypography, TitleTypography, TextTypography, GreyTypography } from '../cardelements';
+import {
+  SourceTypography,
+  TitleTypography,
+  TextTypography,
+  GreyTypography,
+} from '../cardelements';
 import vars from '../../static/scss/export.module.scss';
 import Tag from '../tag';
-import { IKnowledge, knowledgeSelect  } from '../../services/redux/slices/knowledge/knowledge';
+import {
+  IKnowledge,
+  knowledgeSelect,
+} from '../../services/redux/slices/knowledge/knowledge';
 import { useAppSelector } from '../../services/typeHooks';
 import { getSourceColor } from '../../utils/helpers/getSourceColor';
 
@@ -34,7 +42,12 @@ const KnowledgeBase = () => {
       <div className={styles.sourceTags}>
         {source.tags.map((tag) => {
           return (
-            <Tag key={tag.id} text={tag.name} color={vars.colorGrey} radius="6px" />
+            <Tag
+              key={tag.id}
+              text={tag.name}
+              color={vars.colorGrey}
+              radius="6px"
+            />
           );
         })}
       </div>
@@ -42,19 +55,21 @@ const KnowledgeBase = () => {
   );
 
   return (
-    <div>
-      <TitleTypography>{KNOWLEDGE_BASE}</TitleTypography>
-      <div className={styles.sourceContainer}>
-        {sourceList.map((source) => (
-          <Card
-            key={source.id}
-            title={sourceTitle(source)}
-            content={sourceContent(source)}
-            classname={styles.sourceCard}
-          />
-        ))}
+    sourceList.length > 0 && (
+      <div>
+        <TitleTypography>{KNOWLEDGE_BASE}</TitleTypography>
+        <div className={styles.sourceContainer}>
+          {sourceList.map((source) => (
+            <Card
+              key={source.id}
+              title={sourceTitle(source)}
+              content={sourceContent(source)}
+              classname={styles.sourceCard}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 };
 
