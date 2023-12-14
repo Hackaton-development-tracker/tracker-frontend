@@ -1,12 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchProjects } from './projectsAPI';
-
-interface IResource {
-  title: string;
-}
-interface ISpecialization {
-  id: number;
-}
+import { ISpecialization } from '../specialization/specialization';
+import { IResource } from '../courses/courses';
 
 export interface IProject {
   id: number;
