@@ -20,5 +20,5 @@ const fetchData = (url: string, token: string) => {
 };
 
 export const fetchKnowledge = (token: string) => {
-  return fetchData(`${API_BASE_URL}/knoweledge/`, token);
+  return fetchData(`${API_BASE_URL}/knowledges/`, token);
 };

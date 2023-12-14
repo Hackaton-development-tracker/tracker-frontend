@@ -1,7 +1,7 @@
 import Chip from '@mui/material/Chip';
 
 type TagProps = {
-  key?: string;
+  key?: number;
   text: string;
   color: string;
   radius?: string;

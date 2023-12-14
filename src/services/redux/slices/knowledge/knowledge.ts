@@ -1,13 +1,21 @@
 // knowledge.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchKnowledge } from './knowledgeAPI';
+import { ISkill } from '../skills/skills';
+
+interface ITag {
+  id: number;
+  name: string;
+}
 
 export interface IKnowledge {
   id: number;
-  theme: string; 
+  tags: ITag[];
+  theme: string;
+  type: string;
   description: string;
   author: string;
-  skills: number[]; 
+  skills: ISkill[]; 
 }
 
 interface IKnowledgeBase {
