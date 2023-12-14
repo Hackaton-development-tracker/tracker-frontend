@@ -42,6 +42,8 @@ const RegisterPage = () => {
 
   const [error, setError] = useState('');
   const [lsuccess, setSuccess] = useState('');
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+
 
   interface LoginFormInputs {
     email: string;
@@ -69,6 +71,8 @@ const RegisterPage = () => {
   };
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+    setButtonDisabled(true);
+
     const email = data.email as string;
     const password = data.password as string;
     const passwordConfirm = data.passwordConfirm as string;
@@ -102,6 +106,7 @@ const RegisterPage = () => {
       } else {
         console.log(resultAction);
         setError('Ошибка регистрации');
+        setButtonDisabled(false);
         return;
       }
     });
@@ -147,7 +152,6 @@ const RegisterPage = () => {
                   placeholder="Почта как на платформе Практикума"
                   autoFocus
                   id="email"
-                  inputProps={{ autoComplete: 'off' }}
                   onChange={(e) => {
                     setValue('email', e.target.value);
                     setEmail(e.target.value);
@@ -171,13 +175,12 @@ const RegisterPage = () => {
               render={(props) => (
                 <LoginInput
                   {...props.field}
+                  id="password"
                   fullWidth
                   placeholder="Придумай пароль"
                   type="password"
-                  autoComplete="off"
-                  id="password"
+                  autoComplete="new-password"
                   name="password"
-                  inputProps={{ autoComplete: 'off' }}
                   onChange={(e) => {
                     setValue('password', e.target.value);
                     setPassword(e.target.value);
@@ -210,10 +213,8 @@ const RegisterPage = () => {
                   fullWidth
                   placeholder={REPEAT_PASSWORD}
                   type="password"
-                  autoComplete="off"
                   id="passwordConfirm"
                   name="passwordConfirm"
-                  inputProps={{ autoComplete: 'off' }}
                   onChange={(e) => {
                     setValue('passwordConfirm', e.target.value);
                     setPassword(e.target.value);
@@ -236,6 +237,7 @@ const RegisterPage = () => {
             type="submit"
             variant="contained"
             sx={{ mb: 2 }}
+            disabled={isButtonDisabled}
           >
             {REGISTRATION}
           </PrimaryButton>

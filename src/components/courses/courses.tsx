@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './courses.module.scss';
 // import coursesData from '../../utils/backendTestData/courses.json';
-// data from utils/backendTestData
-// const courseList = courses.recommended_courses || [];
 import { ProfCard } from '../profCard/profCard';
 import { COURSES, NEXT_START_DATE, MORE_INFO } from '../../utils/constants';
 import {
@@ -23,7 +21,7 @@ import { useAppSelector } from '../../services/typeHooks';
 
 // renders recommended mini courses
 const Courses = () => {
-  const courses = useAppSelector(coursesSelect);
+  const courses = useAppSelector(coursesSelect).recommended_courses;
   const courseTitle = (course: ICourse) => (
     <div className={styles.coursesContainer}>
       <div className={styles.coursesTitle}>
@@ -51,19 +49,21 @@ const Courses = () => {
   );
 
   return (
-    <div>
-      <TitleTypography>{COURSES}</TitleTypography>
-      <div className={styles.courses}>
-        {courses.recommended_courses.map((course) => (
-          <ProfCard
-            key={course.id}
-            image={course.file}
-            title={() => courseTitle(course)}
-            content={() => courseContent(course)}
-          />
-        ))}
+    courses.length > 0 && (
+      <div>
+        <TitleTypography>{COURSES}</TitleTypography>
+        <div className={styles.courses}>
+          {courses.map((course) => (
+            <ProfCard
+              key={course.id}
+              image={course.file}
+              title={() => courseTitle(course)}
+              content={() => courseContent(course)}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 };
 
