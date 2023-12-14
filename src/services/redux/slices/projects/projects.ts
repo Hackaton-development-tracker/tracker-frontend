@@ -1,17 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchProjects } from './projectsAPI';
 
+interface IResource {
+  title: string;
+}
 interface ISpecialization {
   id: number;
 }
 
 export interface IProject {
   id: number;
+  image: string;
   title: string;
   description: string;
   start_date: string;
   end_date: string;
-  external_resources: number;
+  external_resources: IResource;
   specializations?: ISpecialization[];  
 }
 

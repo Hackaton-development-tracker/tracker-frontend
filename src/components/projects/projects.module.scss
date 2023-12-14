@@ -43,4 +43,12 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  &__img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 }

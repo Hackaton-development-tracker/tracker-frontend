@@ -21,5 +21,5 @@ const fetchData = (url: string, token: string) => {
 };
 
 export const fetchProjects = (token: string) => {
-  return fetchData(`${API_BASE_URL}/project/`, token);
+  return fetchData(`${API_BASE_URL}/projects/`, token);
 };
