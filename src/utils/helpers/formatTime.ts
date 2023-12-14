@@ -26,11 +26,10 @@ export function formattedDate(date: string): string {
 
 export function hoursToDaysOrMonths(hours: number): string {
   const hoursInDay = 1.75;
-  const days = hours / hoursInDay;
-  const averageHoursInDay = 24;
+  const days = Math.round(hours / hoursInDay);
   const averageDaysInMonth = 30;
 
-  const months = hours / (averageHoursInDay * averageDaysInMonth);
+  const months = hours / (hoursInDay * averageDaysInMonth);
 
   if (days > 1 && days < 5) {
     return `${days} дня`;
@@ -44,5 +43,5 @@ export function hoursToDaysOrMonths(hours: number): string {
     return `${months} месяц`;
   }
 
-  return months < 1 ? `${Math.round(days)} дней` : `${months} месяцев`;
+  return months < 1 ? `${Math.round(days)} дней (${hours} часов)` : `${months} месяцев`;
 }

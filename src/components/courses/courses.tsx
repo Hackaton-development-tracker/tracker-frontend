@@ -11,13 +11,10 @@ import {
   TitleTypography,
 } from '../cardelements';
 import {
-  // hoursToDaysOrMonths,
+  hoursToDaysOrMonths,
   formattedDate,
 } from '../../utils/helpers/formatTime';
 import { SecondaryButton } from '../buttons';
-import thinking from '../../static/assets/images/thinking.svg';
-import economics from '../../static/assets/images/economics.svg';
-import argumentation from '../../static/assets/images/argumentation.svg';
 import {
   ICourse,
   coursesSelect,
@@ -27,14 +24,14 @@ import { useAppSelector } from '../../services/typeHooks';
 // renders recommended mini courses
 const Courses = () => {
   const courses = useAppSelector(coursesSelect);
-  // TODO: update after backend fix
-  const testLink = 'https://practicum.yandex.ru/thinking';
-
   const courseTitle = (course: ICourse) => (
     <div className={styles.coursesContainer}>
       <div className={styles.coursesTitle}>
         <TitleTypography>{course.title}</TitleTypography>
       </div>
+      <GreyTypography>
+        {hoursToDaysOrMonths(course.completion_time)}
+      </GreyTypography>
     </div>
   );
 
@@ -46,26 +43,12 @@ const Courses = () => {
           <GreyTypography>{NEXT_START_DATE}</GreyTypography>
           <TextTypography>{formattedDate(course.start_date)}</TextTypography>
         </div>
-        <Link to={testLink} target="_blank">
+        <Link to={course.resource.url} target="_blank">
           <SecondaryButton className="button">{MORE_INFO}</SecondaryButton>
         </Link>
       </div>
     </div>
   );
-
-  // TODO: get images from server
-  const getImage = (courseId: number) => {
-    switch (courseId) {
-      case 1:
-        return thinking;
-      case 2:
-        return economics;
-      case 3:
-        return argumentation;
-      default:
-        return '';
-    }
-  };
 
   return (
     <div>
@@ -74,7 +57,7 @@ const Courses = () => {
         {courses.recommended_courses.map((course) => (
           <ProfCard
             key={course.id}
-            image={getImage(course.id)}
+            image={course.file}
             title={() => courseTitle(course)}
             content={() => courseContent(course)}
           />

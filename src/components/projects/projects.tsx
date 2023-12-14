@@ -1,31 +1,33 @@
 import { Link } from 'react-router-dom';
 import styles from './projects.module.scss';
 // import projectsData from '../../utils/backendTestData/projects.json';
-  // data from utils/backendTestData
-  //const sourceList = sources.recommended_projects || [];
+// data from utils/backendTestData
+//const sourceList = sources.recommended_projects || [];
 import { Card } from '../card/card';
 import { PROJECTS, MORE_INFO } from '../../utils/constants';
-import { TitleTypography, TextTypography, GreyTypography } from '../cardelements';
+import {
+  TitleTypography,
+  TextTypography,
+  GreyTypography,
+} from '../cardelements';
 import { formattedDate } from '../../utils/helpers/formatTime';
 import { SecondaryButton } from '../buttons';
-import hackathon from '../../static/assets/icons/hackathon.svg';
-import alpha from '../../static/assets/icons/alpha.svg';
-import { IProject, projectsSelect } from '../../services/redux/slices/projects/projects';
+import {
+  IProject,
+  projectsSelect,
+} from '../../services/redux/slices/projects/projects';
 import { useAppSelector } from '../../services/typeHooks';
 
 // renders projects from Workshop
 const Projects = () => {
   const projects = useAppSelector(projectsSelect);
-  
+
   // data from utils/backendTestData
   //const sourceList = sources.recommended_projects || [];
 
   const projectTitle = (project: IProject) => (
     <div className={styles.projectTitleContainer}>
-      <img
-        src={project.title === 'Хакатон+' ? hackathon : alpha}
-        alt={project.title}
-      />
+      <img src={project.file} alt={project.title} className={styles.projectImg} />
       <TitleTypography>{project.title}</TitleTypography>
     </div>
   );
