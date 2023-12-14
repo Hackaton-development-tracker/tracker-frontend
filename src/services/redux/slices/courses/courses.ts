@@ -2,15 +2,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchCourses } from './coursesAPI';
 
+export interface IResource {
+  url: string;
+}
+
 export interface ICourse {
   id: number;
   title: string;
   description: string;
   start_date: string;
   end_date?: string;
-  resource?: string;
+  resource: IResource;
   // completion_time: number;
-  // image: string;
+  image: string;
 }
 interface ICourses {
   recommended_courses: ICourse[];
